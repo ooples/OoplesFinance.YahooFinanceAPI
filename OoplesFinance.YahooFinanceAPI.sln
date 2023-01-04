@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33209.295
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OoplesFinance.YahooFinanceAPI", "OoplesFinance.YahooFinanceAPI.csproj", "{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABAB5149-23B2-4D15-BD69-05993065166E}
+	EndGlobalSection
+EndGlobal
