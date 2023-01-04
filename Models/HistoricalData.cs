@@ -1,6 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
-public class TickerData : ITickerData
+public class HistoricalData
 {
     public DateTime Date { get; set; }
 
