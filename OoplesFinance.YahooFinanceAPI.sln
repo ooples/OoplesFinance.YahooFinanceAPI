@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33209.295
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OoplesFinance.YahooFinanceAPI", "OoplesFinance.YahooFinanceAPI.csproj", "{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OoplesFinance.YahooFinanceAPI", "src\OoplesFinance.YahooFinanceAPI.csproj", "{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

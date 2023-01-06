@@ -1,3 +1,5 @@
+using System.Net.Http;
+
 namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 public static class DownloadHelper
@@ -28,7 +30,7 @@ public static class DownloadHelper
             }
             else
             {
-                if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.UnprocessableEntity)
+                if (response.StatusCode == HttpStatusCode.NotFound)
                 {
                     throw new InvalidOperationException($"'{symbol}' Symbol Not Available On Yahoo Finance");
                 }

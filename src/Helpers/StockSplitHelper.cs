@@ -1,15 +1,15 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-public class DividendHelper : YahooClientBase
+public class StockSplitHelper : YahooClientBase
 {
     internal override IEnumerable<T> ParseYahooData<T>(string? csvData)
     {
-        var parsedDataList = new List<DividendData>();
+        var parsedDataList = new List<StockSplitData>();
         var rows = csvData?.Split('\n');
 
         if (rows == null || rows.Length <= 1)
         {
-            throw new InvalidOperationException("No Dividend Data Found");
+            throw new InvalidOperationException("No Stock Split Data Found");
         }
 
         // We are ignoring the first row which are headers
@@ -22,17 +22,15 @@ public class DividendHelper : YahooClientBase
                 var column = row.Split(',');
 
                 // Perform a try parse for all columns per row
-                var dateSuccess = DateTime.TryParse(column[0], CultureInfo.InvariantCulture, out var parsedDate);
-                var dividendSuccess = double.TryParse(column[1], CultureInfo.InvariantCulture, out var parsedDividend);
+                var dateSuccess = DateTime.TryParse(column[0], CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate);
 
                 // Add either the parsed value or the default if there was a parsing error
-                DividendData dividendData = new()
+                StockSplitData stockSplitData = new()
                 {
                     Date = dateSuccess ? parsedDate : default,
-                    Dividend = dividendSuccess ? parsedDividend : default
+                    StockSplit = column[1]
                 };
-
-                parsedDataList.Add(dividendData);
+                parsedDataList.Add(stockSplitData);
             }
         }
 

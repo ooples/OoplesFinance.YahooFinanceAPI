@@ -22,13 +22,19 @@ public class HistoricalHelper : YahooClientBase
                 var column = row.Split(',');
 
                 // Perform a try parse for all columns per row
-                var dateSuccess = DateTime.TryParse(column[0], CultureInfo.InvariantCulture, out var parsedDate);
-                var openSuccess = double.TryParse(column[1], CultureInfo.InvariantCulture, out var parsedOpen);
-                var highSuccess = double.TryParse(column[2], CultureInfo.InvariantCulture, out var parsedHigh);
-                var lowSuccess = double.TryParse(column[3], CultureInfo.InvariantCulture, out var parsedLow);
-                var closeSuccess = double.TryParse(column[4], CultureInfo.InvariantCulture, out var parsedClose);
-                var adjCloseSuccess = double.TryParse(column[5], CultureInfo.InvariantCulture, out var parsedAdjClose);
-                var volumeSuccess = double.TryParse(column[6], CultureInfo.InvariantCulture, out var parsedVolume);
+                var dateSuccess = DateTime.TryParse(column[0], CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate);
+                var openSuccess = double.TryParse(column[1], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number, 
+                    CultureInfo.InvariantCulture, out var parsedOpen);
+                var highSuccess = double.TryParse(column[2], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number, 
+                    CultureInfo.InvariantCulture, out var parsedHigh);
+                var lowSuccess = double.TryParse(column[3], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number, 
+                    CultureInfo.InvariantCulture, out var parsedLow);
+                var closeSuccess = double.TryParse(column[4], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number, 
+                    CultureInfo.InvariantCulture, out var parsedClose);
+                var adjCloseSuccess = double.TryParse(column[5], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number, 
+                    CultureInfo.InvariantCulture, out var parsedAdjClose);
+                var volumeSuccess = double.TryParse(column[6], NumberStyles.Integer | NumberStyles.Number, 
+                    CultureInfo.InvariantCulture, out var parsedVolume);
 
                 // Add either the parsed value or the default if there was a parsing error
                 HistoricalData historicalData = new()
