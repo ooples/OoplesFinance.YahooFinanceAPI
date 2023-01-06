@@ -1,55 +1,11 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-public class HistoricalDataHelper : IYahooClient
+public class HistoricalHelper : YahooClientBase
 {
-    public async Task<IEnumerable<T>> DownloadYahooDataAsync<T>(string symbol, DataType dataType, DataFrequency dataFrequency, 
-        DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
-    {
-        if (string.IsNullOrWhiteSpace(symbol))
-        {
-            throw new ArgumentException("Symbol Parameter Can't Be Empty Or Null");
-        }
-        else
-        {
-            using var client = new HttpClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooUrl(symbol, dataType, dataFrequency, startDate, endDate, includeAdjustedClose));
-            var response = await client.SendAsync(request);
-
-            var result = string.Empty;
-            if (response.IsSuccessStatusCode)
-            {
-                // Handle success
-                result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    return ParseYahooData<T>(result);
-                }
-            }
-            else
-            {
-                if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.UnprocessableEntity)
-                {
-                    throw new InvalidOperationException($"'{symbol}' Symbol Not Available On Yahoo Finance");
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unspecified Error Occurred");
-                }
-            }
-        }
-
-        return Enumerable.Empty<T>();
-    }
-
-    public IEnumerable<T> ParseYahooData<T>(string csvData)
+    internal override IEnumerable<T> ParseYahooData<T>(string? csvData)
     {
         var parsedDataList = new List<HistoricalData>();
-        var rows = csvData.Split('\n');
+        var rows = csvData?.Split('\n');
 
         if (rows == null || rows.Length <= 1)
         {
