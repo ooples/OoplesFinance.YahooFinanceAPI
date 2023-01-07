@@ -2,6 +2,13 @@
 
 public class StockSplitHelper : YahooClientBase
 {
+    /// <summary>
+    /// Parses the raw csv data for the Stock Split Data
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="csvData"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException">Throws this exception when no stock split data is found.</exception>
     internal override IEnumerable<T> ParseYahooData<T>(string? csvData)
     {
         var parsedDataList = new List<StockSplitData>();

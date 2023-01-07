@@ -2,6 +2,13 @@
 
 public class HistoricalHelper : YahooClientBase
 {
+    /// <summary>
+    /// Parses the raw csv data for the Historical Data
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="csvData"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException">Throws an exception if no historical data was found.</exception>
     internal override IEnumerable<T> ParseYahooData<T>(string? csvData)
     {
         var parsedDataList = new List<HistoricalData>();

@@ -1,9 +1,20 @@
-using System.Net.Http;
-
 namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 public static class DownloadHelper
 {
+    /// <summary>
+    /// Downloads the raw csv data using the chosen parameters
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="symbol"></param>
+    /// <param name="dataType"></param>
+    /// <param name="dataFrequency"></param>
+    /// <param name="startDate"></param>
+    /// <param name="endDate"></param>
+    /// <param name="includeAdjustedClose"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="InvalidOperationException"></exception>
     internal static async Task<string?> DownloadRawDataAsync<T>(string symbol, DataType dataType, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
@@ -48,10 +59,26 @@ public static class DownloadHelper
         return string.Empty;
     }
 
+    /// <summary>
+    /// Creates a url that will be used to compile the chosen parameter options into a csv file.
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="dataType"></param>
+    /// <param name="dataFrequency"></param>
+    /// <param name="startDate"></param>
+    /// <param name="endDate"></param>
+    /// <param name="includeAdjClose"></param>
+    /// <returns></returns>
     internal static Uri BuildYahooUrl(string symbol, DataType dataType, DataFrequency dataFrequency, DateTime startDate, DateTime? endDate = null, bool includeAdjClose = true) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v7/finance/download/{symbol}?period1={startDate.ToUnixTimestamp()}" +
             $"&period2={(endDate ?? DateTime.Now).ToUnixTimestamp()}&interval={GetIntervalString(dataFrequency)}&events={GetEventsString(dataType)}&includeAdjustedClose={includeAdjClose}"));
 
+    /// <summary>
+    /// Returns a custom string for the Data Frequency option.
+    /// </summary>
+    /// <param name="dataFrequency"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException">Throws an exception if the enumerator isn't in the list of available enumerators.</exception>
     private static string GetIntervalString(DataFrequency dataFrequency) =>
         dataFrequency switch
         {
@@ -61,6 +88,12 @@ public static class DownloadHelper
             _ => throw new ArgumentException("Invalid Enumerator Value", nameof(dataFrequency))
         };
 
+    /// <summary>
+    /// Returns a custom string for the Data Type option.
+    /// </summary>
+    /// <param name="dataType"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException">Throws an exception if the enumerator isn't in the list of available enumerators.</exception>
     private static string GetEventsString(DataType dataType) =>
         dataType switch
         {

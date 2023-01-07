@@ -1,5 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
+[Serializable]
 public class HistoricalData
 {
     public DateTime Date { get; set; }

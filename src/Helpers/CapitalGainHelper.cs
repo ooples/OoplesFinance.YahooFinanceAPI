@@ -2,6 +2,13 @@
 
 public class CapitalGainHelper : YahooClientBase
 {
+    /// <summary>
+    /// Parses the raw csv data for the Capital Gain Data
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="csvData"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException">Throws this exception if there is no data available.</exception>
     internal override IEnumerable<T> ParseYahooData<T>(string? csvData)
     {
         var parsedDataList = new List<CapitalGainData>();
