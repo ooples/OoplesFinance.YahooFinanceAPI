@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33209.295
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OoplesFinance.YahooFinanceAPI", "src\OoplesFinance.YahooFinanceAPI.csproj", "{F783EAAC-E1BF-4AA9-B9C6-BC0F1519613F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OoplesFinance.YahooFinanceAPI.Tests.Unit", "OoplesFinance.YahooAPI.Tests.Unit\OoplesFinance.YahooFinanceAPI.Tests.Unit.csproj", "{CECB02A3-7D31-4AE6-AB3E-52E46B62BF4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OoplesFinance.YahooFinanceAPI.Tests.Unit", "tests\OoplesFinance.YahooFinanceAPI.Tests.Unit.csproj", "{CECB02A3-7D31-4AE6-AB3E-52E46B62BF4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
