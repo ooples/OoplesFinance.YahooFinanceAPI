@@ -1,6 +1,7 @@
 ![Nuget](https://img.shields.io/nuget/dt/OoplesFinance.YahooFinanceAPI?style=plastic)
 ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/OoplesFinance.YahooFinanceAPI?style=plastic)
 ![github](https://img.shields.io/github/license/ooples/OoplesFinance.YahooFinanceAPI?style=plastic)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/147ed8075c6048ffb3b335b445e83738)](https://app.codacy.com/gh/ooples/OoplesFinance.YahooFinanceAPI?utm_source=github.com&utm_medium=referral&utm_content=ooples/OoplesFinance.YahooFinanceAPI&utm_campaign=Badge_Grade_Settings)
 
 ## .Net Yahoo Finance API Library
 
