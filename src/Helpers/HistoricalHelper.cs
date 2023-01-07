@@ -1,6 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-public class HistoricalHelper : YahooClientBase
+internal class HistoricalHelper : YahooClientBase
 {
     /// <summary>
     /// Parses the raw csv data for the Historical Data

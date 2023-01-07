@@ -1,6 +1,6 @@
 namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-public static class DownloadHelper
+internal static class DownloadHelper
 {
     /// <summary>
     /// Downloads the raw csv data using the chosen parameters
@@ -15,7 +15,7 @@ public static class DownloadHelper
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
     /// <exception cref="InvalidOperationException"></exception>
-    internal static async Task<string?> DownloadRawDataAsync<T>(string symbol, DataType dataType, DataFrequency dataFrequency,
+    internal static async Task<string?> DownloadRawDataAsync(string symbol, DataType dataType, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
         if (string.IsNullOrWhiteSpace(symbol))
@@ -69,7 +69,7 @@ public static class DownloadHelper
     /// <param name="endDate"></param>
     /// <param name="includeAdjClose"></param>
     /// <returns></returns>
-    internal static Uri BuildYahooUrl(string symbol, DataType dataType, DataFrequency dataFrequency, DateTime startDate, DateTime? endDate = null, bool includeAdjClose = true) =>
+    internal static Uri BuildYahooUrl(string symbol, DataType dataType, DataFrequency dataFrequency, DateTime startDate, DateTime? endDate, bool includeAdjClose) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v7/finance/download/{symbol}?period1={startDate.ToUnixTimestamp()}" +
             $"&period2={(endDate ?? DateTime.Now).ToUnixTimestamp()}&interval={GetIntervalString(dataFrequency)}&events={GetEventsString(dataType)}&includeAdjustedClose={includeAdjClose}"));
 

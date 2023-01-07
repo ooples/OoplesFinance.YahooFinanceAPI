@@ -1,6 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-public class StockSplitHelper : YahooClientBase
+internal class StockSplitHelper : YahooClientBase
 {
     /// <summary>
     /// Parses the raw csv data for the Stock Split Data

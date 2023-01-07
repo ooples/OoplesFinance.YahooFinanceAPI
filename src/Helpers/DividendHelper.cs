@@ -1,6 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-public class DividendHelper : YahooClientBase
+internal class DividendHelper : YahooClientBase
 {
     /// <summary>
     /// Parses the raw csv data for the Dividend Data

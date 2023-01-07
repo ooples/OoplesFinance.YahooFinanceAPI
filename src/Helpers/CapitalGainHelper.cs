@@ -1,6 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-public class CapitalGainHelper : YahooClientBase
+internal class CapitalGainHelper : YahooClientBase
 {
     /// <summary>
     /// Parses the raw csv data for the Capital Gain Data
