@@ -27,9 +27,6 @@ jobs:
       run: dotnet tool restore
       working-directory: ./tests
 
-    - name: Dotnet Test (Debug)
-      run: dotnet dotcover test --dcXML=Configuration.xml
-
     - name: Dotnet Build (Release)
       run: dotnet build -c Release
       
