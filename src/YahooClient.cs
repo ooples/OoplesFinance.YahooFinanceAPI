@@ -112,7 +112,7 @@ public static class YahooClient
     /// <param name="endDate"></param>
     /// <returns></returns>
     public static async Task<IEnumerable<StockSplitData>> GetStockSplitDataAsync(string symbol, DataFrequency dataFrequency,
-        DateTime startDate, DateTime? endDate = null)
+        DateTime startDate, DateTime? endDate)
     {
         return new StockSplitHelper().ParseYahooData<StockSplitData>(
             await DownloadRawDataAsync(symbol, DataType.StockSplits, dataFrequency, startDate, endDate, true));
