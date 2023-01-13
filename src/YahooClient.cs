@@ -179,13 +179,23 @@ public static class YahooClient
     }
 
     /// <summary>
-    /// Gets a list of the Top Trending Stocks using the selected parameter options.
+    /// Gets a list of the Top Trending Stocks using the selected parameter options
     /// </summary>
     /// <param name="country"></param>
     /// <param name="count"></param>
     /// <returns></returns>
     public static async Task<IEnumerable<string>> GetTopTrendingStocksAsync(Country country, int count)
     {
-        return new TrendingHelper().ParseYahooJsonData(await DownloadRawJsonDataAsync(country, count));
+        return new TrendingHelper().ParseYahooJsonData<string>(await DownloadRawJsonDataAsync(country, count));
+    }
+
+    /// <summary>
+    /// Gets a list of the Top Recommendations using the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public static async Task<IEnumerable<RecommendedSymbol>> GetStockRecommendationsAsync(string symbol)
+    {
+        return new RecommendationHelper().ParseYahooJsonData<RecommendedSymbol>(await DownloadRawJsonDataAsync(symbol));
     }
 }

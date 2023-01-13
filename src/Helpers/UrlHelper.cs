@@ -18,13 +18,21 @@ internal static class UrlHelper
             $"&period2={(endDate ?? DateTime.Now).ToUnixTimestamp()}&interval={GetIntervalString(dataFrequency)}&events={GetEventsString(dataType)}&includeAdjustedClose={includeAdjClose}"));
 
     /// <summary>
-    /// Creates a url that will be used to compile the chosen parameter options into a json file.
+    /// Creates a url that will be used to get the top trending stocks using the chosen parameters
     /// </summary>
     /// <param name="country"></param>
     /// <param name="count"></param>
     /// <returns></returns>
     internal static Uri BuildYahooTrendingUrl(Country country, int count) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v1/finance/trending/{GetCountryString(country)}?count={count}"));
+
+    /// <summary>
+    /// Creates a url that will be used to get recommendations for a selected symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    internal static Uri BuildYahooRecommendUrl(string symbol) =>
+        new(string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v6/finance/recommendationsbysymbol/{symbol}"));
 
     /// <summary>
     /// Returns a custom string for the Country option.

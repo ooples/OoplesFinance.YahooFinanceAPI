@@ -40,6 +40,7 @@ internal static class DownloadHelper
             }
             else
             {
+                // Handle failure
                 if (response.StatusCode == HttpStatusCode.NotFound)
                 {
                     throw new InvalidOperationException($"'{symbol}' Symbol Not Available On Yahoo Finance");
@@ -70,7 +71,7 @@ internal static class DownloadHelper
     {
         if (count <= 0)
         {
-            throw new ArgumentException("Count Must Be At Least 1 To Return Any Data", nameof(count));
+            throw new ArgumentException("Count Must Be At Least 1 To Return Any Data");
         }
         else
         {
@@ -87,6 +88,42 @@ internal static class DownloadHelper
             {
                 // Handle failure
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unspecified Error Occurred");
+                }
+            }
+        }
+    }
+
+    internal static async Task<string> DownloadRawJsonDataAsync(string symbol)
+    {
+        if (string.IsNullOrWhiteSpace(symbol))
+        {
+            throw new ArgumentException("Symbol Parameter Can't Be Empty Or Null");
+        }
+        else
+        {
+            using var client = new HttpClient();
+            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooRecommendUrl(symbol));
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Handle success
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                // Handle failure
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    throw new InvalidOperationException($"'{symbol}' Symbol Not Available On Yahoo Finance");
+                }
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     throw new InvalidOperationException("Yahoo Finance Authentication Error");
                 }

@@ -1,7 +1,3 @@
-using FluentAssertions;
-using NSubstitute;
-using NSubstitute.ExceptionExtensions;
-
 namespace OoplesFinance.YahooFinanceAPI.Tests.Unit;
 
 public sealed class YahooClientTests
@@ -10,7 +6,7 @@ public sealed class YahooClientTests
     public async Task GetHistoricalData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "GOOGLECOINS";
+        var symbol = "OOPLES";
         var startDate = DateTime.Now.AddYears(-1);
 
         // Act
@@ -24,7 +20,7 @@ public sealed class YahooClientTests
     public async Task GetStockSplitData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "GOOGLECOINS";
+        var symbol = "OOPLES";
         var startDate = DateTime.Now.AddYears(-1);
 
         // Act
@@ -38,7 +34,7 @@ public sealed class YahooClientTests
     public async Task GetDividendData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "GOOGLECOINS";
+        var symbol = "OOPLES";
         var startDate = DateTime.Now.AddYears(-1);
 
         // Act
@@ -52,7 +48,7 @@ public sealed class YahooClientTests
     public async Task GetCapitalGainData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "GOOGLECOINS";
+        var symbol = "OOPLES";
         var startDate = DateTime.Now.AddYears(-1);
 
         // Act
@@ -128,5 +124,31 @@ public sealed class YahooClientTests
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStockRecommendations_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await GetStockRecommendationsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage($"'{symbol}' Symbol Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetStockRecommendations_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await GetStockRecommendationsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
     }
 }

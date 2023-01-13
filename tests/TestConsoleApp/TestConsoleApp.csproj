@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\OoplesFinance.YahooFinanceAPI.csproj" />
+    <ProjectReference Include="..\..\src\OoplesFinance.YahooFinanceAPI.csproj" />
   </ItemGroup>
 
 </Project>

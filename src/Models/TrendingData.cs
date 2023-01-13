@@ -1,9 +1,9 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
-internal class Finance
+internal class TrendingFinance
 {
     [JsonPropertyName("result")]
-    public List<Result> Result { get; set; } = new();
+    public List<Result> Results { get; set; } = new();
 
     [JsonPropertyName("error")]
     public object Error { get; set; } = new();
@@ -33,5 +33,5 @@ internal class Result
 internal class TrendingData
 {
     [JsonPropertyName("finance")]
-    public Finance Finance { get; set; } = new();
+    public TrendingFinance Finance { get; set; } = new();
 }

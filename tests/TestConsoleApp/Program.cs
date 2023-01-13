@@ -9,5 +9,6 @@ var capitalGainList = await GetCapitalGainDataAsync(symbol, DataFrequency.Monthl
 var dividendList = await GetDividendDataAsync(symbol, DataFrequency.Weekly, startDate);
 var stockSplitList = await GetStockSplitDataAsync(symbol, DataFrequency.Monthly, startDate);
 var topTrendingList = await GetTopTrendingStocksAsync(Country.UnitedStates, 10);
+var recommendedList = await GetStockRecommendationsAsync(symbol);
 
 Console.WriteLine();

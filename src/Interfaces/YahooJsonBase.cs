@@ -2,5 +2,5 @@
 
 internal abstract class YahooJsonBase
 {
-    internal abstract IEnumerable<string> ParseYahooJsonData(string jsonData);
+    internal abstract IEnumerable<T> ParseYahooJsonData<T>(string jsonData);
 }
