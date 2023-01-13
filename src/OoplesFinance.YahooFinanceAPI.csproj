@@ -23,6 +23,10 @@
 	<PackageIcon>Favicon.jpg</PackageIcon>
 	<RepositoryUrl>https://github.com/ooples/OoplesFinance.YahooFinanceAPI</RepositoryUrl>
 	<PackageReleaseNotes>https://github.com/ooples/OoplesFinance.YahooFinanceAPI/releases</PackageReleaseNotes>
+	<IncludeSymbols>True</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<SignAssembly>False</SignAssembly>
+	<DelaySign>True</DelaySign>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
@@ -136,6 +140,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>

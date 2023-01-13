@@ -117,4 +117,16 @@ public sealed class YahooClientTests
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
     }
+
+    [Fact]
+    public async Task GetTopTrendingStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await GetTopTrendingStocksAsync(Country.UnitedStates, -1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
 }

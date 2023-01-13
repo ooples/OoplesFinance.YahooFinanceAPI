@@ -5,7 +5,6 @@ internal static class DownloadHelper
     /// <summary>
     /// Downloads the raw csv data using the chosen parameters
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     /// <param name="symbol"></param>
     /// <param name="dataType"></param>
     /// <param name="dataFrequency"></param>
@@ -15,7 +14,7 @@ internal static class DownloadHelper
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
     /// <exception cref="InvalidOperationException"></exception>
-    internal static async Task<string?> DownloadRawDataAsync(string symbol, DataType dataType, DataFrequency dataFrequency,
+    internal static async Task<IEnumerable<string[]>> DownloadRawCsvDataAsync(string symbol, DataType dataType, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
         if (string.IsNullOrWhiteSpace(symbol))
@@ -25,7 +24,7 @@ internal static class DownloadHelper
         else
         {
             using var client = new HttpClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooUrl(symbol, dataType, dataFrequency, startDate, endDate, includeAdjustedClose));
+            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooCsvUrl(symbol, dataType, dataFrequency, startDate, endDate, includeAdjustedClose));
             var response = await client.SendAsync(request);
 
             var result = string.Empty;
@@ -36,7 +35,7 @@ internal static class DownloadHelper
 
                 if (!string.IsNullOrWhiteSpace(result))
                 {
-                    return result;
+                    return GetBaseCsvData(result);
                 }
             }
             else
@@ -56,51 +55,65 @@ internal static class DownloadHelper
             }
         }
 
-        return string.Empty;
+        return Enumerable.Empty<string[]>();
     }
 
     /// <summary>
-    /// Creates a url that will be used to compile the chosen parameter options into a csv file.
+    /// Downloads the raw json data using the chosen parameters
     /// </summary>
-    /// <param name="symbol"></param>
-    /// <param name="dataType"></param>
-    /// <param name="dataFrequency"></param>
-    /// <param name="startDate"></param>
-    /// <param name="endDate"></param>
-    /// <param name="includeAdjClose"></param>
+    /// <param name="country"></param>
+    /// <param name="count"></param>
     /// <returns></returns>
-    internal static Uri BuildYahooUrl(string symbol, DataType dataType, DataFrequency dataFrequency, DateTime startDate, DateTime? endDate, bool includeAdjClose) =>
-        new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v7/finance/download/{symbol}?period1={startDate.ToUnixTimestamp()}" +
-            $"&period2={(endDate ?? DateTime.Now).ToUnixTimestamp()}&interval={GetIntervalString(dataFrequency)}&events={GetEventsString(dataType)}&includeAdjustedClose={includeAdjClose}"));
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="InvalidOperationException"></exception>
+    internal static async Task<string> DownloadRawJsonDataAsync(Country country, int count)
+    {
+        if (count <= 0)
+        {
+            throw new ArgumentException("Count Must Be At Least 1 To Return Any Data", nameof(count));
+        }
+        else
+        {
+            using var client = new HttpClient();
+            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooTrendingUrl(country, count));
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Handle success
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                // Handle failure
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unspecified Error Occurred");
+                }
+            }
+        }
+    }
 
     /// <summary>
-    /// Returns a custom string for the Data Frequency option.
+    /// Gets the base csv data that is used by all csv helper classes
     /// </summary>
-    /// <param name="dataFrequency"></param>
+    /// <param name="csvData"></param>
     /// <returns></returns>
-    /// <exception cref="ArgumentException">Throws an exception if the enumerator isn't in the list of available enumerators.</exception>
-    private static string GetIntervalString(DataFrequency dataFrequency) =>
-        dataFrequency switch
-        {
-            DataFrequency.Daily => "1d",
-            DataFrequency.Weekly => "1wk",
-            DataFrequency.Monthly => "1mo",
-            _ => throw new ArgumentException("Invalid Enumerator Value", nameof(dataFrequency))
-        };
+    internal static IEnumerable<string[]> GetBaseCsvData(string? csvData)
+    {
+        IEnumerable<string[]> result = Enumerable.Empty<string[]>();
+        var rows = csvData?.Split('\n');
 
-    /// <summary>
-    /// Returns a custom string for the Data Type option.
-    /// </summary>
-    /// <param name="dataType"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException">Throws an exception if the enumerator isn't in the list of available enumerators.</exception>
-    private static string GetEventsString(DataType dataType) =>
-        dataType switch
+        if (rows != null && rows.Length > 1)
         {
-            DataType.HistoricalPrices => "history",
-            DataType.Dividends => "div",
-            DataType.StockSplits => "split",
-            DataType.CapitalGains => "capitalGain",
-            _ => throw new ArgumentException("Invalid Enumerator Value", nameof(dataType))
-        };
+            // We are ignoring the first row which are headers
+            result = rows.Skip(1).Select(x => x.Split(','));
+        }
+
+        return result;
+    }
 }
