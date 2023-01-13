@@ -25,7 +25,7 @@ jobs:
           ${{ runner.os }}-nuget-
     - name: Restore .NET Tools
       run: dotnet tool restore
-      working-directory: ./tests
+      working-directory: ./tests/UnitTests
 
     - name: Dotnet Build (Release)
       run: dotnet build -c Release
