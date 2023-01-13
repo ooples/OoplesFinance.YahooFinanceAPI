@@ -6,9 +6,9 @@
 ## .Net Yahoo Finance API Library
 
 This is a library for downloading free data using Yahoo Finance that is completely open source (Apache 2.0 license) and very easy to use. 
-This library currently supports downloading 4 different types of stock market data at the time of this writing: 
-historical/daily prices, stock splits, dividends, and capital gain information. 
-We support getting daily, weekly, or monthly data for any of the above options.
+This library currently supports downloading 5 different types of stock market data at the time of this writing: 
+historical/daily prices, stock splits, dividends, capital gains, and top trending stock information. 
+We support getting daily, weekly, or monthly data as well as many other options.
 
 
 ### How to use this library
@@ -26,6 +26,7 @@ var historicalDataList = await GetHistoricalDataAsync(symbol, DataFrequency.Dail
 var capitalGainList = await GetCapitalGainDataAsync(symbol, DataFrequency.Monthly, startDate);
 var dividendList = await GetDividendDataAsync(symbol, DataFrequency.Weekly, startDate);
 var stockSplitList = await GetStockSplitDataAsync(symbol, DataFrequency.Monthly, startDate);
+var topTrendingList = await GetTopTrendingStocksAsync(Country.UnitedStates, 10);
 ```
 
 
