@@ -196,6 +196,6 @@ public static class YahooClient
     /// <returns></returns>
     public static async Task<IEnumerable<RecommendedSymbol>> GetStockRecommendationsAsync(string symbol)
     {
-        return new RecommendationHelper().ParseYahooJsonData<RecommendedSymbol>(await DownloadRawJsonDataAsync(symbol));
+        return new RecommendationHelper().ParseYahooJsonData<RecommendedSymbol>(await DownloadRecommendDataAsync(symbol));
     }
 }
