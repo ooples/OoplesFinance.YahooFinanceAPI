@@ -23,36 +23,11 @@ internal static class DownloadHelper
         }
         else
         {
-            using var client = new HttpClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooCsvUrl(symbol, dataType, dataFrequency, startDate, endDate, includeAdjustedClose));
-            var response = await client.SendAsync(request);
+            var rawData = await DownloadRawDataAsync(BuildYahooCsvUrl(symbol, dataType, dataFrequency, startDate, endDate, includeAdjustedClose));
 
-            var result = string.Empty;
-            if (response.IsSuccessStatusCode)
+            if (!string.IsNullOrWhiteSpace(rawData))
             {
-                // Handle success
-                result = await response.Content.ReadAsStringAsync();
-
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    return GetBaseCsvData(result);
-                }
-            }
-            else
-            {
-                // Handle failure
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    throw new InvalidOperationException($"'{symbol}' Symbol Not Available On Yahoo Finance");
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unspecified Error Occurred");
-                }
+                return GetBaseCsvData(rawData);
             }
         }
 
@@ -60,14 +35,14 @@ internal static class DownloadHelper
     }
 
     /// <summary>
-    /// Downloads the raw json data using the chosen parameters
+    /// Downloads the trending json data using the chosen parameters
     /// </summary>
     /// <param name="country"></param>
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
     /// <exception cref="InvalidOperationException"></exception>
-    internal static async Task<string> DownloadRawJsonDataAsync(Country country, int count)
+    internal static async Task<string> DownloadTrendingDataAsync(Country country, int count)
     {
         if (count <= 0)
         {
@@ -75,31 +50,52 @@ internal static class DownloadHelper
         }
         else
         {
-            using var client = new HttpClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooTrendingUrl(country, count));
-            var response = await client.SendAsync(request);
+            return await DownloadRawDataAsync(BuildYahooTrendingUrl(country, count));
+        }
+    }
 
-            if (response.IsSuccessStatusCode)
+    /// <summary>
+    /// Base method to download any raw yahoo data
+    /// </summary>
+    /// <param name="uriString"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    private static async Task<string> DownloadRawDataAsync(Uri uriString)
+    {
+        using var client = new HttpClient();
+        using var request = new HttpRequestMessage(HttpMethod.Get, uriString);
+        var response = await client.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            // Handle success
+            return await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            // Handle failure
+            if (response.StatusCode == HttpStatusCode.NotFound)
             {
-                // Handle success
-                return await response.Content.ReadAsStringAsync();
+                throw new InvalidOperationException($"Requested Information Not Available On Yahoo Finance");
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                throw new InvalidOperationException("Yahoo Finance Authentication Error");
             }
             else
             {
-                // Handle failure
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unspecified Error Occurred");
-                }
+                throw new InvalidOperationException("Unspecified Error Occurred");
             }
         }
     }
 
-    internal static async Task<string> DownloadRawJsonDataAsync(string symbol)
+    /// <summary>
+    /// Downloads the recommended json data using the chosen symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadRecommendDataAsync(string symbol)
     {
         if (string.IsNullOrWhiteSpace(symbol))
         {
@@ -107,31 +103,7 @@ internal static class DownloadHelper
         }
         else
         {
-            using var client = new HttpClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, BuildYahooRecommendUrl(symbol));
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
-            {
-                // Handle success
-                return await response.Content.ReadAsStringAsync();
-            }
-            else
-            {
-                // Handle failure
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    throw new InvalidOperationException($"'{symbol}' Symbol Not Available On Yahoo Finance");
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unspecified Error Occurred");
-                }
-            }
+            return await DownloadRawDataAsync(BuildYahooRecommendUrl(symbol));
         }
     }
 

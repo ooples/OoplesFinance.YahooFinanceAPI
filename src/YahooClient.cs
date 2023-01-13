@@ -186,7 +186,7 @@ public static class YahooClient
     /// <returns></returns>
     public static async Task<IEnumerable<string>> GetTopTrendingStocksAsync(Country country, int count)
     {
-        return new TrendingHelper().ParseYahooJsonData<string>(await DownloadRawJsonDataAsync(country, count));
+        return new TrendingHelper().ParseYahooJsonData<string>(await DownloadTrendingDataAsync(country, count));
     }
 
     /// <summary>
