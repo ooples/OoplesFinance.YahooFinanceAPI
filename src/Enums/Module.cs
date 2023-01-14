@@ -2,5 +2,6 @@
 
 public enum Module
 {
-    KeyStatistics
+    KeyStatistics,
+    SummaryDetails
 }

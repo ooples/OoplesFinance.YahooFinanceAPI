@@ -204,9 +204,9 @@ public static class YahooClient
     /// </summary>
     /// <param name="symbol"></param>
     /// <returns></returns>
-    public static async Task<KeyStatistics> GetKeyStatistics(string symbol)
+    public static async Task<KeyStatistics> GetKeyStatisticsAsync(string symbol)
     {
-        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, Country.UnitedStates, Language.English)).First();
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadStatsDataAsync(symbol, Country.UnitedStates, Language.English, Module.KeyStatistics)).First();
     }
 
     /// <summary>
@@ -214,9 +214,9 @@ public static class YahooClient
     /// </summary>
     /// <param name="symbol"></param>
     /// <returns></returns>
-    public static async Task<KeyStatistics> GetKeyStatistics(string symbol, Country country, Language language)
+    public static async Task<KeyStatistics> GetKeyStatisticsAsync(string symbol, Country country, Language language)
     {
-        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, country, language)).First();
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadStatsDataAsync(symbol, country, language, Module.KeyStatistics)).First();
     }
 
     /// <summary>
@@ -225,9 +225,9 @@ public static class YahooClient
     /// <param name="symbol"></param>
     /// <param name="country"></param>
     /// <returns></returns>
-    public static async Task<KeyStatistics> GetKeyStatistics(string symbol, Country country)
+    public static async Task<KeyStatistics> GetKeyStatisticsAsync(string symbol, Country country)
     {
-        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, country, Language.English)).First();
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadStatsDataAsync(symbol, country, Language.English, Module.KeyStatistics)).First();
     }
 
     /// <summary>
@@ -236,8 +236,8 @@ public static class YahooClient
     /// <param name="symbol"></param>
     /// <param name="language"></param>
     /// <returns></returns>
-    public static async Task<KeyStatistics> GetKeyStatistics(string symbol, Language language)
+    public static async Task<KeyStatistics> GetKeyStatisticsAsync(string symbol, Language language)
     {
-        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, Country.UnitedStates, language)).First();
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadStatsDataAsync(symbol, Country.UnitedStates, language, Module.KeyStatistics)).First();
     }
 }

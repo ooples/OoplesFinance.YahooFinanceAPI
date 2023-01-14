@@ -123,13 +123,13 @@ public class KeyStatistics
     public AnnualReportExpenseRatio AnnualReportExpenseRatio { get; set; } = new();
 
     [JsonPropertyName("ytdReturn")] 
-    public YtdReturn YtdReturn { get; set; } = new();
+    public YtdReturnSummary YtdReturn { get; set; } = new();
 
     [JsonPropertyName("beta3Year")] 
     public Beta3Year Beta3Year { get; set; } = new();
 
     [JsonPropertyName("totalAssets")] 
-    public TotalAssets TotalAssets { get; set; } = new();
+    public TotalAssetsSummary TotalAssets { get; set; } = new();
 
     [JsonPropertyName("yield")] 
     public Yield Yield { get; set; } = new();
@@ -425,10 +425,6 @@ public class PriceToBook
     public string Fmt { get; set; } = string.Empty;
 }
 
-public class PriceToSalesTrailing12Months
-{
-}
-
 public class ProfitMargins
 {
     [JsonPropertyName("raw")]
@@ -438,10 +434,10 @@ public class ProfitMargins
     public string Fmt { get; set; } = string.Empty;
 }
 
-public class QuoteSummary
+public class QuoteSummaryStatistic
 {
     [JsonPropertyName("result")] 
-    public List<KeyStatisticResult> Result { get; set; } = new();
+    public List<KeyStatisticResult> Results { get; set; } = new();
 
     [JsonPropertyName("error")]
     public object Error { get; set; } = new();
@@ -460,7 +456,7 @@ public class RevenueQuarterlyGrowth
 public class KeyStatisticData
 {
     [JsonPropertyName("quoteSummary")]
-    public QuoteSummary QuoteSummary { get; set; } = new();
+    public QuoteSummaryStatistic QuoteSummary { get; set; } = new();
 }
 
 public class SandP52WeekChange
@@ -548,7 +544,7 @@ public class ThreeYearAverageReturn
 {
 }
 
-public class TotalAssets
+public class TotalAssetsSummary
 {
 }
 
@@ -565,6 +561,6 @@ public class Yield
 {
 }
 
-public class YtdReturn
+public class YtdReturnSummary
 {
 }

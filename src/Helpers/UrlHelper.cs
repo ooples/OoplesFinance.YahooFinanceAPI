@@ -35,15 +35,16 @@ internal static class UrlHelper
         new(string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v6/finance/recommendationsbysymbol/{symbol}"));
 
     /// <summary>
-    /// Creates a url that will be used to get key statistics for a selected symbol
+    /// Creates a url that will be used to get stats for a selected symbol
     /// </summary>
     /// <param name="symbol"></param>
     /// <param name="language"></param>
     /// <param name="country"></param>
+    /// <param name="module"></param>
     /// <returns></returns>
-    internal static Uri BuildYahooKeyStatisticUrl(string symbol, Country country, Language language) =>
+    internal static Uri BuildYahooStatsUrl(string symbol, Country country, Language language, Module module) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v11/finance/quoteSummary/{symbol}?lang={GetLanguageString(language)}" +
-            $"&region={GetCountryString(country)}&modules={GetModuleString(Module.KeyStatistics)}"));
+            $"&region={GetCountryString(country)}&modules={GetModuleString(module)}"));
 
     /// <summary>
     /// Returns a custom string for the module option
@@ -54,8 +55,9 @@ internal static class UrlHelper
     private static string GetModuleString(Module module) =>
         module switch
         {
-            Module.KeyStatistics => "defaultKeyStatistics",
-            _                    => throw new ArgumentException("Invalid Enumerator Value", nameof(module))
+            Module.KeyStatistics  => "defaultKeyStatistics",
+            Module.SummaryDetails => "summaryDetail",
+            _                     => throw new ArgumentException("Invalid Enumerator Value", nameof(module))
         };
 
     /// <summary>

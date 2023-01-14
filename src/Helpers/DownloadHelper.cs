@@ -108,14 +108,15 @@ internal static class DownloadHelper
     }
 
     /// <summary>
-    /// Downloads the key statistic json data using the chosen symbol
+    /// Downloads the stats json data using the chosen symbol
     /// </summary>
     /// <param name="symbol"></param>
     /// <param name="country"></param>
     /// <param name="language"></param>
+    /// <param name="module"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    internal static async Task<string> DownloadKeyStatisticDataAsync(string symbol, Country country, Language language)
+    internal static async Task<string> DownloadStatsDataAsync(string symbol, Country country, Language language, Module module)
     {
         if (string.IsNullOrWhiteSpace(symbol))
         {
@@ -123,7 +124,7 @@ internal static class DownloadHelper
         }
         else
         {
-            return await DownloadRawDataAsync(BuildYahooKeyStatisticUrl(symbol, country, language));
+            return await DownloadRawDataAsync(BuildYahooStatsUrl(symbol, country, language, module));
         }
     }
 

@@ -10,5 +10,6 @@ var dividendList = await GetDividendDataAsync(symbol, DataFrequency.Weekly, star
 var stockSplitList = await GetStockSplitDataAsync(symbol, DataFrequency.Monthly, startDate);
 var topTrendingList = await GetTopTrendingStocksAsync(Country.UnitedStates, 10);
 var recommendedList = await GetStockRecommendationsAsync(symbol);
+var keyStatsList = await GetKeyStatisticsAsync(symbol);
 
 Console.WriteLine();
