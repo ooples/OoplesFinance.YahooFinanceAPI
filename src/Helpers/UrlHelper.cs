@@ -35,7 +35,49 @@ internal static class UrlHelper
         new(string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v6/finance/recommendationsbysymbol/{symbol}"));
 
     /// <summary>
-    /// Returns a custom string for the Country option.
+    /// Creates a url that will be used to get key statistics for a selected symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="language"></param>
+    /// <param name="country"></param>
+    /// <returns></returns>
+    internal static Uri BuildYahooKeyStatisticUrl(string symbol, Country country, Language language) =>
+        new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v11/finance/quoteSummary/{symbol}?lang={GetLanguageString(language)}" +
+            $"&region={GetCountryString(country)}&modules={GetModuleString(Module.KeyStatistics)}"));
+
+    /// <summary>
+    /// Returns a custom string for the module option
+    /// </summary>
+    /// <param name="module"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    private static string GetModuleString(Module module) =>
+        module switch
+        {
+            Module.KeyStatistics => "defaultKeyStatistics",
+            _                    => throw new ArgumentException("Invalid Enumerator Value", nameof(module))
+        };
+
+    /// <summary>
+    /// Returns a custom string for the Language option
+    /// </summary>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    private static string GetLanguageString(Language language) =>
+        language switch
+        {
+            Language.English  => "en",
+            Language.French   => "fr",
+            Language.German   => "de",
+            Language.Italian  => "it",
+            Language.Mandarin => "zh",
+            Language.Spanish  => "es",
+            _                 => throw new ArgumentException("Invalid Enumerator Value", nameof(language))
+        };
+
+    /// <summary>
+    /// Returns a custom string for the Country option
     /// </summary>
     /// <param name="country"></param>
     /// <returns></returns>

@@ -108,6 +108,26 @@ internal static class DownloadHelper
     }
 
     /// <summary>
+    /// Downloads the key statistic json data using the chosen symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadKeyStatisticDataAsync(string symbol, Country country, Language language)
+    {
+        if (string.IsNullOrWhiteSpace(symbol))
+        {
+            throw new ArgumentException("Symbol Parameter Can't Be Empty Or Null");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooKeyStatisticUrl(symbol, country, language));
+        }
+    }
+
+    /// <summary>
     /// Gets the base csv data that is used by all csv helper classes
     /// </summary>
     /// <param name="csvData"></param>

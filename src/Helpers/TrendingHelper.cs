@@ -1,5 +1,4 @@
-﻿using OoplesFinance.YahooFinanceAPI.Models;
-namespace OoplesFinance.YahooFinanceAPI.Helpers;
+﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal class TrendingHelper : YahooJsonBase
 {

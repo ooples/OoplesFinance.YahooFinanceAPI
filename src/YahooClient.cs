@@ -198,4 +198,46 @@ public static class YahooClient
     {
         return new RecommendationHelper().ParseYahooJsonData<RecommendedSymbol>(await DownloadRecommendDataAsync(symbol));
     }
+
+    /// <summary>
+    /// Gets key statistics for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public static async Task<KeyStatistics> GetKeyStatistics(string symbol)
+    {
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, Country.UnitedStates, Language.English)).First();
+    }
+
+    /// <summary>
+    /// Gets key statistics for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public static async Task<KeyStatistics> GetKeyStatistics(string symbol, Country country, Language language)
+    {
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, country, language)).First();
+    }
+
+    /// <summary>
+    /// Gets key statistics for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="country"></param>
+    /// <returns></returns>
+    public static async Task<KeyStatistics> GetKeyStatistics(string symbol, Country country)
+    {
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, country, Language.English)).First();
+    }
+
+    /// <summary>
+    /// Gets key statistics for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    public static async Task<KeyStatistics> GetKeyStatistics(string symbol, Language language)
+    {
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadKeyStatisticDataAsync(symbol, Country.UnitedStates, language)).First();
+    }
 }
