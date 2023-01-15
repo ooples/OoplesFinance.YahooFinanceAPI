@@ -2,19 +2,25 @@ namespace OoplesFinance.YahooFinanceAPI.Tests.Unit;
 
 public sealed class YahooClientTests
 {
+    private readonly YahooClient _sut;
+
+    public YahooClientTests()
+    {
+        _sut = new();
+    }
+
     [Fact]
     public async Task GetHistoricalData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
         var symbol = "OOPLES";
         var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
 
         // Assert
-        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage($"'{symbol}' Symbol Not Available On Yahoo Finance");
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
     }
 
     [Fact]
@@ -29,7 +35,7 @@ public sealed class YahooClientTests
         var result = async () => await _sut.GetStockSplitDataAsync(symbol, DataFrequency.Daily, startDate);
 
         // Assert
-        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage($"'{symbol}' Symbol Not Available On Yahoo Finance");
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
     }
 
     [Fact]
@@ -38,13 +44,12 @@ public sealed class YahooClientTests
         // Arrange
         var symbol = "OOPLES";
         var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetDividendDataAsync(symbol, DataFrequency.Daily, startDate);
 
         // Assert
-        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage($"'{symbol}' Symbol Not Available On Yahoo Finance");
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
     }
 
     [Fact]
@@ -53,13 +58,12 @@ public sealed class YahooClientTests
         // Arrange
         var symbol = "OOPLES";
         var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetCapitalGainDataAsync(symbol, DataFrequency.Daily, startDate);
 
         // Assert
-        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage($"'{symbol}' Symbol Not Available On Yahoo Finance");
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
     }
 
     [Fact]
@@ -68,7 +72,6 @@ public sealed class YahooClientTests
         // Arrange
         var symbol = "";
         var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetCapitalGainDataAsync(symbol, DataFrequency.Daily, startDate);
@@ -83,7 +86,6 @@ public sealed class YahooClientTests
         // Arrange
         var symbol = "";
         var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
@@ -98,7 +100,6 @@ public sealed class YahooClientTests
         // Arrange
         var symbol = "";
         var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetDividendDataAsync(symbol, DataFrequency.Daily, startDate);
@@ -113,7 +114,6 @@ public sealed class YahooClientTests
         // Arrange
         var symbol = "";
         var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetStockSplitDataAsync(symbol, DataFrequency.Daily, startDate);
@@ -126,7 +126,6 @@ public sealed class YahooClientTests
     public async Task GetTopTrendingStocks_ThrowsException_WhenCountIsInvalid()
     {
         // Arrange
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, -1);
@@ -140,13 +139,12 @@ public sealed class YahooClientTests
     {
         // Arrange
         var symbol = "OOPLES";
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetStockRecommendationsAsync(symbol);
 
         // Assert
-        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage($"'{symbol}' Symbol Not Available On Yahoo Finance");
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
     }
 
     [Fact]
@@ -154,10 +152,87 @@ public sealed class YahooClientTests
     {
         // Arrange
         var symbol = "";
-        var _sut = new YahooClient();
 
         // Act
         var result = async () => await _sut.GetStockRecommendationsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetKeyStatistics_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetKeyStatisticsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetKeyStatistics_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetKeyStatisticsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetSummaryDetails_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetSummaryDetailsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetSummaryDetails_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetSummaryDetailsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetInsiderHolders_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetInsiderHoldersAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetInsiderHolders_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetInsiderHoldersAsync(symbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");

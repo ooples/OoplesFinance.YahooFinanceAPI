@@ -76,7 +76,7 @@ internal static class DownloadHelper
             // Handle failure
             if (response.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new InvalidOperationException($"Requested Information Not Available On Yahoo Finance");
+                throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
             }
             else if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
