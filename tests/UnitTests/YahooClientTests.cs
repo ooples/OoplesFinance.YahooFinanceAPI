@@ -237,4 +237,134 @@ public sealed class YahooClientTests
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
     }
+
+    [Fact]
+    public async Task GetInsiderTransactions_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetInsiderTransactionsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetInsiderTransactions_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetInsiderTransactionsAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetFinancialData_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetFinancialDataAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetFinancialData_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetFinancialDataAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetInstitutionOwnership_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetInstitutionOwnershipAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetInstitutionOwnership_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetInstitutionOwnershipAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetFundOwnership_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetFundOwnershipAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetFundOwnership_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetFundOwnershipAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetMajorDirectHolders_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetMajorDirectHoldersAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetMajorDirectHolders_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetMajorDirectHoldersAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
 }

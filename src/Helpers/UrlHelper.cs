@@ -1,4 +1,7 @@
-﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
+﻿using OoplesFinance.YahooFinanceAPI.Enums;
+using System.Reflection;
+
+namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal static class UrlHelper
 {
@@ -42,7 +45,7 @@ internal static class UrlHelper
     /// <param name="country"></param>
     /// <param name="module"></param>
     /// <returns></returns>
-    internal static Uri BuildYahooStatsUrl(string symbol, Country country, Language language, Module module) =>
+    internal static Uri BuildYahooStatsUrl(string symbol, Country country, Language language, YahooModule module) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v11/finance/quoteSummary/{symbol}?lang={GetLanguageString(language)}" +
             $"&region={GetCountryString(country)}&modules={GetModuleString(module)}"));
 
@@ -52,13 +55,18 @@ internal static class UrlHelper
     /// <param name="module"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    private static string GetModuleString(Module module) =>
+    private static string GetModuleString(YahooModule module) =>
         module switch
         {
-            Module.InsiderHolders => "insiderHolders",
-            Module.KeyStatistics  => "defaultKeyStatistics",
-            Module.SummaryDetails => "summaryDetail",
-            _                     => throw new ArgumentException("Invalid Enumerator Value", nameof(module))
+            YahooModule.FinancialData          => "financialData",
+            YahooModule.FundOwnership          => "fundOwnership",
+            YahooModule.InsiderHolders         => "insiderHolders",
+            YahooModule.InsiderTransactions    => "insiderTransactions",
+            YahooModule.InstitutionOwnership   => "institutionOwnership",
+            YahooModule.KeyStatistics          => "defaultKeyStatistics",
+            YahooModule.MajorDirectHolders     => "majorDirectHolders",
+            YahooModule.SummaryDetails         => "summaryDetail",
+            _                                  => throw new ArgumentException("Invalid Enumerator Value", nameof(module))
         };
 
     /// <summary>

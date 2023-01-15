@@ -116,7 +116,7 @@ internal static class DownloadHelper
     /// <param name="module"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    internal static async Task<string> DownloadStatsDataAsync(string symbol, Country country, Language language, Module module)
+    internal static async Task<string> DownloadStatsDataAsync(string symbol, Country country, Language language, YahooModule module)
     {
         if (string.IsNullOrWhiteSpace(symbol))
         {

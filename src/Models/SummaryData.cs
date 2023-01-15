@@ -317,10 +317,6 @@ public class SummaryData
     public QuoteSummary QuoteSummary { get; set; } = new();
 }
 
-public class StartDate
-{
-}
-
 public class StrikePrice
 {
 }

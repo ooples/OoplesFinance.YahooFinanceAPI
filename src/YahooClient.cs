@@ -216,7 +216,7 @@ public class YahooClient
     /// <returns></returns>
     public async Task<KeyStatistics> GetKeyStatisticsAsync(string symbol)
     {
-        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadStatsDataAsync(symbol, Country, Language, Module.KeyStatistics)).First();
+        return new KeyStatisticsHelper().ParseYahooJsonData<KeyStatistics>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.KeyStatistics)).First();
     }
 
     /// <summary>
@@ -226,7 +226,7 @@ public class YahooClient
     /// <returns></returns>
     public async Task<SummaryDetail> GetSummaryDetailsAsync(string symbol)
     {
-        return new SummaryDetailsHelper().ParseYahooJsonData<SummaryDetail>(await DownloadStatsDataAsync(symbol, Country, Language, Module.SummaryDetails)).First();
+        return new SummaryDetailsHelper().ParseYahooJsonData<SummaryDetail>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.SummaryDetails)).First();
     }
 
     /// <summary>
@@ -236,6 +236,56 @@ public class YahooClient
     /// <returns></returns>
     public async Task<IEnumerable<InsiderHolder>> GetInsiderHoldersAsync(string symbol)
     {
-        return new InsiderHolderHelper().ParseYahooJsonData<InsiderHolder>(await DownloadStatsDataAsync(symbol, Country, Language, Module.InsiderHolders));
+        return new InsiderHolderHelper().ParseYahooJsonData<InsiderHolder>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.InsiderHolders));
+    }
+
+    /// <summary>
+    /// Gets insider transactions for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<Transaction>> GetInsiderTransactionsAsync(string symbol)
+    {
+        return new InsiderTransactionHelper().ParseYahooJsonData<Transaction>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.InsiderTransactions));
+    }
+
+    /// <summary>
+    /// Gets financial data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<FinancialData> GetFinancialDataAsync(string symbol)
+    {
+        return new FinancialDataHelper().ParseYahooJsonData<FinancialData>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.FinancialData)).First();
+    }
+
+    /// <summary>
+    /// Gets institution ownership data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<OwnershipList>> GetInstitutionOwnershipAsync(string symbol)
+    {
+        return new InstitutionOwnershipHelper().ParseYahooJsonData<OwnershipList>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.InstitutionOwnership));
+    }
+
+    /// <summary>
+    /// Gets fund ownership data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<OwnershipList>> GetFundOwnershipAsync(string symbol)
+    {
+        return new FundOwnershipHelper().ParseYahooJsonData<OwnershipList>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.FundOwnership));
+    }
+
+    /// <summary>
+    /// Gets major direct holders data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<object>> GetMajorDirectHoldersAsync(string symbol)
+    {
+        return new MajorDirectHoldersHelper().ParseYahooJsonData<object>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.MajorDirectHolders));
     }
 }
