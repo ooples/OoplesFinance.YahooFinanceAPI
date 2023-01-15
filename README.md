@@ -16,19 +16,21 @@ We support getting daily, weekly, or monthly data as well as many other options.
 Here is an example to show how easy it is to use this library to get various stock market info:
 
 ```cs
+using OoplesFinance.YahooFinanceAPI;
 using OoplesFinance.YahooFinanceAPI.Enums;
-using static OoplesFinance.YahooFinanceAPI.YahooClient;
 
 var startDate = DateTime.Now.AddYears(-1);
 var symbol = "GOOG";
 
-var historicalDataList = await GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
-var capitalGainList = await GetCapitalGainDataAsync(symbol, DataFrequency.Monthly, startDate);
-var dividendList = await GetDividendDataAsync(symbol, DataFrequency.Weekly, startDate);
-var stockSplitList = await GetStockSplitDataAsync(symbol, DataFrequency.Monthly, startDate);
-var topTrendingList = await GetTopTrendingStocksAsync(Country.UnitedStates, 10);
-var recommendedList = await GetStockRecommendationsAsync(symbol);
-var keyStatsList = await GetKeyStatisticsAsync(symbol);
+var yahooClient = new YahooClient();
+var historicalDataList = await yahooClient.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
+var capitalGainList = await yahooClient.GetCapitalGainDataAsync(symbol, DataFrequency.Monthly, startDate);
+var dividendList = await yahooClient.GetDividendDataAsync(symbol, DataFrequency.Weekly, startDate);
+var stockSplitList = await yahooClient.GetStockSplitDataAsync(symbol, DataFrequency.Monthly, startDate);
+var topTrendingList = await yahooClient.GetTopTrendingStocksAsync(Country.UnitedStates, 10);
+var recommendedList = await yahooClient.GetStockRecommendationsAsync(symbol);
+var keyStatsList = await yahooClient.GetKeyStatisticsAsync(symbol);
+var summaryDetailsList = await yahooClient.GetSummaryDetailsAsync(symbol);
 ```
 
 
