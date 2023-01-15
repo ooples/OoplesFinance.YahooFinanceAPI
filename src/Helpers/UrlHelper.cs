@@ -55,6 +55,7 @@ internal static class UrlHelper
     private static string GetModuleString(Module module) =>
         module switch
         {
+            Module.InsiderHolders => "insiderHolders",
             Module.KeyStatistics  => "defaultKeyStatistics",
             Module.SummaryDetails => "summaryDetail",
             _                     => throw new ArgumentException("Invalid Enumerator Value", nameof(module))

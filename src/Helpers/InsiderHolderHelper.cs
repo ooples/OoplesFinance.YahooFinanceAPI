@@ -6,6 +6,6 @@ internal class InsiderHolderHelper : YahooJsonBase
     {
         var insiderHolderData = JsonSerializer.Deserialize<InsiderHolderData>(jsonData);
 
-        return insiderHolderData != null ? (IEnumerable<T>)insiderHolderData.QuoteSummary.Results.Select(x => x.InsiderHolders) : Enumerable.Empty<T>();
+        return insiderHolderData != null ? (IEnumerable<T>)insiderHolderData.QuoteSummary.Results.Select(x => x.InsiderHolders).First().Holders : Enumerable.Empty<T>();
     }
 }

@@ -2,6 +2,7 @@
 
 public enum Module
 {
+    InsiderHolders,
     KeyStatistics,
     SummaryDetails
 }

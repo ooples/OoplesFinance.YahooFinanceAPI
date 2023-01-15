@@ -228,4 +228,14 @@ public class YahooClient
     {
         return new SummaryDetailsHelper().ParseYahooJsonData<SummaryDetail>(await DownloadStatsDataAsync(symbol, Country, Language, Module.SummaryDetails)).First();
     }
+
+    /// <summary>
+    /// Gets insider holders for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<InsiderHolder>> GetInsiderHoldersAsync(string symbol)
+    {
+        return new InsiderHolderHelper().ParseYahooJsonData<InsiderHolder>(await DownloadStatsDataAsync(symbol, Country, Language, Module.InsiderHolders));
+    }
 }

@@ -1,6 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
-public class Holder
+public class InsiderHolder
 {
     [JsonPropertyName("maxAge")]
     public int? MaxAge { get; set; }
@@ -36,7 +36,7 @@ public class Holder
 public class InsiderHolders
 {
     [JsonPropertyName("holders")]
-    public List<Holder> Holders { get; set; } = new();
+    public List<InsiderHolder> Holders { get; set; } = new();
 
     [JsonPropertyName("maxAge")]
     public int? MaxAge { get; set; }

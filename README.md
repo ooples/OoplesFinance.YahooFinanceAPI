@@ -31,6 +31,7 @@ var topTrendingList = await yahooClient.GetTopTrendingStocksAsync(Country.United
 var recommendedList = await yahooClient.GetStockRecommendationsAsync(symbol);
 var keyStatsList = await yahooClient.GetKeyStatisticsAsync(symbol);
 var summaryDetailsList = await yahooClient.GetSummaryDetailsAsync(symbol);
+var insiderHoldersList = await yahooClient.GetInsiderHoldersAsync(symbol);
 ```
 
 
