@@ -40,6 +40,8 @@ jobs:
           
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@1.1.3
+      with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
 
   publish-sdk:
