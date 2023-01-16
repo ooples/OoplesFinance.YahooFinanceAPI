@@ -38,6 +38,14 @@ internal static class UrlHelper
         new(string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v6/finance/recommendationsbysymbol/{symbol}"));
 
     /// <summary>
+    /// Creates a url that will be used to get insights for a selected symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    internal static Uri BuildYahooInsightsUrl(string symbol) =>
+        new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/ws/insights/v1/finance/insights?symbol={symbol}"));
+
+    /// <summary>
     /// Creates a url that will be used to get stats for a selected symbol
     /// </summary>
     /// <param name="symbol"></param>

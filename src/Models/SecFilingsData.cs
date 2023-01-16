@@ -3,7 +3,7 @@
 public class Filing
 {
     [JsonPropertyName("date")] 
-    public string Date { get; set; } = string.Empty;
+    public DateTime Date { get; set; } = new();
 
     [JsonPropertyName("epochDate")]
     public int? EpochDate { get; set; }
@@ -27,13 +27,13 @@ public class Filing
 public class SecFilingsQuoteSummary
 {
     [JsonPropertyName("result")] 
-    public List<Result> Results { get; set; } = new();
+    public List<SecFilingsResult> Results { get; set; } = new();
 
     [JsonPropertyName("error")]
     public object Error { get; set; } = new();
 }
 
-public class Result
+public class SecFilingsResult
 {
     [JsonPropertyName("secFilings")] 
     public SecFilings SecFilings { get; set; } = new();

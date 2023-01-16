@@ -20,5 +20,6 @@ var institutionOwnershipList = await yahooClient.GetInstitutionOwnershipAsync(sy
 var fundOwnershipList = await yahooClient.GetFundOwnershipAsync(symbol);
 var majorDirectHoldersList = await yahooClient.GetMajorDirectHoldersAsync(symbol);
 var secFilingsList = await yahooClient.GetSecFilingsAsync(symbol);
+var insightsList = await yahooClient.GetInsightsAsync(symbol);
 
 Console.WriteLine();

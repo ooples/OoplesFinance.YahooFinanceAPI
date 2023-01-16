@@ -21,7 +21,7 @@ using OoplesFinance.YahooFinanceAPI;
 using OoplesFinance.YahooFinanceAPI.Enums;
 
 var startDate = DateTime.Now.AddYears(-1);
-var symbol = "GOOG";
+var symbol = "AAPL";
 
 var yahooClient = new YahooClient();
 var historicalDataList = await yahooClient.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);

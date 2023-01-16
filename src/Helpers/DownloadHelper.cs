@@ -108,6 +108,24 @@ internal static class DownloadHelper
     }
 
     /// <summary>
+    /// Downloads the insights json data using the chosen symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadInsightsDataAsync(string symbol)
+    {
+        if (string.IsNullOrWhiteSpace(symbol))
+        {
+            throw new ArgumentException("Symbol Parameter Can't Be Empty Or Null");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooInsightsUrl(symbol));
+        }
+    }
+
+    /// <summary>
     /// Downloads the stats json data using the chosen symbol
     /// </summary>
     /// <param name="symbol"></param>

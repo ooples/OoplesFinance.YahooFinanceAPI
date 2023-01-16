@@ -6,6 +6,7 @@ public enum YahooModule
     FundOwnership,
     InsiderHolders,
     InsiderTransactions,
+    Insights,
     InstitutionOwnership,
     KeyStatistics,
     MajorDirectHolders,

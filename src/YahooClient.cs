@@ -298,4 +298,14 @@ public class YahooClient
     {
         return new SecFilingsHelper().ParseYahooJsonData<Filing>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.SecFilings));
     }
+
+    /// <summary>
+    /// Gets insights data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<InsightsResult> GetInsightsAsync(string symbol)
+    {
+        return new InsightsHelper().ParseYahooJsonData<InsightsResult>(await DownloadInsightsDataAsync(symbol)).First();
+    }
 }
