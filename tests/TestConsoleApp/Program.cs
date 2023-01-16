@@ -2,7 +2,7 @@
 using OoplesFinance.YahooFinanceAPI.Enums;
 
 var startDate = DateTime.Now.AddYears(-1);
-var symbol = "GOOG";
+var symbol = "AAPL";
 
 var yahooClient = new YahooClient();
 //var historicalDataList = await yahooClient.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
@@ -19,5 +19,6 @@ var financialDataList = await yahooClient.GetFinancialDataAsync(symbol);
 var institutionOwnershipList = await yahooClient.GetInstitutionOwnershipAsync(symbol);
 var fundOwnershipList = await yahooClient.GetFundOwnershipAsync(symbol);
 var majorDirectHoldersList = await yahooClient.GetMajorDirectHoldersAsync(symbol);
+var secFilingsList = await yahooClient.GetSecFilingsAsync(symbol);
 
 Console.WriteLine();

@@ -9,5 +9,6 @@ public enum YahooModule
     InstitutionOwnership,
     KeyStatistics,
     MajorDirectHolders,
+    SecFilings,
     SummaryDetails
 }

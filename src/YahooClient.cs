@@ -288,4 +288,14 @@ public class YahooClient
     {
         return new MajorDirectHoldersHelper().ParseYahooJsonData<object>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.MajorDirectHolders));
     }
+
+    /// <summary>
+    /// Gets sec filings data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<Filing>> GetSecFilingsAsync(string symbol)
+    {
+        return new SecFilingsHelper().ParseYahooJsonData<Filing>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.SecFilings));
+    }
 }
