@@ -370,4 +370,14 @@ public class YahooClient
     {
         return new SectorTrendHelper().ParseYahooJsonData<SectorTrend>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.SectorTrend)).First();
     }
+
+    /// <summary>
+    /// Gets earnings trend data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<EarningsTrendInfo>> GetEarningsTrendAsync(string symbol)
+    {
+        return new EarningsTrendHelper().ParseYahooJsonData<EarningsTrendInfo>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.EarningsTrend));
+    }
 }

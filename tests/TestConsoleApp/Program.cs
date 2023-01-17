@@ -27,5 +27,6 @@ var esgScoresList = await yahooClient.GetEsgScoresAsync(symbol);
 var recommendationTrendList = await yahooClient.GetRecommendationTrendAsync(symbol);
 var indexTrendList = await yahooClient.GetIndexTrendAsync(symbol);
 var sectorTrendList = await yahooClient.GetSectorTrendAsync(symbol);
+var earningsTrendList = await yahooClient.GetEarningsTrendAsync(symbol);
 
 Console.WriteLine();
