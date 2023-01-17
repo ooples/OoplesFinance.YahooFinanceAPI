@@ -2,6 +2,7 @@
 
 public enum YahooModule
 {
+    AssetProfile,
     EarningsTrend,
     EsgScores,
     FinancialData,

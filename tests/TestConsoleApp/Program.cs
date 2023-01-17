@@ -28,5 +28,6 @@ var recommendationTrendList = await yahooClient.GetRecommendationTrendAsync(symb
 var indexTrendList = await yahooClient.GetIndexTrendAsync(symbol);
 var sectorTrendList = await yahooClient.GetSectorTrendAsync(symbol);
 var earningsTrendList = await yahooClient.GetEarningsTrendAsync(symbol);
+var assetProfileList = await yahooClient.GetAssetProfileAsync(symbol);
 
 Console.WriteLine();

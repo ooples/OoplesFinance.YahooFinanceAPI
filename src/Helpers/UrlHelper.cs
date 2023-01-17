@@ -66,6 +66,7 @@ internal static class UrlHelper
     private static string GetModuleString(YahooModule module) =>
         module switch
         {
+            YahooModule.AssetProfile            => "assetProfile",
             YahooModule.EarningsTrend           => "earningsTrend",
             YahooModule.EsgScores               => "esgScores",
             YahooModule.FinancialData           => "financialData",

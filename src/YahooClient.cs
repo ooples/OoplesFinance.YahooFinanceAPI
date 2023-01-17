@@ -380,4 +380,14 @@ public class YahooClient
     {
         return new EarningsTrendHelper().ParseYahooJsonData<EarningsTrendInfo>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.EarningsTrend));
     }
+
+    /// <summary>
+    /// Gets asset profile data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<AssetProfile> GetAssetProfileAsync(string symbol)
+    {
+        return new AssetProfileHelper().ParseYahooJsonData<AssetProfile>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.AssetProfile)).First();
+    }
 }
