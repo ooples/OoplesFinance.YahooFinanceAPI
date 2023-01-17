@@ -350,4 +350,14 @@ public class YahooClient
     {
         return new RecommendationTrendHelper().ParseYahooJsonData<Trend>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.RecommendationTrend));
     }
+
+    /// <summary>
+    /// Gets index trend data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IndexTrend> GetIndexTrendAsync(string symbol)
+    {
+        return new IndexTrendHelper().ParseYahooJsonData<IndexTrend>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.IndexTrend)).First();
+    }
 }

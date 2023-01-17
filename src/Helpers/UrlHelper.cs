@@ -69,6 +69,7 @@ internal static class UrlHelper
             YahooModule.EsgScores               => "esgScores",
             YahooModule.FinancialData           => "financialData",
             YahooModule.FundOwnership           => "fundOwnership",
+            YahooModule.IndexTrend              => "indexTrend",
             YahooModule.InsiderHolders          => "insiderHolders",
             YahooModule.InsiderTransactions     => "insiderTransactions",
             YahooModule.InstitutionOwnership    => "institutionOwnership",

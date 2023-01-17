@@ -25,5 +25,6 @@ var majorHoldersBreakdownList = await yahooClient.GetMajorHoldersBreakdownAsync(
 var upgradeDowngradeHistoryList = await yahooClient.GetUpgradeDowngradeHistoryAsync(symbol);
 var esgScoresList = await yahooClient.GetEsgScoresAsync(symbol);
 var recommendationTrendList = await yahooClient.GetRecommendationTrendAsync(symbol);
+var indexTrendList = await yahooClient.GetIndexTrendAsync(symbol);
 
 Console.WriteLine();
