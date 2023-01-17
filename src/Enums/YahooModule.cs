@@ -12,6 +12,7 @@ public enum YahooModule
     KeyStatistics,
     MajorDirectHolders,
     MajorHoldersBreakdown,
+    RecommendationTrend,
     SecFilings,
     SummaryDetails,
     UpgradeDowngradeHistory

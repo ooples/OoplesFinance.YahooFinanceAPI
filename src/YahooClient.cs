@@ -340,4 +340,14 @@ public class YahooClient
     {
         return new EsgScoresHelper().ParseYahooJsonData<EsgScores>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.EsgScores)).First();
     }
+
+    /// <summary>
+    /// Gets recommendation trend data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<Trend>> GetRecommendationTrendAsync(string symbol)
+    {
+        return new RecommendationTrendHelper().ParseYahooJsonData<Trend>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.RecommendationTrend));
+    }
 }
