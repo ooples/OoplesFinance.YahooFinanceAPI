@@ -32,5 +32,7 @@ var assetProfileList = await yahooClient.GetAssetProfileAsync(symbol);
 var fundProfileList = await yahooClient.GetFundProfileAsync("VSMPX");
 var calendarEventsList = await yahooClient.GetCalendarEventsAsync(symbol);
 var earningsList = await yahooClient.GetEarningsAsync(symbol);
+var balanceSheetHistoryList = await yahooClient.GetBalanceSheetHistoryAsync(symbol);
+var cashflowStatementHistoryList = await yahooClient.GetCashflowStatementHistoryAsync(symbol);
 
 Console.WriteLine();

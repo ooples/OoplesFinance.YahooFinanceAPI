@@ -420,4 +420,26 @@ public class YahooClient
     {
         return new EarningsHelper().ParseYahooJsonData<EarningsInfo>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.Earnings));
     }
+
+    /// <summary>
+    /// Gets balance sheet history data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<BalanceSheetStatement>> GetBalanceSheetHistoryAsync(string symbol)
+    {
+        return new BalanceSheetHistoryHelper().ParseYahooJsonData<BalanceSheetStatement>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.BalanceSheetHistory));
+    }
+
+    /// <summary>
+    /// Gets cashflow statement history data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<CashflowStatement>> GetCashflowStatementHistoryAsync(string symbol)
+    {
+        return new CashflowStatementHistoryHelper().ParseYahooJsonData<CashflowStatement>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.CashflowStatementHistory));
+    }
 }

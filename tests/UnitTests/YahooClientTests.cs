@@ -705,4 +705,56 @@ public sealed class YahooClientTests
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
     }
+
+    [Fact]
+    public async Task GetBalanceSheetHistory_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetBalanceSheetHistoryAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetBalanceSheetHistory_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetBalanceSheetHistoryAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetCashflowStatementHistory_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetCashflowStatementHistoryAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetCashflowStatementHistory_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetCashflowStatementHistoryAsync(symbol);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
 }
