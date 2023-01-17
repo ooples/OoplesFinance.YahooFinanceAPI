@@ -20,6 +20,9 @@ var institutionOwnershipList = await yahooClient.GetInstitutionOwnershipAsync(sy
 var fundOwnershipList = await yahooClient.GetFundOwnershipAsync(symbol);
 var majorDirectHoldersList = await yahooClient.GetMajorDirectHoldersAsync(symbol);
 var secFilingsList = await yahooClient.GetSecFilingsAsync(symbol);
-var insightsList = await yahooClient.GetInsightsAsync(symbol);
+//var insightsList = await yahooClient.GetInsightsAsync(symbol);
+var majorHoldersBreakdownList = await yahooClient.GetMajorHoldersBreakdownAsync(symbol);
+var upgradeDowngradeHistoryList = await yahooClient.GetUpgradeDowngradeHistoryAsync(symbol);
+var esgScoresList = await yahooClient.GetEsgScoresAsync(symbol);
 
 Console.WriteLine();

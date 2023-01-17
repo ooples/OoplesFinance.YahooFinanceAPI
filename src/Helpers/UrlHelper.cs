@@ -66,16 +66,19 @@ internal static class UrlHelper
     private static string GetModuleString(YahooModule module) =>
         module switch
         {
-            YahooModule.FinancialData          => "financialData",
-            YahooModule.FundOwnership          => "fundOwnership",
-            YahooModule.InsiderHolders         => "insiderHolders",
-            YahooModule.InsiderTransactions    => "insiderTransactions",
-            YahooModule.InstitutionOwnership   => "institutionOwnership",
-            YahooModule.KeyStatistics          => "defaultKeyStatistics",
-            YahooModule.MajorDirectHolders     => "majorDirectHolders",
-            YahooModule.SecFilings             => "secFilings",
-            YahooModule.SummaryDetails         => "summaryDetail",
-            _                                  => throw new ArgumentException("Invalid Enumerator Value", nameof(module))
+            YahooModule.EsgScores               => "esgScores",
+            YahooModule.FinancialData           => "financialData",
+            YahooModule.FundOwnership           => "fundOwnership",
+            YahooModule.InsiderHolders          => "insiderHolders",
+            YahooModule.InsiderTransactions     => "insiderTransactions",
+            YahooModule.InstitutionOwnership    => "institutionOwnership",
+            YahooModule.KeyStatistics           => "defaultKeyStatistics",
+            YahooModule.MajorDirectHolders      => "majorDirectHolders",
+            YahooModule.MajorHoldersBreakdown   => "majorHoldersBreakdown",
+            YahooModule.SecFilings              => "secFilings",
+            YahooModule.SummaryDetails          => "summaryDetail",
+            YahooModule.UpgradeDowngradeHistory => "upgradeDowngradeHistory",
+            _                                   => throw new ArgumentException("Invalid Enumerator Value", nameof(module))
         };
 
     /// <summary>

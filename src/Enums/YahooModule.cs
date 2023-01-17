@@ -2,6 +2,7 @@
 
 public enum YahooModule
 {
+    EsgScores,
     FinancialData,
     FundOwnership,
     InsiderHolders,
@@ -10,6 +11,8 @@ public enum YahooModule
     InstitutionOwnership,
     KeyStatistics,
     MajorDirectHolders,
+    MajorHoldersBreakdown,
     SecFilings,
-    SummaryDetails
+    SummaryDetails,
+    UpgradeDowngradeHistory
 }

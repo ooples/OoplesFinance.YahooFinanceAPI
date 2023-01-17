@@ -308,4 +308,36 @@ public class YahooClient
     {
         return new InsightsHelper().ParseYahooJsonData<InsightsResult>(await DownloadInsightsDataAsync(symbol)).First();
     }
+
+    /// <summary>
+    /// Gets major holders breakdown data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<MajorHoldersBreakdown> GetMajorHoldersBreakdownAsync(string symbol)
+    {
+        return new MajorHoldersBreakdownHelper().ParseYahooJsonData<MajorHoldersBreakdown>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.MajorHoldersBreakdown)).First();
+    }
+
+    /// <summary>
+    /// Gets upgrade downgrade history data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<History>> GetUpgradeDowngradeHistoryAsync(string symbol)
+    {
+        return new UpgradeDowngradeHistoryHelper().ParseYahooJsonData<History>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.UpgradeDowngradeHistory));
+    }
+
+    /// <summary>
+    /// Gets esg scores data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<EsgScores> GetEsgScoresAsync(string symbol)
+    {
+        return new EsgScoresHelper().ParseYahooJsonData<EsgScores>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.EsgScores)).First();
+    }
 }
