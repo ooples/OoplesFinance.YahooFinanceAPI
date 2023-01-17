@@ -78,6 +78,7 @@ internal static class UrlHelper
             YahooModule.MajorHoldersBreakdown   => "majorHoldersBreakdown",
             YahooModule.RecommendationTrend     => "recommendationTrend",
             YahooModule.SecFilings              => "secFilings",
+            YahooModule.SectorTrend             => "sectorTrend",
             YahooModule.SummaryDetails          => "summaryDetail",
             YahooModule.UpgradeDowngradeHistory => "upgradeDowngradeHistory",
             _                                   => throw new ArgumentException("Invalid Enumerator Value", nameof(module))

@@ -15,6 +15,7 @@ public enum YahooModule
     MajorHoldersBreakdown,
     RecommendationTrend,
     SecFilings,
+    SectorTrend,
     SummaryDetails,
     UpgradeDowngradeHistory
 }
