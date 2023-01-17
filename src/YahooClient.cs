@@ -400,4 +400,14 @@ public class YahooClient
     {
         return new FundProfileHelper().ParseYahooJsonData<FundProfile>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.FundProfile)).First();
     }
+
+    /// <summary>
+    /// Gets calendar events data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<CalendarEvents>> GetCalendarEventsAsync(string symbol)
+    {
+        return new CalendarEventsHelper().ParseYahooJsonData<CalendarEvents>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.CalendarEvents));
+    }
 }

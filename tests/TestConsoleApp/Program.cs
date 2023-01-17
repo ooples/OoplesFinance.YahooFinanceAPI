@@ -30,5 +30,6 @@ var sectorTrendList = await yahooClient.GetSectorTrendAsync(symbol);
 var earningsTrendList = await yahooClient.GetEarningsTrendAsync(symbol);
 var assetProfileList = await yahooClient.GetAssetProfileAsync(symbol);
 var fundProfileList = await yahooClient.GetFundProfileAsync("VSMPX");
+var calendarEventsList = await yahooClient.GetCalendarEventsAsync(symbol);
 
 Console.WriteLine();
