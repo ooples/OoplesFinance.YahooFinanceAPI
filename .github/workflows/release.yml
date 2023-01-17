@@ -38,11 +38,11 @@ jobs:
           src/bin/Release/*.nupkg
           src/bin/Release/*.snupkg
           
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@1.1.3
-      with:
-        github-token: ${{ secrets.github_token }}
-        path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
+    #- name: Coveralls GitHub Action
+    #  uses: coverallsapp/github-action@1.1.3
+    #  with:
+    #    github-token: ${{ secrets.github_token }}
+    #    path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
 
 
   publish-sdk:
