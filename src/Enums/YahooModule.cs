@@ -7,6 +7,7 @@ public enum YahooModule
     EsgScores,
     FinancialData,
     FundOwnership,
+    FundProfile,
     IndexTrend,
     InsiderHolders,
     InsiderTransactions,

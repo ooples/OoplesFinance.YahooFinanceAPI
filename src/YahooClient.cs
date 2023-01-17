@@ -390,4 +390,14 @@ public class YahooClient
     {
         return new AssetProfileHelper().ParseYahooJsonData<AssetProfile>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.AssetProfile)).First();
     }
+
+    /// <summary>
+    /// Gets fund profile data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<FundProfile> GetFundProfileAsync(string symbol)
+    {
+        return new FundProfileHelper().ParseYahooJsonData<FundProfile>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.FundProfile)).First();
+    }
 }

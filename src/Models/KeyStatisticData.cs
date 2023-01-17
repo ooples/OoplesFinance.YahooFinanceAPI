@@ -13,10 +13,6 @@ public class AnnualHoldingsTurnover
 {
 }
 
-public class AnnualReportExpenseRatio
-{
-}
-
 public class Beta
 {
     [JsonPropertyName("raw")]
