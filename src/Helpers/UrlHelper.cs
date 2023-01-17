@@ -68,6 +68,7 @@ internal static class UrlHelper
         {
             YahooModule.AssetProfile            => "assetProfile",
             YahooModule.CalendarEvents          => "calendarEvents",
+            YahooModule.Earnings                => "earnings",
             YahooModule.EarningsTrend           => "earningsTrend",
             YahooModule.EsgScores               => "esgScores",
             YahooModule.FinancialData           => "financialData",

@@ -410,4 +410,14 @@ public class YahooClient
     {
         return new CalendarEventsHelper().ParseYahooJsonData<CalendarEvents>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.CalendarEvents));
     }
+
+    /// <summary>
+    /// Gets earnings data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<EarningsInfo>> GetEarningsAsync(string symbol)
+    {
+        return new EarningsHelper().ParseYahooJsonData<EarningsInfo>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.Earnings));
+    }
 }
