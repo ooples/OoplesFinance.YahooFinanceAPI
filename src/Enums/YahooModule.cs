@@ -12,6 +12,7 @@ public enum YahooModule
     FinancialData,
     FundOwnership,
     FundProfile,
+    IncomeStatementHistory,
     IndexTrend,
     InsiderHolders,
     InsiderTransactions,

@@ -76,6 +76,7 @@ internal static class UrlHelper
             YahooModule.FinancialData            => "financialData",
             YahooModule.FundOwnership            => "fundOwnership",
             YahooModule.FundProfile              => "fundProfile",
+            YahooModule.IncomeStatementHistory   => "incomeStatementHistory",
             YahooModule.IndexTrend               => "indexTrend",
             YahooModule.InsiderHolders           => "insiderHolders",
             YahooModule.InsiderTransactions      => "insiderTransactions",

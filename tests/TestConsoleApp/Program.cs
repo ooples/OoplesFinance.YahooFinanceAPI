@@ -34,5 +34,6 @@ var calendarEventsList = await yahooClient.GetCalendarEventsAsync(symbol);
 var earningsList = await yahooClient.GetEarningsAsync(symbol);
 var balanceSheetHistoryList = await yahooClient.GetBalanceSheetHistoryAsync(symbol);
 var cashflowStatementHistoryList = await yahooClient.GetCashflowStatementHistoryAsync(symbol);
+var incomeStatementHistoryList = await yahooClient.GetIncomeStatementHistoryAsync(symbol);
 
 Console.WriteLine();

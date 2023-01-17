@@ -442,4 +442,15 @@ public class YahooClient
         return new CashflowStatementHistoryHelper().ParseYahooJsonData<CashflowStatement>(
             await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.CashflowStatementHistory));
     }
+
+    /// <summary>
+    /// Gets income statement history data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<IncomeStatementHistory>> GetIncomeStatementHistoryAsync(string symbol)
+    {
+        return new IncomeStatementHistoryHelper().ParseYahooJsonData<IncomeStatementHistory>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.IncomeStatementHistory));
+    }
 }
