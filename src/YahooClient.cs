@@ -494,4 +494,15 @@ public class YahooClient
         return new NetSharePurchaseActivityHelper().ParseYahooJsonData<NetSharePurchaseActivity>(
             await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.NetSharePurchaseActivity)).First();
     }
+
+    /// <summary>
+    /// Gets income statement history quarterly data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<IncomeStatementHistoryItem>> GetIncomeStatementHistoryQuarterlyAsync(string symbol)
+    {
+        return new IncomeStatementHistoryQuarterlyHelper().ParseYahooJsonData<IncomeStatementHistoryItem>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.IncomeStatementHistoryQuarterly));
+    }
 }
