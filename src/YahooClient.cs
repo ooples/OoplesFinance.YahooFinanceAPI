@@ -463,4 +463,14 @@ public class YahooClient
     {
         return new EarningsHistoryHelper().ParseYahooJsonData<EarningsHistoryInfo>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.EarningsHistory));
     }
+
+    /// <summary>
+    /// Gets quote type data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<QuoteType> GetQuoteTypeAsync(string symbol)
+    {
+        return new QuoteTypeHelper().ParseYahooJsonData<QuoteType>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.QuoteType)).First();
+    }
 }
