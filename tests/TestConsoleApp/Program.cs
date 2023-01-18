@@ -38,5 +38,6 @@ var incomeStatementHistoryList = await yahooClient.GetIncomeStatementHistoryAsyn
 var earningsHistoryList = await yahooClient.GetEarningsHistoryAsync(symbol);
 var quoteTypeList = await yahooClient.GetQuoteTypeAsync(symbol);
 var priceList = await yahooClient.GetPriceInfoAsync(symbol);
+var netSharePurchaseActivityList = await yahooClient.GetNetSharePurchaseActivityAsync(symbol);
 
 Console.WriteLine();

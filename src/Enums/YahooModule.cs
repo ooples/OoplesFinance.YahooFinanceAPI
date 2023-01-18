@@ -22,6 +22,7 @@ public enum YahooModule
     KeyStatistics,
     MajorDirectHolders,
     MajorHoldersBreakdown,
+    NetSharePurchaseActivity,
     Price,
     QuoteType,
     RecommendationTrend,

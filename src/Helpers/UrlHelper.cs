@@ -85,6 +85,7 @@ internal static class UrlHelper
             YahooModule.KeyStatistics            => "defaultKeyStatistics",
             YahooModule.MajorDirectHolders       => "majorDirectHolders",
             YahooModule.MajorHoldersBreakdown    => "majorHoldersBreakdown",
+            YahooModule.NetSharePurchaseActivity => "netSharePurchaseActivity",
             YahooModule.Price                    => "price",
             YahooModule.QuoteType                => "quoteType",
             YahooModule.RecommendationTrend      => "recommendationTrend",

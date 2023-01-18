@@ -483,4 +483,15 @@ public class YahooClient
     {
         return new PriceHelper().ParseYahooJsonData<Price>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.Price)).First();
     }
+
+    /// <summary>
+    /// Gets net share purchase activity data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<NetSharePurchaseActivity> GetNetSharePurchaseActivityAsync(string symbol)
+    {
+        return new NetSharePurchaseActivityHelper().ParseYahooJsonData<NetSharePurchaseActivity>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.NetSharePurchaseActivity)).First();
+    }
 }
