@@ -4,8 +4,10 @@ public enum YahooModule
 {
     AssetProfile,
     BalanceSheetHistory,
+    BalanceSheetHistoryQuarterly,
     CalendarEvents,
     CashflowStatementHistory,
+    CashflowStatementHistoryQuarterly,
     Earnings,
     EarningsHistory,
     EarningsTrend,

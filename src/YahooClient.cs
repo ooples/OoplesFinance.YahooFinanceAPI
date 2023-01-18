@@ -505,4 +505,26 @@ public class YahooClient
         return new IncomeStatementHistoryQuarterlyHelper().ParseYahooJsonData<IncomeStatementHistoryItem>(
             await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.IncomeStatementHistoryQuarterly));
     }
+
+    /// <summary>
+    /// Gets cashflow statement history quarterly data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<CashflowStatement>> GetCashflowStatementHistoryQuarterlyAsync(string symbol)
+    {
+        return new CashflowStatementHistoryQuarterlyHelper().ParseYahooJsonData<CashflowStatement>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.CashflowStatementHistoryQuarterly));
+    }
+
+    /// <summary>
+    /// Gets balance sheet history quarterly data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<BalanceSheetStatement>> GetBalanceSheetHistoryQuarterlyAsync(string symbol)
+    {
+        return new BalanceSheetHistoryQuarterlyHelper().ParseYahooJsonData<BalanceSheetStatement>(
+            await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.BalanceSheetHistoryQuarterly));
+    }
 }

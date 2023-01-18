@@ -40,5 +40,7 @@ var quoteTypeList = await yahooClient.GetQuoteTypeAsync(symbol);
 var priceList = await yahooClient.GetPriceInfoAsync(symbol);
 var netSharePurchaseActivityList = await yahooClient.GetNetSharePurchaseActivityAsync(symbol);
 var incomeStatementHistoryQuarterlyList = await yahooClient.GetIncomeStatementHistoryQuarterlyAsync(symbol);
+var cashflowStatementHistoryQuarterlyList = await yahooClient.GetCashflowStatementHistoryQuarterlyAsync(symbol);
+var balanceSheetHistoryQuarterlyList = await yahooClient.GetBalanceSheetHistoryQuarterlyAsync(symbol);
 
 Console.WriteLine();
