@@ -453,4 +453,14 @@ public class YahooClient
         return new IncomeStatementHistoryHelper().ParseYahooJsonData<IncomeStatementHistory>(
             await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.IncomeStatementHistory));
     }
+
+    /// <summary>
+    /// Gets earnings history data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<EarningsHistoryInfo>> GetEarningsHistoryAsync(string symbol)
+    {
+        return new EarningsHistoryHelper().ParseYahooJsonData<EarningsHistoryInfo>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.EarningsHistory));
+    }
 }

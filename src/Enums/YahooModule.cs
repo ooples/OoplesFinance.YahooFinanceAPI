@@ -7,6 +7,7 @@ public enum YahooModule
     CalendarEvents,
     CashflowStatementHistory,
     Earnings,
+    EarningsHistory,
     EarningsTrend,
     EsgScores,
     FinancialData,
