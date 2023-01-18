@@ -473,4 +473,14 @@ public class YahooClient
     {
         return new QuoteTypeHelper().ParseYahooJsonData<QuoteType>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.QuoteType)).First();
     }
+
+    /// <summary>
+    /// Gets price data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<Price> GetPriceInfoAsync(string symbol)
+    {
+        return new PriceHelper().ParseYahooJsonData<Price>(await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.Price)).First();
+    }
 }
