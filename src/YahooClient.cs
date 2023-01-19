@@ -527,4 +527,14 @@ public class YahooClient
         return new BalanceSheetHistoryQuarterlyHelper().ParseYahooJsonData<BalanceSheetStatement>(
             await DownloadStatsDataAsync(symbol, Country, Language, YahooModule.BalanceSheetHistoryQuarterly));
     }
+
+    /// <summary>
+    /// Gets chart info data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<ChartResult>> GetChartInfoAsync(string symbol, TimeRange timeRange, TimeInterval timeInterval)
+    {
+        return new ChartHelper().ParseYahooJsonData<ChartResult>(await DownloadChartDataAsync(symbol, timeRange, timeInterval));
+    }
 }

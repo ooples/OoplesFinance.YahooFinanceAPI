@@ -42,5 +42,6 @@ var netSharePurchaseActivityList = await yahooClient.GetNetSharePurchaseActivity
 var incomeStatementHistoryQuarterlyList = await yahooClient.GetIncomeStatementHistoryQuarterlyAsync(symbol);
 var cashflowStatementHistoryQuarterlyList = await yahooClient.GetCashflowStatementHistoryQuarterlyAsync(symbol);
 var balanceSheetHistoryQuarterlyList = await yahooClient.GetBalanceSheetHistoryQuarterlyAsync(symbol);
+var chartInfoList = await yahooClient.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
 
 Console.WriteLine();

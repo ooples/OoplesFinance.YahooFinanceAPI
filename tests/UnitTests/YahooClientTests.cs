@@ -965,4 +965,30 @@ public sealed class YahooClientTests
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
     }
+
+    [Fact]
+    public async Task GetChartInfo_ThrowsException_WhenNoSymbolIsFound()
+    {
+        // Arrange
+        var symbol = "OOPLES";
+
+        // Act
+        var result = async () => await _sut.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
+
+        // Assert
+        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetChartInfo_ThrowsException_WhenEmptySymbolIsUsed()
+    {
+        // Arrange
+        var symbol = "";
+
+        // Act
+        var result = async () => await _sut.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
 }
