@@ -6,9 +6,10 @@
 ## .Net Yahoo Finance API Library
 
 This is a library for downloading free data using Yahoo Finance that is completely open source (Apache 2.0 license) and very easy to use. 
-This library currently supports downloading 11 different types of stock market data at the time of this writing: 
+This library currently supports downloading 37 different types of stock market data at the time of this writing: 
 historical/daily prices, stock splits, dividends, capital gains, stock recommendations, insider holders, key stats, financial data, 
-insider transactions, fund ownership, major direct holders, and top trending stock information. 
+insider transactions, fund ownership, major direct holders, top trending stock information, and much much more! 
+Instead of listing everything, I decided it would be easier to provide examples below of every possible data type and how to use them. 
 We support getting daily, weekly, or monthly data as well as many other options.
 
 
@@ -41,6 +42,27 @@ var majorDirectHoldersList = await yahooClient.GetMajorDirectHoldersAsync(symbol
 var secFilingsList = await yahooClient.GetSecFilingsAsync(symbol);
 var insightsList = await yahooClient.GetInsightsAsync(symbol);
 var majorHoldersBreakdownList = await yahooClient.GetMajorHoldersBreakdownAsync(symbol);
+var upgradeDowngradeHistoryList = await yahooClient.GetUpgradeDowngradeHistoryAsync(symbol);
+var esgScoresList = await yahooClient.GetEsgScoresAsync(symbol);
+var recommendationTrendList = await yahooClient.GetRecommendationTrendAsync(symbol);
+var indexTrendList = await yahooClient.GetIndexTrendAsync(symbol);
+var sectorTrendList = await yahooClient.GetSectorTrendAsync(symbol);
+var earningsTrendList = await yahooClient.GetEarningsTrendAsync(symbol);
+var assetProfileList = await yahooClient.GetAssetProfileAsync(symbol);
+var fundProfileList = await yahooClient.GetFundProfileAsync("VSMPX");
+var calendarEventsList = await yahooClient.GetCalendarEventsAsync(symbol);
+var earningsList = await yahooClient.GetEarningsAsync(symbol);
+var balanceSheetHistoryList = await yahooClient.GetBalanceSheetHistoryAsync(symbol);
+var cashflowStatementHistoryList = await yahooClient.GetCashflowStatementHistoryAsync(symbol);
+var incomeStatementHistoryList = await yahooClient.GetIncomeStatementHistoryAsync(symbol);
+var earningsHistoryList = await yahooClient.GetEarningsHistoryAsync(symbol);
+var quoteTypeList = await yahooClient.GetQuoteTypeAsync(symbol);
+var priceList = await yahooClient.GetPriceInfoAsync(symbol);
+var netSharePurchaseActivityList = await yahooClient.GetNetSharePurchaseActivityAsync(symbol);
+var incomeStatementHistoryQuarterlyList = await yahooClient.GetIncomeStatementHistoryQuarterlyAsync(symbol);
+var cashflowStatementHistoryQuarterlyList = await yahooClient.GetCashflowStatementHistoryQuarterlyAsync(symbol);
+var balanceSheetHistoryQuarterlyList = await yahooClient.GetBalanceSheetHistoryQuarterlyAsync(symbol);
+var chartInfoList = await yahooClient.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
 ```
 
 
