@@ -3,6 +3,8 @@ using OoplesFinance.YahooFinanceAPI.Enums;
 
 var startDate = DateTime.Now.AddYears(-1);
 var symbol = "AAPL";
+var fundSymbol = "VSMPX";
+var symbols = new string[] { symbol, "MSFT", "NFLX", "TSLA", "YHOO", "SPY", "A", "AA", "GOOG", "F", "UBER", "LYFT" };
 
 var yahooClient = new YahooClient();
 var historicalDataList = await yahooClient.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
@@ -29,7 +31,7 @@ var indexTrendList = await yahooClient.GetIndexTrendAsync(symbol);
 var sectorTrendList = await yahooClient.GetSectorTrendAsync(symbol);
 var earningsTrendList = await yahooClient.GetEarningsTrendAsync(symbol);
 var assetProfileList = await yahooClient.GetAssetProfileAsync(symbol);
-var fundProfileList = await yahooClient.GetFundProfileAsync("VSMPX");
+var fundProfileList = await yahooClient.GetFundProfileAsync(fundSymbol);
 var calendarEventsList = await yahooClient.GetCalendarEventsAsync(symbol);
 var earningsList = await yahooClient.GetEarningsAsync(symbol);
 var balanceSheetHistoryList = await yahooClient.GetBalanceSheetHistoryAsync(symbol);
@@ -43,6 +45,7 @@ var incomeStatementHistoryQuarterlyList = await yahooClient.GetIncomeStatementHi
 var cashflowStatementHistoryQuarterlyList = await yahooClient.GetCashflowStatementHistoryQuarterlyAsync(symbol);
 var balanceSheetHistoryQuarterlyList = await yahooClient.GetBalanceSheetHistoryQuarterlyAsync(symbol);
 var chartInfoList = await yahooClient.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
-var sparkChartInfoList = await yahooClient.GetSparkChartInfoAsync(symbol, TimeRange._1Month, TimeInterval._1Day);
+var sparkChartInfoList = await yahooClient.GetSparkChartInfoAsync(symbols, TimeRange._1Month, TimeInterval._1Day);
+var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbol);
 
 Console.WriteLine();

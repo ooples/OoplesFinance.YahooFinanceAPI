@@ -551,4 +551,36 @@ public class YahooClient
     {
         return new SparkChartHelper().ParseYahooJsonData<SparkInfo>(await DownloadSparkChartDataAsync(symbol, timeRange, timeInterval)).First();
     }
+
+    /// <summary>
+    /// Gets spark chart info data for the selected stock symbols
+    /// </summary>
+    /// <param name="symbols"></param>
+    /// <param name="timeRange"></param>
+    /// <param name="timeInterval"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<SparkInfo>> GetSparkChartInfoAsync(IEnumerable<string> symbols, TimeRange timeRange, TimeInterval timeInterval)
+    {
+        return new SparkChartHelper().ParseYahooJsonData<SparkInfo>(await DownloadSparkChartDataAsync(symbols, timeRange, timeInterval));
+    }
+
+    /// <summary>
+    /// Gets real-time quote data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <returns></returns>
+    public async Task<RealTimeQuoteResult> GetRealTimeQuotesAsync(string symbol)
+    {
+        return new RealTimeQuoteHelper().ParseYahooJsonData<RealTimeQuoteResult>(await DownloadRealTimeQuoteDataAsync(symbol, Country, Language)).First();
+    }
+
+    /// <summary>
+    /// Gets real-time quote data for the selected stock symbols
+    /// </summary>
+    /// <param name="symbols"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<RealTimeQuoteResult>> GetRealTimeQuotesAsync(IEnumerable<string> symbols)
+    {
+        return new RealTimeQuoteHelper().ParseYahooJsonData<RealTimeQuoteResult>(await DownloadRealTimeQuoteDataAsync(symbols, Country, Language));
+    }
 }

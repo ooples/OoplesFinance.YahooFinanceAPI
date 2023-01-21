@@ -161,7 +161,27 @@ internal static class DownloadHelper
         }
         else
         {
-            return await DownloadRawDataAsync(BuildYahooSparkChartUrl(symbol, timeRange, timeInterval));
+            return await DownloadRawDataAsync(BuildYahooSparkChartUrl(new string[] { symbol }, timeRange, timeInterval));
+        }
+    }
+
+    /// <summary>
+    /// Downloads the spark chart json data using the chosen symbols
+    /// </summary>
+    /// <param name="symbols"></param>
+    /// <param name="timeRange"></param>
+    /// <param name="timeInterval"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadSparkChartDataAsync(IEnumerable<string> symbols, TimeRange timeRange, TimeInterval timeInterval)
+    {
+        if (!symbols.Any())
+        {
+            throw new ArgumentException("Symbols Parameter Must Contain At Least One Symbol");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooSparkChartUrl(symbols, timeRange, timeInterval));
         }
     }
 
@@ -183,6 +203,46 @@ internal static class DownloadHelper
         else
         {
             return await DownloadRawDataAsync(BuildYahooStatsUrl(symbol, country, language, module));
+        }
+    }
+
+    /// <summary>
+    /// Downloads the real-time quote json data using the chosen symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadRealTimeQuoteDataAsync(string symbol, Country country, Language language)
+    {
+        if (string.IsNullOrWhiteSpace(symbol))
+        {
+            throw new ArgumentException("Symbol Parameter Can't Be Empty Or Null");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooRealTimeQuoteUrl(new string[] { symbol }, country, language));
+        }
+    }
+
+    /// <summary>
+    /// Downloads the real-time quote json data using the chosen symbols
+    /// </summary>
+    /// <param name="symbols"></param>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadRealTimeQuoteDataAsync(IEnumerable<string> symbols, Country country, Language language)
+    {
+        if (!symbols.Any())
+        {
+            throw new ArgumentException("Symbols Parameter Must Contain At Least One Symbol");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooRealTimeQuoteUrl(symbols, country, language));
         }
     }
 

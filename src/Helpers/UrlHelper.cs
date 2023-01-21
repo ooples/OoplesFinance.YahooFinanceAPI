@@ -58,9 +58,9 @@ internal static class UrlHelper
     /// <param name="timeRange"></param>
     /// <param name="timeInterval"></param>
     /// <returns></returns>
-    internal static Uri BuildYahooSparkChartUrl(string symbol, TimeRange timeRange, TimeInterval timeInterval) =>
+    internal static Uri BuildYahooSparkChartUrl(IEnumerable<string> symbols, TimeRange timeRange, TimeInterval timeInterval) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v8/finance/spark?interval=" +
-            $"{GetTimeIntervalString(timeInterval)}&range={GetTimeRangeString(timeRange)}&symbols={symbol}?"));
+            $"{GetTimeIntervalString(timeInterval)}&range={GetTimeRangeString(timeRange)}&symbols={GetSymbolsString(symbols)}"));
 
     /// <summary>
     /// Creates a url that will be used to get stats for a selected symbol
@@ -73,6 +73,38 @@ internal static class UrlHelper
     internal static Uri BuildYahooStatsUrl(string symbol, Country country, Language language, YahooModule module) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v11/finance/quoteSummary/{symbol}?lang={GetLanguageString(language)}" +
             $"&region={GetCountryString(country)}&modules={GetModuleString(module)}"));
+
+    /// <summary>
+    /// Creates a url that will be used to get real-time quotes for multiple symbols
+    /// </summary>
+    /// <param name="symbolsList"></param>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    internal static Uri BuildYahooRealTimeQuoteUrl(IEnumerable<string> symbols, Country country, Language language) =>
+        new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v6/finance/quote?region=" +
+            $"{GetCountryString(country)}&lang={GetLanguageString(language)}&symbols={GetSymbolsString(symbols)}"));
+
+    /// <summary>
+    /// Returns a custom string for the symbols option
+    /// </summary>
+    /// <param name="symbolsList"></param>
+    /// <returns></returns>
+    private static string GetSymbolsString(IEnumerable<string> symbolsList)
+    {
+        var result = string.Empty;
+
+        var comma = Uri.EscapeDataString(",");
+        var count = symbolsList.Count();
+        for (int i = 0; i < count; i++)
+        {
+            var symbol = symbolsList.ElementAt(i);
+            // if it isn't the first element then add the encoded comma before the symbol
+            result += i != 0 ? comma + symbol : symbol;
+        }
+
+        return result;
+    }
 
     /// <summary>
     /// Returns a custom string for the module option
