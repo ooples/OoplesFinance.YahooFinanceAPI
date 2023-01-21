@@ -532,9 +532,23 @@ public class YahooClient
     /// Gets chart info data for the selected stock symbol
     /// </summary>
     /// <param name="symbol"></param>
+    /// <param name="timeRange"></param>
+    /// <param name="timeInterval"></param>
     /// <returns></returns>
     public async Task<IEnumerable<ChartResult>> GetChartInfoAsync(string symbol, TimeRange timeRange, TimeInterval timeInterval)
     {
         return new ChartHelper().ParseYahooJsonData<ChartResult>(await DownloadChartDataAsync(symbol, timeRange, timeInterval));
+    }
+
+    /// <summary>
+    /// Gets spark chart info data for the selected stock symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="timeRange"></param>
+    /// <param name="timeInterval"></param>
+    /// <returns></returns>
+    public async Task<SparkInfo> GetSparkChartInfoAsync(string symbol, TimeRange timeRange, TimeInterval timeInterval)
+    {
+        return new SparkChartHelper().ParseYahooJsonData<SparkInfo>(await DownloadSparkChartDataAsync(symbol, timeRange, timeInterval)).First();
     }
 }

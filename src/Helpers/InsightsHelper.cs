@@ -8,11 +8,10 @@ internal class InsightsHelper : YahooJsonBase
     /// <typeparam name="T"></typeparam>
     /// <param name="jsonData"></param>
     /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
         var insights = JsonSerializer.Deserialize<InsightsData>(jsonData);
 
-        return insights != null ? (IEnumerable<T>)insights.Finance.Result : Enumerable.Empty<T>();
+        return insights != null ? Enumerable.Cast<T>(new InsightsResult[] { insights.Finance.Result }) : Enumerable.Empty<T>();
     }
 }

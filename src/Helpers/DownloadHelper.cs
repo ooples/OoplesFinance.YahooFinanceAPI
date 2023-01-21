@@ -146,6 +146,26 @@ internal static class DownloadHelper
     }
 
     /// <summary>
+    /// Downloads the spark chart json data using the chosen symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="timeRange"></param>
+    /// <param name="timeInterval"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadSparkChartDataAsync(string symbol, TimeRange timeRange, TimeInterval timeInterval)
+    {
+        if (string.IsNullOrWhiteSpace(symbol))
+        {
+            throw new ArgumentException("Symbol Parameter Can't Be Empty Or Null");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooSparkChartUrl(symbol, timeRange, timeInterval));
+        }
+    }
+
+    /// <summary>
     /// Downloads the stats json data using the chosen symbol
     /// </summary>
     /// <param name="symbol"></param>

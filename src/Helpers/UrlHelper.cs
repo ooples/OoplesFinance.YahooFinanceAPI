@@ -1,7 +1,4 @@
-﻿using OoplesFinance.YahooFinanceAPI.Enums;
-using System.Reflection;
-
-namespace OoplesFinance.YahooFinanceAPI.Helpers;
+﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal static class UrlHelper
 {
@@ -53,6 +50,17 @@ internal static class UrlHelper
     internal static Uri BuildYahooChartUrl(string symbol, TimeRange timeRange, TimeInterval timeInterval) =>
         new(string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?" +
             $"range={GetTimeRangeString(timeRange)}&interval={GetTimeIntervalString(timeInterval)}"));
+
+    /// <summary>
+    /// Creates a url that will be used to get spark chart data for a selected symbol
+    /// </summary>
+    /// <param name="symbol"></param>
+    /// <param name="timeRange"></param>
+    /// <param name="timeInterval"></param>
+    /// <returns></returns>
+    internal static Uri BuildYahooSparkChartUrl(string symbol, TimeRange timeRange, TimeInterval timeInterval) =>
+        new(string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v8/finance/spark?interval=" +
+            $"{GetTimeIntervalString(timeInterval)}&range={GetTimeRangeString(timeRange)}&symbols={symbol}?"));
 
     /// <summary>
     /// Creates a url that will be used to get stats for a selected symbol
