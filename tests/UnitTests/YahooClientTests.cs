@@ -1019,6 +1019,19 @@ public sealed class YahooClientTests
     }
 
     [Fact]
+    public async Task GetSparkChartInfo_ThrowsException_WhenEmptySymbolListIsUsed()
+    {
+        // Arrange
+        var symbols = Enumerable.Empty<string>();
+
+        // Act
+        var result = async () => await _sut.GetSparkChartInfoAsync(symbols, TimeRange._1Day, TimeInterval._1Minute);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Must Contain At Least One Symbol");
+    }
+
+    [Fact]
     public async Task GetRealTimeQuotes_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
@@ -1042,5 +1055,18 @@ public sealed class YahooClientTests
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetRealTimeQuotes_ThrowsException_WhenEmptySymbolListIsUsed()
+    {
+        // Arrange
+        var symbols = Enumerable.Empty<string>();
+
+        // Act
+        var result = async () => await _sut.GetRealTimeQuotesAsync(symbols);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Must Contain At Least One Symbol");
     }
 }
