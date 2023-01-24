@@ -1032,6 +1032,19 @@ public sealed class YahooClientTests
     }
 
     [Fact]
+    public async Task GetSparkChartInfo_ThrowsException_WhenTooManySymbolsAreUsed()
+    {
+        // Arrange
+        var symbols = Enumerable.Repeat("AAPL", 255);
+
+        // Act
+        var result = async () => await _sut.GetSparkChartInfoAsync(symbols, TimeRange._1Day, TimeInterval._1Minute);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Can't Have More Than 250 Symbols");
+    }
+
+    [Fact]
     public async Task GetRealTimeQuotes_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
@@ -1068,5 +1081,18 @@ public sealed class YahooClientTests
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Must Contain At Least One Symbol");
+    }
+
+    [Fact]
+    public async Task GetRealTimeQuotes_ThrowsException_WhenTooManySymbolsAreUsed()
+    {
+        // Arrange
+        var symbols = Enumerable.Repeat("AAPL", 255);
+
+        // Act
+        var result = async () => await _sut.GetRealTimeQuotesAsync(symbols);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Can't Have More Than 250 Symbols");
     }
 }

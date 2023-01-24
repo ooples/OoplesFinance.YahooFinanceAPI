@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal static class DownloadHelper
@@ -60,31 +62,40 @@ internal static class DownloadHelper
     /// <param name="uriString"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    private static async Task<string> DownloadRawDataAsync(Uri uriString)
+    /// <exception cref="ArgumentException"></exception>
+    private static async Task<string> DownloadRawDataAsync(string urlString)
     {
-        using var client = new HttpClient();
-        using var request = new HttpRequestMessage(HttpMethod.Get, uriString);
-        var response = await client.SendAsync(request);
-
-        if (response.IsSuccessStatusCode)
+        // max length for a uri
+        if (urlString.Length > 2083)
         {
-            // Handle success
-            return await response.Content.ReadAsStringAsync();
+            throw new ArgumentException("You Have Included Too Many Symbols");
         }
         else
         {
-            // Handle failure
-            if (response.StatusCode == HttpStatusCode.NotFound)
+            using var client = new HttpClient();
+            using var request = new HttpRequestMessage(HttpMethod.Get, urlString);
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
             {
-                throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
-            }
-            else if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                throw new InvalidOperationException("Yahoo Finance Authentication Error");
+                // Handle success
+                return await response.Content.ReadAsStringAsync();
             }
             else
             {
-                throw new InvalidOperationException("Unspecified Error Occurred");
+                // Handle failure
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
+                }
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unspecified Error Occurred");
+                }
             }
         }
     }
@@ -179,6 +190,10 @@ internal static class DownloadHelper
         {
             throw new ArgumentException("Symbols Parameter Must Contain At Least One Symbol");
         }
+        else if (symbols.Count() > 250)
+        {
+            throw new ArgumentException("Symbols Parameter Can't Have More Than 250 Symbols");
+        }
         else
         {
             return await DownloadRawDataAsync(BuildYahooSparkChartUrl(symbols, timeRange, timeInterval));
@@ -239,6 +254,10 @@ internal static class DownloadHelper
         if (!symbols.Any())
         {
             throw new ArgumentException("Symbols Parameter Must Contain At Least One Symbol");
+        }
+        else if (symbols.Count() > 250)
+        {
+            throw new ArgumentException("Symbols Parameter Can't Have More Than 250 Symbols");
         }
         else
         {
