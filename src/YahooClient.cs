@@ -535,9 +535,9 @@ public class YahooClient
     /// <param name="timeRange"></param>
     /// <param name="timeInterval"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<ChartResult>> GetChartInfoAsync(string symbol, TimeRange timeRange, TimeInterval timeInterval)
+    public async Task<ChartData> GetChartInfoAsync(string symbol, TimeRange timeRange, TimeInterval timeInterval)
     {
-        return new ChartHelper().ParseYahooJsonData<ChartResult>(await DownloadChartDataAsync(symbol, timeRange, timeInterval));
+        return new ChartHelper().ParseYahooJsonData<ChartData>(await DownloadChartDataAsync(symbol, timeRange, timeInterval)).First();
     }
 
     /// <summary>

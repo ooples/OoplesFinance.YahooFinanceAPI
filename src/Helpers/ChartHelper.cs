@@ -1,4 +1,6 @@
-﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
+﻿using System.Text.Json.Nodes;
+
+namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal class ChartHelper : YahooJsonBase
 {
@@ -10,8 +12,26 @@ internal class ChartHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var chartData = JsonSerializer.Deserialize<ChartData>(jsonData);
+        var chartNodes = JsonNode.Parse(jsonData)!;
+        var root = chartNodes["chart"]!["result"]![0];
+        var dates = root!["timestamp"]!.AsArray().Select(x => x!.GetValue<long>().FromUnixTimeStamp());
+        var indicatorRoot = root["indicators"]!["quote"]![0];
+        var closePrices = indicatorRoot!["close"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
+        var openPrices = indicatorRoot!["open"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
+        var lowPrices = indicatorRoot!["low"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
+        var highPrices = indicatorRoot!["high"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
+        var volumes = indicatorRoot!["volume"]!.AsArray().Select(x => x!.GetValue<long>());
 
-        return chartData != null ? (IEnumerable<T>)chartData.Chart.Results : Enumerable.Empty<T>();
+        var result = new ChartData()
+        {
+            DateList = dates.ToList(),
+            CloseList = closePrices.ToList(),
+            OpenList = openPrices.ToList(),
+            HighList = highPrices.ToList(),
+            VolumeList = volumes.ToList(),
+            LowList = lowPrices.ToList()
+        };
+
+        return Enumerable.Cast<T>(new ChartData[] { result });
     }
 }
