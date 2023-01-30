@@ -18,5 +18,5 @@ public class ChartData
     public List<double> OpenList { get; set; } = new();
 
     [JsonPropertyName("volume")]
-    public List<long> VolumeList { get; set; } = new();
+    public List<double> VolumeList { get; set; } = new();
 }

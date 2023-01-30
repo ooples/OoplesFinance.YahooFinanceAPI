@@ -16,11 +16,11 @@ internal class ChartHelper : YahooJsonBase
         var root = chartNodes["chart"]!["result"]![0];
         var dates = root!["timestamp"]!.AsArray().Select(x => x!.GetValue<long>().FromUnixTimeStamp());
         var indicatorRoot = root["indicators"]!["quote"]![0];
-        var closePrices = indicatorRoot!["close"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
-        var openPrices = indicatorRoot!["open"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
-        var lowPrices = indicatorRoot!["low"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
-        var highPrices = indicatorRoot!["high"]!.AsArray().Select(x => Math.Round(x!.GetValue<double>(), 4));
-        var volumes = indicatorRoot!["volume"]!.AsArray().Select(x => x!.GetValue<long>());
+        var closePrices = indicatorRoot!["close"]!.AsArray().Select(x => x!= null ? Math.Round(x.GetValue<double>(), 4) : 0);
+        var openPrices = indicatorRoot!["open"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
+        var lowPrices = indicatorRoot!["low"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
+        var highPrices = indicatorRoot!["high"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
+        var volumes = indicatorRoot!["volume"]!.AsArray().Select(x => x != null ? x.GetValue<double>() : 0);
 
         var result = new ChartData()
         {
