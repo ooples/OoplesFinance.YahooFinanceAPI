@@ -266,6 +266,17 @@ internal static class DownloadHelper
     }
 
     /// <summary>
+    /// Downloads the market summary json data
+    /// </summary>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    internal static async Task<string> DownloadMarketSummaryDataAsync(Country country, Language language)
+    {
+        return await DownloadRawDataAsync(BuildYahooMarketSummaryUrl(country, language));
+    }
+
+    /// <summary>
     /// Gets the base csv data that is used by all csv helper classes
     /// </summary>
     /// <param name="csvData"></param>

@@ -583,4 +583,13 @@ public class YahooClient
     {
         return new RealTimeQuoteHelper().ParseYahooJsonData<RealTimeQuoteResult>(await DownloadRealTimeQuoteDataAsync(symbols, Country, Language));
     }
+
+    /// <summary>
+    /// Gets market summary data
+    /// </summary>
+    /// <returns></returns>
+    public async Task<IEnumerable<MarketSummaryResult>> GetMarketSummaryAsync()
+    {
+        return new MarketSummaryHelper().ParseYahooJsonData<MarketSummaryResult>(await DownloadMarketSummaryDataAsync(Country, Language));
+    }
 }

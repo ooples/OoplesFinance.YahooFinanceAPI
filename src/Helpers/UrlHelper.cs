@@ -44,6 +44,16 @@ internal static class UrlHelper
         string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/ws/insights/v1/finance/insights?symbol={symbol}");
 
     /// <summary>
+    /// Creates a url that will be used to get the market summary
+    /// </summary>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    internal static string BuildYahooMarketSummaryUrl(Country country, Language language) =>
+        string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v6/finance/quote/marketSummary?" +
+            $"lang={GetLanguageString(language)}&region={GetCountryString(country)}");
+
+    /// <summary>
     /// Creates a url that will be used to get chart data for a selected symbol
     /// </summary>
     /// <param name="symbol"></param>
