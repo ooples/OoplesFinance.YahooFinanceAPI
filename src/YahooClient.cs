@@ -592,4 +592,14 @@ public class YahooClient
     {
         return new MarketSummaryHelper().ParseYahooJsonData<MarketSummaryResult>(await DownloadMarketSummaryDataAsync(Country, Language));
     }
+
+    /// <summary>
+    /// Gets autocomplete data for the selected search term
+    /// </summary>
+    /// <param name="searchTerm"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<AutoCompleteResult>> GetAutoCompleteInfoAsync(string searchTerm)
+    {
+        return new AutoCompleteHelper().ParseYahooJsonData<AutoCompleteResult>(await DownloadAutoCompleteDataAsync(searchTerm, Country, Language));
+    }
 }

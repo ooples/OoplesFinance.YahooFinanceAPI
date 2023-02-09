@@ -54,6 +54,17 @@ internal static class UrlHelper
             $"lang={GetLanguageString(language)}&region={GetCountryString(country)}");
 
     /// <summary>
+    /// Creates a url that will be used to get autocomplete data for a selected search term
+    /// </summary>
+    /// <param name="searchTerm"></param>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    internal static string BuildYahooAutoCompleteUrl(string searchTerm, Country country, Language language) =>
+        string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v6/finance/autocomplete?region=" +
+            $"{GetCountryString(country)}&lang={GetLanguageString(language)}&query={searchTerm}");
+
+    /// <summary>
     /// Creates a url that will be used to get chart data for a selected symbol
     /// </summary>
     /// <param name="symbol"></param>

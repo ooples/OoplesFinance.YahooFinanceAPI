@@ -277,6 +277,18 @@ internal static class DownloadHelper
     }
 
     /// <summary>
+    /// Downloads the autocomplete json data for a specified search term
+    /// </summary>
+    /// <param name="searchTerm"></param>
+    /// <param name="country"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    internal static async Task<string> DownloadAutoCompleteDataAsync(string searchTerm, Country country, Language language)
+    {
+        return await DownloadRawDataAsync(BuildYahooAutoCompleteUrl(searchTerm, country, language));
+    }
+
+    /// <summary>
     /// Gets the base csv data that is used by all csv helper classes
     /// </summary>
     /// <param name="csvData"></param>

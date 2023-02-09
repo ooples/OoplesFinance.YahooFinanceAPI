@@ -2,6 +2,12 @@
 
 internal class MarketSummaryHelper : YahooJsonBase
 {
+    /// <summary>
+    /// Parses the raw json data for the Market Summary data
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="jsonData"></param>
+    /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
         var marketSummary = JsonSerializer.Deserialize<MarketSummaryData>(jsonData);
