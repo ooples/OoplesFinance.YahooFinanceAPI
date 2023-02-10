@@ -28,6 +28,16 @@ internal static class UrlHelper
         string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v1/finance/trending/{GetCountryString(country)}?count={count}");
 
     /// <summary>
+    /// Creates a url that will be used to get the screener list using the chosen parameters
+    /// </summary>
+    /// <param name="screenerType"></param>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    internal static string BuildYahooScreenerUrl(ScreenerType screenerType, int count) =>
+        string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/ws/screeners/v1/finance/screener/predefined/saved?" +
+            $"count={count}&scrIds={GetScreenerString(screenerType)}");
+
+    /// <summary>
     /// Creates a url that will be used to get recommendations for a selected symbol
     /// </summary>
     /// <param name="symbol"></param>
@@ -114,16 +124,9 @@ internal static class UrlHelper
     /// <returns></returns>
     private static string GetSymbolsString(IEnumerable<string> symbols)
     {
-        var result = string.Empty;
         var comma = Uri.EscapeDataString(",");
-        for (int i = 0; i < symbols.Count(); i++)
-        {
-            var symbol = symbols.ElementAt(i);
-            // if it isn't the first element then add the encoded comma before the symbol
-            result += i != 0 ? comma + symbol : symbol;
-        }
 
-        return result;
+        return string.Join(comma, symbols);
     }
 
     /// <summary>
@@ -285,5 +288,47 @@ internal static class UrlHelper
             DataType.StockSplits      => "split",
             DataType.CapitalGains     => "capitalGain",
             _                         => throw new ArgumentException("Invalid Enumerator Value", nameof(dataType))
+        };
+
+    private static string GetScreenerString(ScreenerType screenerType) =>
+        screenerType switch
+        {
+            ScreenerType.AggressiveSmallCaps                     => "aggressive_small_caps",
+            ScreenerType.AnalystStrongBuyStocks                  => "analyst_strong_buy_stocks",
+            ScreenerType.BearishStocksRightNow                   => "bearish_stocks_right_now",
+            ScreenerType.BullishStocksRightNow                   => "bullish_stocks_right_now",
+            ScreenerType.ConservativeForeignFunds                => "conservative_foreign_funds",
+            ScreenerType.DayGainers                              => "day_gainers",
+            ScreenerType.DayLosers                               => "day_losers",
+            ScreenerType.GrowthTechnologyStocks                  => "growth_technology_stocks",
+            ScreenerType.HighYieldBond                           => "high_yield_bond",
+            ScreenerType.LatestAnalystUpgradedStocks             => "latest_analyst_upgraded_stocks",
+            ScreenerType.MorningstarFiveStarStocks               => "morningstar_five_star_stocks",
+            ScreenerType.MostActives                             => "most_actives",
+            ScreenerType.MostInstitutionallyBoughtLargeCapStocks => "most_institutionally_bought_large_cap_stocks",
+            ScreenerType.MostInstitutionallyHeldLargeCapStocks   => "most_institutionally_held_large_cap_stocks",
+            ScreenerType.MostInstitutionallySoldLargeCapStocks   => "most_institutionally_sold_large_cap_stocks",
+            ScreenerType.MostShortedStocks                       => "most_shorted_stocks",
+            ScreenerType.PortfolioAnchors                        => "portfolio_anchors",
+            ScreenerType.SmallCapGainers                         => "small_cap_gainers",
+            ScreenerType.SolidLargeGrowthFunds                   => "solid_large_growth_funds",
+            ScreenerType.SolidMidcapGrowthFunds                  => "solid_midcap_growth_funds",
+            ScreenerType.StocksMostBoughtByHedgeFunds            => "stocks_most_bought_by_hedge_funds",
+            ScreenerType.StocksMostBoughtByPensionFunds          => "stocks_most_bought_by_pension_fund",
+            ScreenerType.StocksMostBoughtByPrivateEquity         => "stocks_most_bought_by_private_equity",
+            ScreenerType.StocksMostBoughtBySovereignWealthFunds  => "stocks_most_bought_by_sovereign_wealth_fund",
+            ScreenerType.StocksWithMostInstitutionalBuyers       => "stocks_with_most_institutional_buyers",
+            ScreenerType.StocksWithMostInstitutionalSellers      => "stocks_with_most_institutional_sellers",
+            ScreenerType.StrongUndervaluedStocks                 => "strong_undervalued_stocks",
+            ScreenerType.TopMutualFunds                          => "top_mutual_funds",
+            ScreenerType.TopStocksOwnedByCathieWood              => "top_stocks_owned_by_cathie_wood",
+            ScreenerType.TopStocksOwnedByGoldmanSachs            => "top_stocks_owned_by_goldman_sachs",
+            ScreenerType.TopStocksOwnedByRayDalio                => "top_stocks_owned_by_ray_dalio",
+            ScreenerType.TopStocksOwnedByWarrenBuffet            => "top_stocks_owned_by_warren_buffet",
+            ScreenerType.UndervaluedGrowthStocks                 => "undervalued_growth_stocks",
+            ScreenerType.UndervaluedLargeCaps                    => "undervalued_large_caps",
+            ScreenerType.UndervaluedWideMoatStocks               => "undervalued_wide_moat_stocks",
+            ScreenerType.UpsideBreakoutStocksDaily               => "upside_breakout_stocks_daily",
+            _                                                    => throw new ArgumentException("Invalid Enumerator Value", nameof(screenerType))
         };
 }

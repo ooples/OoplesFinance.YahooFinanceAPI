@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal static class DownloadHelper
@@ -15,7 +13,6 @@ internal static class DownloadHelper
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    /// <exception cref="InvalidOperationException"></exception>
     internal static async Task<IEnumerable<string[]>> DownloadRawCsvDataAsync(string symbol, DataType dataType, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
@@ -43,7 +40,6 @@ internal static class DownloadHelper
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    /// <exception cref="InvalidOperationException"></exception>
     internal static async Task<string> DownloadTrendingDataAsync(Country country, int count)
     {
         if (count <= 0)
@@ -53,6 +49,25 @@ internal static class DownloadHelper
         else
         {
             return await DownloadRawDataAsync(BuildYahooTrendingUrl(country, count));
+        }
+    }
+
+    /// <summary>
+    /// Downloads the screener json data using the chosen parameters
+    /// </summary>
+    /// <param name="screenerType"></param>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    internal static async Task<string> DownloadScreenerDataAsync(ScreenerType screenerType, int count)
+    {
+        if (count <= 0)
+        {
+            throw new ArgumentException("Count Must Be At Least 1 To Return Any Data");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooScreenerUrl(screenerType, count));
         }
     }
 
@@ -88,7 +103,7 @@ internal static class DownloadHelper
                 {
                     throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
                 }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                else if (response.StatusCode == HttpStatusCode.Unauthorized || response.StatusCode == HttpStatusCode.Forbidden)
                 {
                     throw new InvalidOperationException("Yahoo Finance Authentication Error");
                 }
@@ -283,9 +298,17 @@ internal static class DownloadHelper
     /// <param name="country"></param>
     /// <param name="language"></param>
     /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     internal static async Task<string> DownloadAutoCompleteDataAsync(string searchTerm, Country country, Language language)
     {
-        return await DownloadRawDataAsync(BuildYahooAutoCompleteUrl(searchTerm, country, language));
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            throw new ArgumentException("The Search Term Parameter Can't Be Empty Or Null");
+        }
+        else
+        {
+            return await DownloadRawDataAsync(BuildYahooAutoCompleteUrl(searchTerm, country, language));
+        }
     }
 
     /// <summary>

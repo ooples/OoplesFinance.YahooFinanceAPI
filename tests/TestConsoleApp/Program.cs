@@ -48,9 +48,10 @@ try
     //var balanceSheetHistoryQuarterlyList = await yahooClient.GetBalanceSheetHistoryQuarterlyAsync(symbol);
     //var chartInfoList = await yahooClient.GetChartInfoAsync("GOOG", TimeRange._1Year, TimeInterval._1Day);
     //var sparkChartInfoList = await yahooClient.GetSparkChartInfoAsync(symbols, TimeRange._1Month, TimeInterval._1Day);
-    //var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbol);
-    var marketSummaryList = await yahooClient.GetMarketSummaryAsync();
-    var autoCompleteList = await yahooClient.GetAutoCompleteInfoAsync("Google");
+    //var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbols);
+    //var marketSummaryList = await yahooClient.GetMarketSummaryAsync();
+    //var autoCompleteList = await yahooClient.GetAutoCompleteInfoAsync("Google");
+    var topGainersList = await yahooClient.GetTopGainersAsync(10);
 
     Console.WriteLine();
 }

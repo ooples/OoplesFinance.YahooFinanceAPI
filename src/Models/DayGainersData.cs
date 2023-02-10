@@ -1,0 +1,132 @@
+﻿namespace OoplesFinance.YahooFinanceAPI.Models;
+
+public record CriteriaMeta(
+        [property: JsonPropertyName("size")] int? Size,
+        [property: JsonPropertyName("offset")] int? Offset,
+        [property: JsonPropertyName("sortField")] string SortField,
+        [property: JsonPropertyName("sortType")] string SortType,
+        [property: JsonPropertyName("quoteType")] string QuoteType,
+        [property: JsonPropertyName("criteria")] IReadOnlyList<Criterion> Criteria,
+        [property: JsonPropertyName("topOperator")] string TopOperator
+    );
+
+public record Criterion(
+    [property: JsonPropertyName("field")] string Field,
+    [property: JsonPropertyName("operators")] IReadOnlyList<string> Operators,
+    [property: JsonPropertyName("values")] IReadOnlyList<double?> Values,
+    [property: JsonPropertyName("labelsSelected")] IReadOnlyList<int?> LabelsSelected,
+    [property: JsonPropertyName("dependentValues")] IReadOnlyList<object> DependentValues
+);
+
+public record DayGainersFinance(
+    [property: JsonPropertyName("result")] IReadOnlyList<DayGainersResult> Results,
+    [property: JsonPropertyName("error")] object Error
+);
+
+public record DayGainersQuote(
+    [property: JsonPropertyName("language")] string Language,
+    [property: JsonPropertyName("region")] string Region,
+    [property: JsonPropertyName("quoteType")] string QuoteType,
+    [property: JsonPropertyName("typeDisp")] string TypeDisp,
+    [property: JsonPropertyName("quoteSourceName")] string QuoteSourceName,
+    [property: JsonPropertyName("triggerable")] bool? Triggerable,
+    [property: JsonPropertyName("customPriceAlertConfidence")] string CustomPriceAlertConfidence,
+    [property: JsonPropertyName("forwardPE")] double? ForwardPE,
+    [property: JsonPropertyName("priceToBook")] double? PriceToBook,
+    [property: JsonPropertyName("sourceInterval")] int? SourceInterval,
+    [property: JsonPropertyName("exchangeDataDelayedBy")] int? ExchangeDataDelayedBy,
+    [property: JsonPropertyName("exchangeTimezoneName")] string ExchangeTimezoneName,
+    [property: JsonPropertyName("exchangeTimezoneShortName")] string ExchangeTimezoneShortName,
+    [property: JsonPropertyName("gmtOffSetMilliseconds")] int? GmtOffSetMilliseconds,
+    [property: JsonPropertyName("ipoExpectedDate")] string IpoExpectedDate,
+    [property: JsonPropertyName("esgPopulated")] bool? EsgPopulated,
+    [property: JsonPropertyName("tradeable")] bool? Tradeable,
+    [property: JsonPropertyName("cryptoTradeable")] bool? CryptoTradeable,
+    [property: JsonPropertyName("regularMarketChangePercent")] double? RegularMarketChangePercent,
+    [property: JsonPropertyName("currency")] string Currency,
+    [property: JsonPropertyName("fullExchangeName")] string FullExchangeName,
+    [property: JsonPropertyName("longName")] string LongName,
+    [property: JsonPropertyName("financialCurrency")] string FinancialCurrency,
+    [property: JsonPropertyName("regularMarketOpen")] double? RegularMarketOpen,
+    [property: JsonPropertyName("averageDailyVolume3Month")] int? AverageDailyVolume3Month,
+    [property: JsonPropertyName("averageDailyVolume10Day")] int? AverageDailyVolume10Day,
+    [property: JsonPropertyName("fiftyTwoWeekLowChange")] double? FiftyTwoWeekLowChange,
+    [property: JsonPropertyName("fiftyTwoWeekLowChangePercent")] double? FiftyTwoWeekLowChangePercent,
+    [property: JsonPropertyName("fiftyTwoWeekRange")] string FiftyTwoWeekRange,
+    [property: JsonPropertyName("fiftyTwoWeekHighChange")] double? FiftyTwoWeekHighChange,
+    [property: JsonPropertyName("fiftyTwoWeekHighChangePercent")] double? FiftyTwoWeekHighChangePercent,
+    [property: JsonPropertyName("earningsTimestamp")] int? EarningsTimestamp,
+    [property: JsonPropertyName("earningsTimestampStart")] int? EarningsTimestampStart,
+    [property: JsonPropertyName("earningsTimestampEnd")] int? EarningsTimestampEnd,
+    [property: JsonPropertyName("trailingAnnualDividendRate")] double? TrailingAnnualDividendRate,
+    [property: JsonPropertyName("trailingAnnualDividendYield")] double? TrailingAnnualDividendYield,
+    [property: JsonPropertyName("marketState")] string MarketState,
+    [property: JsonPropertyName("epsTrailingTwelveMonths")] double? EpsTrailingTwelveMonths,
+    [property: JsonPropertyName("epsForward")] double? EpsForward,
+    [property: JsonPropertyName("epsCurrentYear")] double? EpsCurrentYear,
+    [property: JsonPropertyName("priceEpsCurrentYear")] double? PriceEpsCurrentYear,
+    [property: JsonPropertyName("sharesOutstanding")] object SharesOutstanding,
+    [property: JsonPropertyName("bookValue")] double? BookValue,
+    [property: JsonPropertyName("fiftyDayAverage")] double? FiftyDayAverage,
+    [property: JsonPropertyName("fiftyDayAverageChange")] double? FiftyDayAverageChange,
+    [property: JsonPropertyName("fiftyDayAverageChangePercent")] double? FiftyDayAverageChangePercent,
+    [property: JsonPropertyName("twoHundredDayAverage")] double? TwoHundredDayAverage,
+    [property: JsonPropertyName("twoHundredDayAverageChange")] double? TwoHundredDayAverageChange,
+    [property: JsonPropertyName("twoHundredDayAverageChangePercent")] double? TwoHundredDayAverageChangePercent,
+    [property: JsonPropertyName("marketCap")] object MarketCap,
+    [property: JsonPropertyName("averageAnalystRating")] string AverageAnalystRating,
+    [property: JsonPropertyName("firstTradeDateMilliseconds")] object FirstTradeDateMilliseconds,
+    [property: JsonPropertyName("priceHint")] int? PriceHint,
+    [property: JsonPropertyName("postMarketChangePercent")] double? PostMarketChangePercent,
+    [property: JsonPropertyName("postMarketTime")] int? PostMarketTime,
+    [property: JsonPropertyName("postMarketPrice")] double? PostMarketPrice,
+    [property: JsonPropertyName("postMarketChange")] double? PostMarketChange,
+    [property: JsonPropertyName("regularMarketChange")] double? RegularMarketChange,
+    [property: JsonPropertyName("regularMarketTime")] int? RegularMarketTime,
+    [property: JsonPropertyName("regularMarketPrice")] double? RegularMarketPrice,
+    [property: JsonPropertyName("regularMarketDayHigh")] double? RegularMarketDayHigh,
+    [property: JsonPropertyName("regularMarketDayRange")] string RegularMarketDayRange,
+    [property: JsonPropertyName("regularMarketDayLow")] double? RegularMarketDayLow,
+    [property: JsonPropertyName("regularMarketVolume")] int? RegularMarketVolume,
+    [property: JsonPropertyName("regularMarketPreviousClose")] double? RegularMarketPreviousClose,
+    [property: JsonPropertyName("bid")] double? Bid,
+    [property: JsonPropertyName("ask")] double? Ask,
+    [property: JsonPropertyName("bidSize")] int? BidSize,
+    [property: JsonPropertyName("askSize")] int? AskSize,
+    [property: JsonPropertyName("market")] string Market,
+    [property: JsonPropertyName("messageBoardId")] string MessageBoardId,
+    [property: JsonPropertyName("exchange")] string Exchange,
+    [property: JsonPropertyName("fiftyTwoWeekLow")] double? FiftyTwoWeekLow,
+    [property: JsonPropertyName("fiftyTwoWeekHigh")] double? FiftyTwoWeekHigh,
+    [property: JsonPropertyName("shortName")] string ShortName,
+    [property: JsonPropertyName("displayName")] string DisplayName,
+    [property: JsonPropertyName("symbol")] string Symbol,
+    [property: JsonPropertyName("prevName")] string PrevName,
+    [property: JsonPropertyName("nameChangeDate")] string NameChangeDate,
+    [property: JsonPropertyName("dividendDate")] int? DividendDate,
+    [property: JsonPropertyName("trailingPE")] double? TrailingPE
+);
+
+public record DayGainersResult(
+    [property: JsonPropertyName("id")] string Id,
+    [property: JsonPropertyName("title")] string Title,
+    [property: JsonPropertyName("description")] string Description,
+    [property: JsonPropertyName("canonicalName")] string CanonicalName,
+    [property: JsonPropertyName("criteriaMeta")] CriteriaMeta CriteriaMeta,
+    [property: JsonPropertyName("rawCriteria")] string RawCriteria,
+    [property: JsonPropertyName("start")] int? Start,
+    [property: JsonPropertyName("count")] int? Count,
+    [property: JsonPropertyName("total")] int? Total,
+    [property: JsonPropertyName("quotes")] IReadOnlyList<DayGainersQuote> Quotes,
+    [property: JsonPropertyName("useRecords")] bool? UseRecords,
+    [property: JsonPropertyName("predefinedScr")] bool? PredefinedScr,
+    [property: JsonPropertyName("versionId")] int? VersionId,
+    [property: JsonPropertyName("creationDate")] long? CreationDate,
+    [property: JsonPropertyName("lastUpdated")] long? LastUpdated,
+    [property: JsonPropertyName("isPremium")] bool? IsPremium,
+    [property: JsonPropertyName("iconUrl")] string IconUrl
+);
+
+public record DayGainersData(
+    [property: JsonPropertyName("finance")] DayGainersFinance Finance
+);

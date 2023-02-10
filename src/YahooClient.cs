@@ -602,4 +602,14 @@ public class YahooClient
     {
         return new AutoCompleteHelper().ParseYahooJsonData<AutoCompleteResult>(await DownloadAutoCompleteDataAsync(searchTerm, Country, Language));
     }
+
+    /// <summary>
+    /// Gets the top gainers data using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<DayGainersResult>> GetTopGainersAsync(int count)
+    {
+        return new DayGainersHelper().ParseYahooJsonData<DayGainersResult>(await DownloadScreenerDataAsync(ScreenerType.DayGainers, count));
+    }
 }
