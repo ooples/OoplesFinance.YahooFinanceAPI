@@ -2,36 +2,36 @@
 
 internal class TrendingFinance
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<TrendingResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 internal class Quote
 {
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
 }
 
 internal class TrendingResult
 {
-    [JsonPropertyName("count")]
+    [JsonProperty("count")]
     public int? Count { get; set; }
 
-    [JsonPropertyName("quotes")]
+    [JsonProperty("quotes")]
     public List<Quote> Quotes { get; set; } = new();
 
-    [JsonPropertyName("jobTimestamp")]
+    [JsonProperty("jobTimestamp")]
     public long? JobTimestamp { get; set; }
 
-    [JsonPropertyName("startInterval")]
+    [JsonProperty("startInterval")]
     public long? StartInterval { get; set; }
 }
 
 internal class TrendingData
 {
-    [JsonPropertyName("finance")]
+    [JsonProperty("finance")]
     public TrendingFinance Finance { get; set; } = new();
 }

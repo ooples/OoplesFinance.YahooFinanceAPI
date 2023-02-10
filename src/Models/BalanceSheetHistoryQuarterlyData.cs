@@ -2,30 +2,30 @@
 
 public class BalanceSheetHistoryQuarterly
 {
-    [JsonPropertyName("balanceSheetStatements")]
+    [JsonProperty("balanceSheetStatements")]
     public List<BalanceSheetStatement> BalanceSheetStatements { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class BalanceSheetHistoryQuarterlyQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<BalanceSheetHistoryQuarterlyResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class BalanceSheetHistoryQuarterlyResult
 {
-    [JsonPropertyName("balanceSheetHistoryQuarterly")] 
+    [JsonProperty("balanceSheetHistoryQuarterly")] 
     public BalanceSheetHistoryQuarterly BalanceSheetHistoryQuarterly { get; set; } = new();
 }
 
 public class BalanceSheetHistoryQuarterlyData
 {
-    [JsonPropertyName("quoteSummary")] 
+    [JsonProperty("quoteSummary")] 
     public BalanceSheetHistoryQuarterlyQuoteSummary QuoteSummary { get; set; } = new();
 }

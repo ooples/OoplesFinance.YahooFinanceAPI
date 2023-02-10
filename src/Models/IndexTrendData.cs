@@ -2,66 +2,66 @@
 
 public class Estimate
 {
-    [JsonPropertyName("period")]
+    [JsonProperty("period")]
     public string Period { get; set; } = string.Empty;
 
-    [JsonPropertyName("growth")]
+    [JsonProperty("growth")]
     public Growth Growth { get; set; } = new();
 }
 
 public class Growth
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class IndexTrend
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
 
-    [JsonPropertyName("peRatio")] 
+    [JsonProperty("peRatio")] 
     public PeRatio PeRatio { get; set; } = new();
 
-    [JsonPropertyName("pegRatio")]
+    [JsonProperty("pegRatio")]
     public PegRatio PegRatio { get; set; } = new();
 
-    [JsonPropertyName("estimates")]
+    [JsonProperty("estimates")]
     public List<Estimate> Estimates { get; set; } = new();
 }
 
 public class PeRatio
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class IndexTrendQuoteSummary
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<IndexTrendResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class IndexTrendResult
 {
-    [JsonPropertyName("indexTrend")]
+    [JsonProperty("indexTrend")]
     public IndexTrend IndexTrend { get; set; } = new();
 }
 
 public class IndexTrendData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public IndexTrendQuoteSummary QuoteSummary { get; set; } = new();
 }

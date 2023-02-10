@@ -2,96 +2,96 @@
 
 public class InsiderTransactions
 {
-    [JsonPropertyName("transactions")]
+    [JsonProperty("transactions")]
     public List<Transaction> Transactions { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class InsiderTransactionQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<InsiderTransactionResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class InsiderTransactionResult
 {
-    [JsonPropertyName("insiderTransactions")] 
+    [JsonProperty("insiderTransactions")] 
     public InsiderTransactions InsiderTransactions { get; set; } = new();
 }
 
 public class InsiderTransactionData
 {
-    [JsonPropertyName("quoteSummary")] 
+    [JsonProperty("quoteSummary")] 
     public InsiderTransactionQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class Shares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class StartDate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class Transaction
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("shares")]
+    [JsonProperty("shares")]
     public Shares Shares { get; set; } = new();
 
-    [JsonPropertyName("value")]
+    [JsonProperty("value")]
     public Value Value { get; set; } = new();
 
-    [JsonPropertyName("filerUrl")]
+    [JsonProperty("filerUrl")]
     public string FilerUrl { get; set; } = string.Empty;
 
-    [JsonPropertyName("transactionText")]
+    [JsonProperty("transactionText")]
     public string TransactionText { get; set; } = string.Empty;
 
-    [JsonPropertyName("filerName")]
+    [JsonProperty("filerName")]
     public string FilerName { get; set; } = string.Empty;
 
-    [JsonPropertyName("filerRelation")]
+    [JsonProperty("filerRelation")]
     public string FilerRelation { get; set; } = string.Empty;
 
-    [JsonPropertyName("moneyText")]
+    [JsonProperty("moneyText")]
     public string MoneyText { get; set; } = string.Empty;
 
-    [JsonPropertyName("startDate")]
+    [JsonProperty("startDate")]
     public StartDate StartDate { get; set; } = new();
 
-    [JsonPropertyName("ownership")]
+    [JsonProperty("ownership")]
     public string Ownership { get; set; } = string.Empty;
 }
 
 public class Value
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public float? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }

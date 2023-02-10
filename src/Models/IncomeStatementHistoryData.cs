@@ -2,13 +2,13 @@
 
 public class CostOfRevenue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
@@ -18,13 +18,13 @@ public class DiscontinuedOperations
 
 public class Ebit
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
@@ -38,127 +38,127 @@ public class ExtraordinaryItems
 
 public class GrossProfit
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class IncomeBeforeTax
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class IncomeStatementHistory
 {
-    [JsonPropertyName("incomeStatementHistory")]
+    [JsonProperty("incomeStatementHistory")]
     public List<IncomeStatementHistory> IncomeStatementHistoryInfo { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("endDate")]
+    [JsonProperty("endDate")]
     public EndDate EndDate { get; set; } = new();
 
-    [JsonPropertyName("totalRevenue")] 
+    [JsonProperty("totalRevenue")] 
     public TotalRevenue TotalRevenue { get; set; } = new();
 
-    [JsonPropertyName("costOfRevenue")] 
+    [JsonProperty("costOfRevenue")] 
     public CostOfRevenue CostOfRevenue { get; set; } = new();
 
-    [JsonPropertyName("grossProfit")] 
+    [JsonProperty("grossProfit")] 
     public GrossProfit GrossProfit { get; set; } = new();
 
-    [JsonPropertyName("researchDevelopment")] 
+    [JsonProperty("researchDevelopment")] 
     public ResearchDevelopment ResearchDevelopment { get; set; } = new();
 
-    [JsonPropertyName("sellingGeneralAdministrative")] 
+    [JsonProperty("sellingGeneralAdministrative")] 
     public SellingGeneralAdministrative SellingGeneralAdministrative { get; set; } = new();
 
-    [JsonPropertyName("nonRecurring")] 
+    [JsonProperty("nonRecurring")] 
     public NonRecurring NonRecurring { get; set; } = new();
 
-    [JsonPropertyName("otherOperatingExpenses")] 
+    [JsonProperty("otherOperatingExpenses")] 
     public OtherOperatingExpenses OtherOperatingExpenses { get; set; } = new();
 
-    [JsonPropertyName("totalOperatingExpenses")] 
+    [JsonProperty("totalOperatingExpenses")] 
     public TotalOperatingExpenses TotalOperatingExpenses { get; set; } = new();
 
-    [JsonPropertyName("operatingIncome")] 
+    [JsonProperty("operatingIncome")] 
     public OperatingIncome OperatingIncome { get; set; } = new();
 
-    [JsonPropertyName("totalOtherIncomeExpenseNet")] 
+    [JsonProperty("totalOtherIncomeExpenseNet")] 
     public TotalOtherIncomeExpenseNet TotalOtherIncomeExpenseNet { get; set; } = new();
 
-    [JsonPropertyName("ebit")] 
+    [JsonProperty("ebit")] 
     public Ebit Ebit { get; set; } = new();
 
-    [JsonPropertyName("interestExpense")] 
+    [JsonProperty("interestExpense")] 
     public InterestExpense InterestExpense { get; set; } = new();
 
-    [JsonPropertyName("incomeBeforeTax")] 
+    [JsonProperty("incomeBeforeTax")] 
     public IncomeBeforeTax IncomeBeforeTax { get; set; } = new();
 
-    [JsonPropertyName("incomeTaxExpense")] 
+    [JsonProperty("incomeTaxExpense")] 
     public IncomeTaxExpense IncomeTaxExpense { get; set; } = new();
 
-    [JsonPropertyName("minorityInterest")] 
+    [JsonProperty("minorityInterest")] 
     public MinorityInterest MinorityInterest { get; set; } = new();
 
-    [JsonPropertyName("netIncomeFromContinuingOps")] 
+    [JsonProperty("netIncomeFromContinuingOps")] 
     public NetIncomeFromContinuingOps NetIncomeFromContinuingOps { get; set; } = new();
 
-    [JsonPropertyName("discontinuedOperations")]
+    [JsonProperty("discontinuedOperations")]
     public DiscontinuedOperations DiscontinuedOperations { get; set; } = new();
 
-    [JsonPropertyName("extraordinaryItems")] 
+    [JsonProperty("extraordinaryItems")] 
     public ExtraordinaryItems ExtraordinaryItems { get; set; } = new();
 
-    [JsonPropertyName("effectOfAccountingCharges")] 
+    [JsonProperty("effectOfAccountingCharges")] 
     public EffectOfAccountingCharges EffectOfAccountingCharges { get; set; } = new();
 
-    [JsonPropertyName("otherItems")]
+    [JsonProperty("otherItems")]
     public OtherItems OtherItems { get; set; } = new();
 
-    [JsonPropertyName("netIncome")] 
+    [JsonProperty("netIncome")] 
     public NetIncome NetIncome { get; set; } = new();
 
-    [JsonPropertyName("netIncomeApplicableToCommonShares")] 
+    [JsonProperty("netIncomeApplicableToCommonShares")] 
     public NetIncomeApplicableToCommonShares NetIncomeApplicableToCommonShares { get; set; } = new();
 }
 
 public class IncomeTaxExpense
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class InterestExpense
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public long? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
@@ -168,25 +168,25 @@ public class MinorityInterest
 
 public class NetIncomeApplicableToCommonShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class NetIncomeFromContinuingOps
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
@@ -196,13 +196,13 @@ public class NonRecurring
 
 public class OperatingIncome
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
@@ -216,69 +216,69 @@ public class OtherOperatingExpenses
 
 public class IncomeStatementHistoryQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<IncomeStatementHistoryResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class ResearchDevelopment
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class IncomeStatementHistoryResult
 {
-    [JsonPropertyName("incomeStatementHistory")]
+    [JsonProperty("incomeStatementHistory")]
     public IncomeStatementHistory IncomeStatementHistory { get; set; } = new();
 }
 
 public class IncomeStatementHistoryData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public IncomeStatementHistoryQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class SellingGeneralAdministrative
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class TotalOperatingExpenses
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class TotalOtherIncomeExpenseNet
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }

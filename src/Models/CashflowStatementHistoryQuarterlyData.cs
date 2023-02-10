@@ -2,30 +2,30 @@
 
 public class CashflowStatementHistoryQuarterly
 {
-    [JsonPropertyName("cashflowStatements")] 
+    [JsonProperty("cashflowStatements")] 
     public List<CashflowStatement> CashflowStatements { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class CashflowStatementHistoryQuarterlyQuoteSummary
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<CashflowStatementHistoryQuarterlyResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class CashflowStatementHistoryQuarterlyResult
 {
-    [JsonPropertyName("cashflowStatementHistoryQuarterly")]
+    [JsonProperty("cashflowStatementHistoryQuarterly")]
     public CashflowStatementHistoryQuarterly CashflowStatementHistoryQuarterly { get; set; } = new();
 }
 
 public class CashflowStatementHistoryQuarterlyData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public CashflowStatementHistoryQuarterlyQuoteSummary QuoteSummary { get; set; } = new();
 }

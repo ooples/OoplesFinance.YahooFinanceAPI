@@ -2,48 +2,48 @@
 
 public class History
 {
-    [JsonPropertyName("epochGradeDate")]
+    [JsonProperty("epochGradeDate")]
     public int? EpochGradeDate { get; set; }
 
-    [JsonPropertyName("firm")] 
+    [JsonProperty("firm")] 
     public string Firm { get; set; } = string.Empty;
 
-    [JsonPropertyName("toGrade")]
+    [JsonProperty("toGrade")]
     public string ToGrade { get; set; } = string.Empty;
 
-    [JsonPropertyName("fromGrade")]
+    [JsonProperty("fromGrade")]
     public string FromGrade { get; set; } = string.Empty;
 
-    [JsonPropertyName("action")]
+    [JsonProperty("action")]
     public string Action { get; set; } = string.Empty;
 }
 
 public class UpgradeDowngradeHistoryQuoteSummary
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<Result> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class Result
 {
-    [JsonPropertyName("upgradeDowngradeHistory")] 
+    [JsonProperty("upgradeDowngradeHistory")] 
     public UpgradeDowngradeHistory UpgradeDowngradeHistory { get; set; } = new();
 }
 
 public class UpgradeDowngradeHistoryData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public UpgradeDowngradeHistoryQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class UpgradeDowngradeHistory
 {
-    [JsonPropertyName("history")]
+    [JsonProperty("history")]
     public List<History> History { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }

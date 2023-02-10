@@ -2,21 +2,21 @@
 
 public class ChartData
 {
-    [JsonPropertyName("timestamp")]
+    [JsonProperty("timestamp")]
     public List<DateTime> DateList { get; set;  } = new();
 
-    [JsonPropertyName("close")]
+    [JsonProperty("close")]
     public List<double> CloseList { get; set; } = new();
 
-    [JsonPropertyName("high")]
+    [JsonProperty("high")]
     public List<double> HighList { get; set; } = new();
 
-    [JsonPropertyName("low")]
+    [JsonProperty("low")]
     public List<double> LowList { get; set; } = new();
 
-    [JsonPropertyName("open")]
+    [JsonProperty("open")]
     public List<double> OpenList { get; set; } = new();
 
-    [JsonPropertyName("volume")]
+    [JsonProperty("volume")]
     public List<double> VolumeList { get; set; } = new();
 }

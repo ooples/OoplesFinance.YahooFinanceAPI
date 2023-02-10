@@ -1,19 +1,19 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
 public record AutoCompleteResult(
-        [property: JsonPropertyName("symbol")] string Symbol,
-        [property: JsonPropertyName("name")] string Name,
-        [property: JsonPropertyName("exch")] string Exch,
-        [property: JsonPropertyName("type")] string Type,
-        [property: JsonPropertyName("exchDisp")] string ExchDisp,
-        [property: JsonPropertyName("typeDisp")] string TypeDisp
+        [property: JsonProperty("symbol")] string Symbol,
+        [property: JsonProperty("name")] string Name,
+        [property: JsonProperty("exch")] string Exch,
+        [property: JsonProperty("type")] string Type,
+        [property: JsonProperty("exchDisp")] string ExchDisp,
+        [property: JsonProperty("typeDisp")] string TypeDisp
     );
 
 public record ResultSet(
-    [property: JsonPropertyName("Query")] string Query,
-    [property: JsonPropertyName("Result")] IReadOnlyList<AutoCompleteResult> Results
+    [property: JsonProperty("Query")] string Query,
+    [property: JsonProperty("Result")] IReadOnlyList<AutoCompleteResult> Results
 );
 
 public record AutoCompleteData(
-    [property: JsonPropertyName("ResultSet")] ResultSet ResultSet
+    [property: JsonProperty("ResultSet")] ResultSet ResultSet
 );

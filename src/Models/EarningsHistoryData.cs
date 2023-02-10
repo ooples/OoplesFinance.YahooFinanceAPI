@@ -2,99 +2,99 @@
 
 public class EarningsHistory
 {
-    [JsonPropertyName("history")]
+    [JsonProperty("history")]
     public List<EarningsHistoryInfo> History { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class EpsActual
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EpsDifference
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EpsEstimate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EarningsHistoryInfo
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("epsActual")] 
+    [JsonProperty("epsActual")] 
     public EpsActual EpsActual { get; set; } = new();
 
-    [JsonPropertyName("epsEstimate")] 
+    [JsonProperty("epsEstimate")] 
     public EpsEstimate EpsEstimate { get; set; } = new();
 
-    [JsonPropertyName("epsDifference")] 
+    [JsonProperty("epsDifference")] 
     public EpsDifference EpsDifference { get; set; } = new();
 
-    [JsonPropertyName("surprisePercent")]
+    [JsonProperty("surprisePercent")]
     public SurprisePercent SurprisePercent { get; set; } = new();
 
-    [JsonPropertyName("quarter")]
+    [JsonProperty("quarter")]
     public Quarter Quarter { get; set; } = new();
 
-    [JsonPropertyName("period")]
+    [JsonProperty("period")]
     public string Period { get; set; } = string.Empty;
 }
 
 public class Quarter
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EarningsHistoryQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<EarningsHistoryResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class EarningsHistoryResult
 {
-    [JsonPropertyName("earningsHistory")] 
+    [JsonProperty("earningsHistory")] 
     public EarningsHistory EarningsHistory { get; set; } = new();
 }
 
 public class EarningsHistoryData
 {
-    [JsonPropertyName("quoteSummary")] 
+    [JsonProperty("quoteSummary")] 
     public EarningsHistoryQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class SurprisePercent
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }

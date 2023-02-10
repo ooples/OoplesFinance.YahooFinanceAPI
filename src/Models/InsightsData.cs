@@ -2,177 +2,177 @@
 
 public class Company
 {
-    [JsonPropertyName("innovativeness")]
+    [JsonProperty("innovativeness")]
     public double? Innovativeness { get; set; }
 
-    [JsonPropertyName("hiring")]
+    [JsonProperty("hiring")]
     public double? Hiring { get; set; }
 
-    [JsonPropertyName("sustainability")]
+    [JsonProperty("sustainability")]
     public double? Sustainability { get; set; }
 
-    [JsonPropertyName("insiderSentiments")]
+    [JsonProperty("insiderSentiments")]
     public double? InsiderSentiments { get; set; }
 
-    [JsonPropertyName("earningsReports")]
+    [JsonProperty("earningsReports")]
     public double? EarningsReports { get; set; }
 
-    [JsonPropertyName("dividends")]
+    [JsonProperty("dividends")]
     public double? Dividends { get; set; }
 }
 
 public class CompanySnapshot
 {
-    [JsonPropertyName("sectorInfo")]
+    [JsonProperty("sectorInfo")]
     public string SectorInfo { get; set; } = string.Empty;
 
-    [JsonPropertyName("company")] 
+    [JsonProperty("company")] 
     public Company Company { get; set; } = new();
 
-    [JsonPropertyName("sector")] 
+    [JsonProperty("sector")] 
     public Sector Sector { get; set; } = new();
 }
 
 public class Finance
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public InsightsResult Result { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class InstrumentInfo
 {
-    [JsonPropertyName("technicalEvents")]
+    [JsonProperty("technicalEvents")]
     public TechnicalEvents TechnicalEvents { get; set; } = new();
 
-    [JsonPropertyName("keyTechnicals")]
+    [JsonProperty("keyTechnicals")]
     public KeyTechnicals KeyTechnicals { get; set; } = new();
 
-    [JsonPropertyName("valuation")]
+    [JsonProperty("valuation")]
     public Valuation Valuation { get; set; } = new();
 
-    [JsonPropertyName("recommendation")] 
+    [JsonProperty("recommendation")] 
     public Recommendation Recommendation { get; set; } = new();
 }
 
 public class KeyTechnicals
 {
-    [JsonPropertyName("provider")]
+    [JsonProperty("provider")]
     public string Provider { get; set; } = string.Empty;
 
-    [JsonPropertyName("support")]
+    [JsonProperty("support")]
     public double? Support { get; set; }
 
-    [JsonPropertyName("resistance")]
+    [JsonProperty("resistance")]
     public double? Resistance { get; set; }
 
-    [JsonPropertyName("stopLoss")]
+    [JsonProperty("stopLoss")]
     public double? StopLoss { get; set; }
 }
 
 public class Recommendation
 {
-    [JsonPropertyName("targetPrice")]
+    [JsonProperty("targetPrice")]
     public double? TargetPrice { get; set; }
 
-    [JsonPropertyName("provider")]
+    [JsonProperty("provider")]
     public string Provider { get; set; } = string.Empty;
 
-    [JsonPropertyName("rating")]
+    [JsonProperty("rating")]
     public string Rating { get; set; } = string.Empty;
 }
 
 public class Report
 {
-    [JsonPropertyName("id")] 
+    [JsonProperty("id")] 
     public string Id { get; set; } = string.Empty;
 
-    [JsonPropertyName("title")]
+    [JsonProperty("title")]
     public string Title { get; set; } = string.Empty;
 
-    [JsonPropertyName("provider")] 
+    [JsonProperty("provider")] 
     public string Provider { get; set; } = string.Empty;
 
-    [JsonPropertyName("publishedOn")]
+    [JsonProperty("publishedOn")]
     public DateTime? PublishedOn { get; set; } = new();
 
-    [JsonPropertyName("summary")] 
+    [JsonProperty("summary")] 
     public string Summary { get; set; } = string.Empty;
 }
 
 public class InsightsResult
 {
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
 
-    [JsonPropertyName("instrumentInfo")]
+    [JsonProperty("instrumentInfo")]
     public InstrumentInfo InstrumentInfo { get; set; } = new();
 
-    [JsonPropertyName("reports")]
+    [JsonProperty("reports")]
     public List<Report> Reports { get; set; } = new();
 
-    [JsonPropertyName("companySnapshot")] 
+    [JsonProperty("companySnapshot")] 
     public CompanySnapshot CompanySnapshot { get; set; } = new();
 }
 
 public class InsightsData
 {
-    [JsonPropertyName("finance")] 
+    [JsonProperty("finance")] 
     public Finance Finance { get; set; } = new();
 }
 
 public class Sector
 {
-    [JsonPropertyName("innovativeness")]
+    [JsonProperty("innovativeness")]
     public double? Innovativeness { get; set; }
 
-    [JsonPropertyName("hiring")]
+    [JsonProperty("hiring")]
     public double? Hiring { get; set; }
 
-    [JsonPropertyName("sustainability")]
+    [JsonProperty("sustainability")]
     public double? Sustainability { get; set; }
 
-    [JsonPropertyName("insiderSentiments")]
+    [JsonProperty("insiderSentiments")]
     public double? InsiderSentiments { get; set; }
 
-    [JsonPropertyName("earningsReports")]
+    [JsonProperty("earningsReports")]
     public double? EarningsReports { get; set; }
 
-    [JsonPropertyName("dividends")]
+    [JsonProperty("dividends")]
     public double? Dividends { get; set; }
 }
 
 public class TechnicalEvents
 {
-    [JsonPropertyName("provider")]
+    [JsonProperty("provider")]
     public string Provider { get; set; } = string.Empty;
 
-    [JsonPropertyName("shortTerm")]
+    [JsonProperty("shortTerm")]
     public string ShortTerm { get; set; } = string.Empty;
 
-    [JsonPropertyName("midTerm")] 
+    [JsonProperty("midTerm")] 
     public string MidTerm { get; set; } = string.Empty;
 
-    [JsonPropertyName("longTerm")] 
+    [JsonProperty("longTerm")] 
     public string LongTerm { get; set; } = string.Empty;
 }
 
 public class Valuation
 {
-    [JsonPropertyName("color")]
+    [JsonProperty("color")]
     public double? Color { get; set; }
 
-    [JsonPropertyName("description")] 
+    [JsonProperty("description")] 
     public string Description { get; set; } = string.Empty;
 
-    [JsonPropertyName("discount")] 
+    [JsonProperty("discount")] 
     public string Discount { get; set; } = string.Empty;
 
-    [JsonPropertyName("relativeValue")] 
+    [JsonProperty("relativeValue")] 
     public string RelativeValue { get; set; } = string.Empty;
 
-    [JsonPropertyName("provider")] 
+    [JsonProperty("provider")] 
     public string Provider { get; set; } = string.Empty;
 }

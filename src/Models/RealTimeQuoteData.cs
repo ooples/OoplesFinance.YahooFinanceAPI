@@ -2,251 +2,251 @@
 
 public class QuoteResponse
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<RealTimeQuoteResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class RealTimeQuoteResult
 {
-    [JsonPropertyName("language")] 
+    [JsonProperty("language")] 
     public string Language { get; set; } = string.Empty;
 
-    [JsonPropertyName("region")] 
+    [JsonProperty("region")] 
     public string Region { get; set; } = string.Empty;
 
-    [JsonPropertyName("quoteType")] 
+    [JsonProperty("quoteType")] 
     public string QuoteType { get; set; } = string.Empty;
 
-    [JsonPropertyName("typeDisp")] 
+    [JsonProperty("typeDisp")] 
     public string TypeDisp { get; set; } = string.Empty;
 
-    [JsonPropertyName("quoteSourceName")] 
+    [JsonProperty("quoteSourceName")] 
     public string QuoteSourceName { get; set; } = string.Empty;
 
-    [JsonPropertyName("triggerable")]
+    [JsonProperty("triggerable")]
     public bool? Triggerable { get; set; }
 
-    [JsonPropertyName("customPriceAlertConfidence")] 
+    [JsonProperty("customPriceAlertConfidence")] 
     public string CustomPriceAlertConfidence { get; set; } = string.Empty;
 
-    [JsonPropertyName("currency")] 
+    [JsonProperty("currency")] 
     public string Currency { get; set; } = string.Empty;
 
-    [JsonPropertyName("fiftyTwoWeekHighChange")]
+    [JsonProperty("fiftyTwoWeekHighChange")]
     public double? FiftyTwoWeekHighChange { get; set; }
 
-    [JsonPropertyName("fiftyTwoWeekHighChangePercent")]
+    [JsonProperty("fiftyTwoWeekHighChangePercent")]
     public double? FiftyTwoWeekHighChangePercent { get; set; }
 
-    [JsonPropertyName("fiftyTwoWeekLow")]
+    [JsonProperty("fiftyTwoWeekLow")]
     public double? FiftyTwoWeekLow { get; set; }
 
-    [JsonPropertyName("fiftyTwoWeekHigh")]
+    [JsonProperty("fiftyTwoWeekHigh")]
     public double? FiftyTwoWeekHigh { get; set; }
 
-    [JsonPropertyName("dividendDate")]
+    [JsonProperty("dividendDate")]
     public int? DividendDate { get; set; }
 
-    [JsonPropertyName("earningsTimestamp")]
+    [JsonProperty("earningsTimestamp")]
     public int? EarningsTimestamp { get; set; }
 
-    [JsonPropertyName("earningsTimestampStart")]
+    [JsonProperty("earningsTimestampStart")]
     public int? EarningsTimestampStart { get; set; }
 
-    [JsonPropertyName("earningsTimestampEnd")]
+    [JsonProperty("earningsTimestampEnd")]
     public int? EarningsTimestampEnd { get; set; }
 
-    [JsonPropertyName("trailingAnnualDividendRate")]
+    [JsonProperty("trailingAnnualDividendRate")]
     public double? TrailingAnnualDividendRate { get; set; }
 
-    [JsonPropertyName("trailingPE")]
+    [JsonProperty("trailingPE")]
     public double? TrailingPE { get; set; }
 
-    [JsonPropertyName("trailingAnnualDividendYield")]
+    [JsonProperty("trailingAnnualDividendYield")]
     public double? TrailingAnnualDividendYield { get; set; }
 
-    [JsonPropertyName("epsTrailingTwelveMonths")]
+    [JsonProperty("epsTrailingTwelveMonths")]
     public double? EpsTrailingTwelveMonths { get; set; }
 
-    [JsonPropertyName("epsForward")]
+    [JsonProperty("epsForward")]
     public double? EpsForward { get; set; }
 
-    [JsonPropertyName("epsCurrentYear")]
+    [JsonProperty("epsCurrentYear")]
     public double? EpsCurrentYear { get; set; }
 
-    [JsonPropertyName("priceEpsCurrentYear")]
+    [JsonProperty("priceEpsCurrentYear")]
     public double? PriceEpsCurrentYear { get; set; }
 
-    [JsonPropertyName("sharesOutstanding")]
+    [JsonProperty("sharesOutstanding")]
     public long? SharesOutstanding { get; set; }
 
-    [JsonPropertyName("bookValue")]
+    [JsonProperty("bookValue")]
     public double? BookValue { get; set; }
 
-    [JsonPropertyName("fiftyDayAverage")]
+    [JsonProperty("fiftyDayAverage")]
     public double? FiftyDayAverage { get; set; }
 
-    [JsonPropertyName("fiftyDayAverageChange")]
+    [JsonProperty("fiftyDayAverageChange")]
     public double? FiftyDayAverageChange { get; set; }
 
-    [JsonPropertyName("fiftyDayAverageChangePercent")]
+    [JsonProperty("fiftyDayAverageChangePercent")]
     public double? FiftyDayAverageChangePercent { get; set; }
 
-    [JsonPropertyName("twoHundredDayAverage")]
+    [JsonProperty("twoHundredDayAverage")]
     public double? TwoHundredDayAverage { get; set; }
 
-    [JsonPropertyName("twoHundredDayAverageChange")]
+    [JsonProperty("twoHundredDayAverageChange")]
     public double? TwoHundredDayAverageChange { get; set; }
 
-    [JsonPropertyName("twoHundredDayAverageChangePercent")]
+    [JsonProperty("twoHundredDayAverageChangePercent")]
     public double? TwoHundredDayAverageChangePercent { get; set; }
 
-    [JsonPropertyName("marketCap")]
+    [JsonProperty("marketCap")]
     public long? MarketCap { get; set; }
 
-    [JsonPropertyName("forwardPE")]
+    [JsonProperty("forwardPE")]
     public double? ForwardPE { get; set; }
 
-    [JsonPropertyName("priceToBook")]
+    [JsonProperty("priceToBook")]
     public double? PriceToBook { get; set; }
 
-    [JsonPropertyName("sourceInterval")]
+    [JsonProperty("sourceInterval")]
     public int? SourceInterval { get; set; }
 
-    [JsonPropertyName("exchangeDataDelayedBy")]
+    [JsonProperty("exchangeDataDelayedBy")]
     public int? ExchangeDataDelayedBy { get; set; }
 
-    [JsonPropertyName("averageAnalystRating")] public string AverageAnalystRating { get; set; } = string.Empty;
+    [JsonProperty("averageAnalystRating")] public string AverageAnalystRating { get; set; } = string.Empty;
 
-    [JsonPropertyName("tradeable")]
+    [JsonProperty("tradeable")]
     public bool? Tradeable { get; set; }
 
-    [JsonPropertyName("cryptoTradeable")]
+    [JsonProperty("cryptoTradeable")]
     public bool? CryptoTradeable { get; set; }
 
-    [JsonPropertyName("regularMarketChangePercent")]
+    [JsonProperty("regularMarketChangePercent")]
     public double? RegularMarketChangePercent { get; set; }
 
-    [JsonPropertyName("regularMarketPrice")]
+    [JsonProperty("regularMarketPrice")]
     public double? RegularMarketPrice { get; set; }
 
-    [JsonPropertyName("marketState")] 
+    [JsonProperty("marketState")] 
     public string MarketState { get; set; } = string.Empty;
 
-    [JsonPropertyName("exchange")] 
+    [JsonProperty("exchange")] 
     public string Exchange { get; set; } = string.Empty;
 
-    [JsonPropertyName("shortName")] 
+    [JsonProperty("shortName")] 
     public string ShortName { get; set; } = string.Empty;
 
-    [JsonPropertyName("longName")] 
+    [JsonProperty("longName")] 
     public string LongName { get; set; } = string.Empty;
 
-    [JsonPropertyName("messageBoardId")] 
+    [JsonProperty("messageBoardId")] 
     public string MessageBoardId { get; set; } = string.Empty;
 
-    [JsonPropertyName("exchangeTimezoneName")] 
+    [JsonProperty("exchangeTimezoneName")] 
     public string ExchangeTimezoneName { get; set; } = string.Empty;
 
-    [JsonPropertyName("exchangeTimezoneShortName")] 
+    [JsonProperty("exchangeTimezoneShortName")] 
     public string ExchangeTimezoneShortName { get; set; } = string.Empty;
 
-    [JsonPropertyName("gmtOffSetMilliseconds")]
+    [JsonProperty("gmtOffSetMilliseconds")]
     public int? GmtOffSetMilliseconds { get; set; }
 
-    [JsonPropertyName("market")] 
+    [JsonProperty("market")] 
     public string Market { get; set; } = string.Empty;
 
-    [JsonPropertyName("esgPopulated")]
+    [JsonProperty("esgPopulated")]
     public bool? EsgPopulated { get; set; }
 
-    [JsonPropertyName("firstTradeDateMilliseconds")]
+    [JsonProperty("firstTradeDateMilliseconds")]
     public object FirstTradeDateMilliseconds { get; set; } = new();
 
-    [JsonPropertyName("priceHint")]
+    [JsonProperty("priceHint")]
     public int? PriceHint { get; set; }
 
-    [JsonPropertyName("postMarketChangePercent")]
+    [JsonProperty("postMarketChangePercent")]
     public double? PostMarketChangePercent { get; set; }
 
-    [JsonPropertyName("postMarketTime")]
+    [JsonProperty("postMarketTime")]
     public int? PostMarketTime { get; set; }
 
-    [JsonPropertyName("postMarketPrice")]
+    [JsonProperty("postMarketPrice")]
     public double? PostMarketPrice { get; set; }
 
-    [JsonPropertyName("postMarketChange")]
+    [JsonProperty("postMarketChange")]
     public double? PostMarketChange { get; set; }
 
-    [JsonPropertyName("regularMarketChange")]
+    [JsonProperty("regularMarketChange")]
     public double? RegularMarketChange { get; set; }
 
-    [JsonPropertyName("regularMarketTime")]
+    [JsonProperty("regularMarketTime")]
     public int? RegularMarketTime { get; set; }
 
-    [JsonPropertyName("regularMarketDayHigh")]
+    [JsonProperty("regularMarketDayHigh")]
     public double? RegularMarketDayHigh { get; set; }
 
-    [JsonPropertyName("regularMarketDayRange")] 
+    [JsonProperty("regularMarketDayRange")] 
     public string RegularMarketDayRange { get; set; } = string.Empty;
 
-    [JsonPropertyName("regularMarketDayLow")]
+    [JsonProperty("regularMarketDayLow")]
     public double? RegularMarketDayLow { get; set; }
 
-    [JsonPropertyName("regularMarketVolume")]
+    [JsonProperty("regularMarketVolume")]
     public int? RegularMarketVolume { get; set; }
 
-    [JsonPropertyName("regularMarketPreviousClose")]
+    [JsonProperty("regularMarketPreviousClose")]
     public double? RegularMarketPreviousClose { get; set; }
 
-    [JsonPropertyName("bid")]
+    [JsonProperty("bid")]
     public double? Bid { get; set; }
 
-    [JsonPropertyName("ask")]
+    [JsonProperty("ask")]
     public double? Ask { get; set; }
 
-    [JsonPropertyName("bidSize")]
+    [JsonProperty("bidSize")]
     public int? BidSize { get; set; }
 
-    [JsonPropertyName("askSize")]
+    [JsonProperty("askSize")]
     public int? AskSize { get; set; }
 
-    [JsonPropertyName("fullExchangeName")] 
+    [JsonProperty("fullExchangeName")] 
     public string FullExchangeName { get; set; } = string.Empty;
 
-    [JsonPropertyName("financialCurrency")] 
+    [JsonProperty("financialCurrency")] 
     public string FinancialCurrency { get; set; } = string.Empty;
 
-    [JsonPropertyName("regularMarketOpen")]
+    [JsonProperty("regularMarketOpen")]
     public double? RegularMarketOpen { get; set; }
 
-    [JsonPropertyName("averageDailyVolume3Month")]
+    [JsonProperty("averageDailyVolume3Month")]
     public int? AverageDailyVolume3Month { get; set; }
 
-    [JsonPropertyName("averageDailyVolume10Day")]
+    [JsonProperty("averageDailyVolume10Day")]
     public int? AverageDailyVolume10Day { get; set; }
 
-    [JsonPropertyName("fiftyTwoWeekLowChange")]
+    [JsonProperty("fiftyTwoWeekLowChange")]
     public double? FiftyTwoWeekLowChange { get; set; }
 
-    [JsonPropertyName("fiftyTwoWeekLowChangePercent")]
+    [JsonProperty("fiftyTwoWeekLowChangePercent")]
     public double? FiftyTwoWeekLowChangePercent { get; set; }
 
-    [JsonPropertyName("fiftyTwoWeekRange")] 
+    [JsonProperty("fiftyTwoWeekRange")] 
     public string FiftyTwoWeekRange { get; set; } = string.Empty;
 
-    [JsonPropertyName("displayName")]
+    [JsonProperty("displayName")]
     public string DisplayName { get; set; } = string.Empty;
 
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
 }
 
 public class RealTimeQuoteData
 {
-    [JsonPropertyName("quoteResponse")]
+    [JsonProperty("quoteResponse")]
     public QuoteResponse QuoteResponse { get; set; } = new();
 }

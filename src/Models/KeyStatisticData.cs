@@ -2,10 +2,10 @@
 
 public class _52WeekChange
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
@@ -15,10 +15,10 @@ public class AnnualHoldingsTurnover
 
 public class Beta
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
@@ -28,220 +28,220 @@ public class Beta3Year
 
 public class BookValue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class DateShortInterest
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class KeyStatistics
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("priceHint")] 
+    [JsonProperty("priceHint")] 
     public PriceHint PriceHint { get; set; } = new();
 
-    [JsonPropertyName("enterpriseValue")] 
+    [JsonProperty("enterpriseValue")] 
     public EnterpriseValue EnterpriseValue { get; set; } = new();
 
-    [JsonPropertyName("forwardPE")] 
+    [JsonProperty("forwardPE")] 
     public ForwardPE ForwardPE { get; set; } = new();
 
-    [JsonPropertyName("profitMargins")] 
+    [JsonProperty("profitMargins")] 
     public ProfitMargins ProfitMargins { get; set; } = new();
 
-    [JsonPropertyName("floatShares")] 
+    [JsonProperty("floatShares")] 
     public FloatShares FloatShares { get; set; } = new();
 
-    [JsonPropertyName("sharesOutstanding")] 
+    [JsonProperty("sharesOutstanding")] 
     public SharesOutstanding SharesOutstanding { get; set; } = new();
 
-    [JsonPropertyName("sharesShort")] 
+    [JsonProperty("sharesShort")] 
     public SharesShort SharesShort { get; set; } = new();
 
-    [JsonPropertyName("sharesShortPriorMonth")] 
+    [JsonProperty("sharesShortPriorMonth")] 
     public SharesShortPriorMonth SharesShortPriorMonth { get; set; } = new();
 
-    [JsonPropertyName("sharesShortPreviousMonthDate")] 
+    [JsonProperty("sharesShortPreviousMonthDate")] 
     public SharesShortPreviousMonthDate SharesShortPreviousMonthDate { get; set; } = new();
 
-    [JsonPropertyName("dateShortInterest")] 
+    [JsonProperty("dateShortInterest")] 
     public DateShortInterest DateShortInterest { get; set; } = new();
 
-    [JsonPropertyName("sharesPercentSharesOut")] 
+    [JsonProperty("sharesPercentSharesOut")] 
     public SharesPercentSharesOut SharesPercentSharesOut { get; set; } = new();
 
-    [JsonPropertyName("heldPercentInsiders")] 
+    [JsonProperty("heldPercentInsiders")] 
     public HeldPercentInsiders HeldPercentInsiders { get; set; } = new();
 
-    [JsonPropertyName("heldPercentInstitutions")] 
+    [JsonProperty("heldPercentInstitutions")] 
     public HeldPercentInstitutions HeldPercentInstitutions { get; set; } = new();
 
-    [JsonPropertyName("shortRatio")] 
+    [JsonProperty("shortRatio")] 
     public ShortRatio ShortRatio { get; set; } = new();
 
-    [JsonPropertyName("shortPercentOfFloat")] 
+    [JsonProperty("shortPercentOfFloat")] 
     public ShortPercentOfFloat ShortPercentOfFloat { get; set; } = new();
 
-    [JsonPropertyName("beta")] 
+    [JsonProperty("beta")] 
     public Beta Beta { get; set; } = new();
 
-    [JsonPropertyName("impliedSharesOutstanding")] 
+    [JsonProperty("impliedSharesOutstanding")] 
     public ImpliedSharesOutstanding ImpliedSharesOutstanding { get; set; } = new();
 
-    [JsonPropertyName("morningStarOverallRating")] 
+    [JsonProperty("morningStarOverallRating")] 
     public MorningStarOverallRating MorningStarOverallRating { get; set; } = new();
 
-    [JsonPropertyName("morningStarRiskRating")] 
+    [JsonProperty("morningStarRiskRating")] 
     public MorningStarRiskRating MorningStarRiskRating { get; set; } = new();
 
-    [JsonPropertyName("category")] 
+    [JsonProperty("category")] 
     public object Category { get; set; } = new();
 
-    [JsonPropertyName("bookValue")] 
+    [JsonProperty("bookValue")] 
     public BookValue BookValue { get; set; } = new();
 
-    [JsonPropertyName("priceToBook")] 
+    [JsonProperty("priceToBook")] 
     public PriceToBook PriceToBook { get; set; } = new();
 
-    [JsonPropertyName("annualReportExpenseRatio")] 
+    [JsonProperty("annualReportExpenseRatio")] 
     public AnnualReportExpenseRatio AnnualReportExpenseRatio { get; set; } = new();
 
-    [JsonPropertyName("ytdReturn")] 
+    [JsonProperty("ytdReturn")] 
     public YtdReturnSummary YtdReturn { get; set; } = new();
 
-    [JsonPropertyName("beta3Year")] 
+    [JsonProperty("beta3Year")] 
     public Beta3Year Beta3Year { get; set; } = new();
 
-    [JsonPropertyName("totalAssets")] 
+    [JsonProperty("totalAssets")] 
     public TotalAssetsSummary TotalAssets { get; set; } = new();
 
-    [JsonPropertyName("yield")] 
+    [JsonProperty("yield")] 
     public Yield Yield { get; set; } = new();
 
-    [JsonPropertyName("fundFamily")] 
+    [JsonProperty("fundFamily")] 
     public object FundFamily { get; set; } = new();
 
-    [JsonPropertyName("fundInceptionDate")] 
+    [JsonProperty("fundInceptionDate")] 
     public FundInceptionDate FundInceptionDate { get; set; } = new();
 
-    [JsonPropertyName("legalType")]
+    [JsonProperty("legalType")]
     public object LegalType { get; set; } = new();
 
-    [JsonPropertyName("threeYearAverageReturn")] 
+    [JsonProperty("threeYearAverageReturn")] 
     public ThreeYearAverageReturn ThreeYearAverageReturn { get; set; } = new();
 
-    [JsonPropertyName("fiveYearAverageReturn")] 
+    [JsonProperty("fiveYearAverageReturn")] 
     public FiveYearAverageReturn FiveYearAverageReturn { get; set; } = new();
 
-    [JsonPropertyName("priceToSalesTrailing12Months")] 
+    [JsonProperty("priceToSalesTrailing12Months")] 
     public PriceToSalesTrailing12Months PriceToSalesTrailing12Months { get; set; } = new();
 
-    [JsonPropertyName("lastFiscalYearEnd")] 
+    [JsonProperty("lastFiscalYearEnd")] 
     public LastFiscalYearEnd LastFiscalYearEnd { get; set; } = new();
 
-    [JsonPropertyName("nextFiscalYearEnd")] 
+    [JsonProperty("nextFiscalYearEnd")] 
     public NextFiscalYearEnd NextFiscalYearEnd { get; set; } = new();
 
-    [JsonPropertyName("mostRecentQuarter")] 
+    [JsonProperty("mostRecentQuarter")] 
     public MostRecentQuarter MostRecentQuarter { get; set; } = new();
 
-    [JsonPropertyName("earningsQuarterlyGrowth")] 
+    [JsonProperty("earningsQuarterlyGrowth")] 
     public EarningsQuarterlyGrowth EarningsQuarterlyGrowth { get; set; } = new();
 
-    [JsonPropertyName("revenueQuarterlyGrowth")] 
+    [JsonProperty("revenueQuarterlyGrowth")] 
     public RevenueQuarterlyGrowth RevenueQuarterlyGrowth { get; set; } = new();
 
-    [JsonPropertyName("netIncomeToCommon")] 
+    [JsonProperty("netIncomeToCommon")] 
     public NetIncomeToCommon NetIncomeToCommon { get; set; } = new();
 
-    [JsonPropertyName("trailingEps")] 
+    [JsonProperty("trailingEps")] 
     public TrailingEps TrailingEps { get; set; } = new();
 
-    [JsonPropertyName("forwardEps")] 
+    [JsonProperty("forwardEps")] 
     public ForwardEps ForwardEps { get; set; } = new();
 
-    [JsonPropertyName("pegRatio")] 
+    [JsonProperty("pegRatio")] 
     public PegRatio PegRatio { get; set; } = new();
 
-    [JsonPropertyName("lastSplitFactor")] 
+    [JsonProperty("lastSplitFactor")] 
     public string LastSplitFactor { get; set; } = string.Empty;
 
-    [JsonPropertyName("lastSplitDate")] 
+    [JsonProperty("lastSplitDate")] 
     public LastSplitDate LastSplitDate { get; set; } = new();
 
-    [JsonPropertyName("enterpriseToRevenue")] 
+    [JsonProperty("enterpriseToRevenue")] 
     public EnterpriseToRevenue EnterpriseToRevenue { get; set; } = new();
 
-    [JsonPropertyName("enterpriseToEbitda")] 
+    [JsonProperty("enterpriseToEbitda")] 
     public EnterpriseToEbitda EnterpriseToEbitda { get; set; } = new();
 
-    [JsonPropertyName("52WeekChange")] 
+    [JsonProperty("52WeekChange")] 
     public _52WeekChange _52WeekChange { get; set; } = new();
 
-    [JsonPropertyName("SandP52WeekChange")] 
+    [JsonProperty("SandP52WeekChange")] 
     public SandP52WeekChange SandP52WeekChange { get; set; } = new();
 
-    [JsonPropertyName("lastDividendValue")] 
+    [JsonProperty("lastDividendValue")] 
     public LastDividendValue LastDividendValue { get; set; } = new();
 
-    [JsonPropertyName("lastDividendDate")] 
+    [JsonProperty("lastDividendDate")] 
     public LastDividendDate LastDividendDate { get; set; } = new();
 
-    [JsonPropertyName("lastCapGain")] 
+    [JsonProperty("lastCapGain")] 
     public LastCapGain LastCapGain { get; set; } = new();
 
-    [JsonPropertyName("annualHoldingsTurnover")]
+    [JsonProperty("annualHoldingsTurnover")]
     public AnnualHoldingsTurnover AnnualHoldingsTurnover { get; set; } = new();
 }
 
 public class EarningsQuarterlyGrowth
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EnterpriseToEbitda
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EnterpriseToRevenue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EnterpriseValue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public long? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
@@ -251,31 +251,31 @@ public class FiveYearAverageReturn
 
 public class FloatShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public long? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class ForwardEps
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class ForwardPE
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
@@ -285,31 +285,31 @@ public class FundInceptionDate
 
 public class HeldPercentInsiders
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class HeldPercentInstitutions
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class ImpliedSharesOutstanding
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public object Fmt { get; set; } = new();
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
@@ -319,37 +319,37 @@ public class LastCapGain
 
 public class LastDividendDate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class LastDividendValue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class LastFiscalYearEnd
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class LastSplitDate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
@@ -363,85 +363,85 @@ public class MorningStarRiskRating
 
 public class MostRecentQuarter
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class NetIncomeToCommon
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public long? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class NextFiscalYearEnd
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class PegRatio
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class PriceHint
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class PriceToBook
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class ProfitMargins
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class QuoteSummaryStatistic
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<KeyStatisticResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class KeyStatisticResult
 {
-    [JsonPropertyName("defaultKeyStatistics")]
+    [JsonProperty("defaultKeyStatistics")]
     public KeyStatistics DefaultKeyStatistics { get; set; } = new();
 }
 
@@ -451,88 +451,88 @@ public class RevenueQuarterlyGrowth
 
 public class KeyStatisticData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public QuoteSummaryStatistic QuoteSummary { get; set; } = new();
 }
 
 public class SandP52WeekChange
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class SharesOutstanding
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public long? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class SharesPercentSharesOut
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class SharesShort
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class SharesShortPreviousMonthDate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class SharesShortPriorMonth
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class ShortPercentOfFloat
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class ShortRatio
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
@@ -546,10 +546,10 @@ public class TotalAssetsSummary
 
 public class TrailingEps
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 

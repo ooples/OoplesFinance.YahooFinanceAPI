@@ -1,44 +1,44 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
 public record MarketSummaryResponse(
-    [property: JsonPropertyName("result")] IReadOnlyList<MarketSummaryResult> Results,
-    [property: JsonPropertyName("error")] object Error
+    [property: JsonProperty("result")] IReadOnlyList<MarketSummaryResult> Results,
+    [property: JsonProperty("error")] object Error
 );
 
 public record RegularMarketTime(
-    [property: JsonPropertyName("raw")] int? Raw,
-    [property: JsonPropertyName("fmt")] string Fmt
+    [property: JsonProperty("raw")] int? Raw,
+    [property: JsonProperty("fmt")] string Fmt
 );
 
 public record MarketSummaryResult(
-    [property: JsonPropertyName("fullExchangeName")] string FullExchangeName,
-    [property: JsonPropertyName("exchangeTimezoneName")] string ExchangeTimezoneName,
-    [property: JsonPropertyName("symbol")] string Symbol,
-    [property: JsonPropertyName("regularMarketChange")] RegularMarketChange RegularMarketChange,
-    [property: JsonPropertyName("gmtOffSetMilliseconds")] int? GmtOffSetMilliseconds,
-    [property: JsonPropertyName("exchangeDataDelayedBy")] int? ExchangeDataDelayedBy,
-    [property: JsonPropertyName("language")] string Language,
-    [property: JsonPropertyName("regularMarketTime")] RegularMarketTime RegularMarketTime,
-    [property: JsonPropertyName("exchangeTimezoneShortName")] string ExchangeTimezoneShortName,
-    [property: JsonPropertyName("regularMarketChangePercent")] RegularMarketChangePercent RegularMarketChangePercent,
-    [property: JsonPropertyName("quoteType")] string QuoteType,
-    [property: JsonPropertyName("marketState")] string MarketState,
-    [property: JsonPropertyName("regularMarketPrice")] RegularMarketPrice RegularMarketPrice,
-    [property: JsonPropertyName("market")] string Market,
-    [property: JsonPropertyName("quoteSourceName")] string QuoteSourceName,
-    [property: JsonPropertyName("priceHint")] int? PriceHint,
-    [property: JsonPropertyName("tradeable")] bool? Tradeable,
-    [property: JsonPropertyName("sourceInterval")] int? SourceInterval,
-    [property: JsonPropertyName("exchange")] string Exchange,
-    [property: JsonPropertyName("shortName")] string ShortName,
-    [property: JsonPropertyName("region")] string Region,
-    [property: JsonPropertyName("triggerable")] bool? Triggerable,
-    [property: JsonPropertyName("regularMarketPreviousClose")] RegularMarketPreviousClose RegularMarketPreviousClose,
-    [property: JsonPropertyName("headSymbolAsString")] string HeadSymbolAsString,
-    [property: JsonPropertyName("currency")] string Currency,
-    [property: JsonPropertyName("longName")] string LongName
+    [property: JsonProperty("fullExchangeName")] string FullExchangeName,
+    [property: JsonProperty("exchangeTimezoneName")] string ExchangeTimezoneName,
+    [property: JsonProperty("symbol")] string Symbol,
+    [property: JsonProperty("regularMarketChange")] RegularMarketChange RegularMarketChange,
+    [property: JsonProperty("gmtOffSetMilliseconds")] int? GmtOffSetMilliseconds,
+    [property: JsonProperty("exchangeDataDelayedBy")] int? ExchangeDataDelayedBy,
+    [property: JsonProperty("language")] string Language,
+    [property: JsonProperty("regularMarketTime")] RegularMarketTime RegularMarketTime,
+    [property: JsonProperty("exchangeTimezoneShortName")] string ExchangeTimezoneShortName,
+    [property: JsonProperty("regularMarketChangePercent")] RegularMarketChangePercent RegularMarketChangePercent,
+    [property: JsonProperty("quoteType")] string QuoteType,
+    [property: JsonProperty("marketState")] string MarketState,
+    [property: JsonProperty("regularMarketPrice")] RegularMarketPrice RegularMarketPrice,
+    [property: JsonProperty("market")] string Market,
+    [property: JsonProperty("quoteSourceName")] string QuoteSourceName,
+    [property: JsonProperty("priceHint")] int? PriceHint,
+    [property: JsonProperty("tradeable")] bool? Tradeable,
+    [property: JsonProperty("sourceInterval")] int? SourceInterval,
+    [property: JsonProperty("exchange")] string Exchange,
+    [property: JsonProperty("shortName")] string ShortName,
+    [property: JsonProperty("region")] string Region,
+    [property: JsonProperty("triggerable")] bool? Triggerable,
+    [property: JsonProperty("regularMarketPreviousClose")] RegularMarketPreviousClose RegularMarketPreviousClose,
+    [property: JsonProperty("headSymbolAsString")] string HeadSymbolAsString,
+    [property: JsonProperty("currency")] string Currency,
+    [property: JsonProperty("longName")] string LongName
 );
 
 public record MarketSummaryData(
-    [property: JsonPropertyName("marketSummaryResponse")] MarketSummaryResponse MarketSummaryResponse
+    [property: JsonProperty("marketSummaryResponse")] MarketSummaryResponse MarketSummaryResponse
 );

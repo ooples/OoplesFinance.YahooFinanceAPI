@@ -2,30 +2,30 @@
 
 public class MajorDirectHolders
 {
-    [JsonPropertyName("holders")]
+    [JsonProperty("holders")]
     public List<object> Holders { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class MajorDirectHoldersQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<MajorDirectHoldersResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class MajorDirectHoldersResult
 {
-    [JsonPropertyName("majorDirectHolders")] 
+    [JsonProperty("majorDirectHolders")] 
     public MajorDirectHolders MajorDirectHolders { get; set; } = new();
 }
 
 public class MajorDirectHoldersData
 {
-    [JsonPropertyName("quoteSummary")] 
+    [JsonProperty("quoteSummary")] 
     public MajorDirectHoldersQuoteSummary QuoteSummary { get; set; } = new();
 }

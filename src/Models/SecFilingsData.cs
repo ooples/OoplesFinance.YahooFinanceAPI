@@ -2,54 +2,54 @@
 
 public class Filing
 {
-    [JsonPropertyName("date")] 
+    [JsonProperty("date")] 
     public DateTime Date { get; set; } = new();
 
-    [JsonPropertyName("epochDate")]
+    [JsonProperty("epochDate")]
     public int? EpochDate { get; set; }
 
-    [JsonPropertyName("type")] 
+    [JsonProperty("type")] 
     public string Type { get; set; } = string.Empty;
 
-    [JsonPropertyName("title")]
+    [JsonProperty("title")]
     public string Title { get; set; } = string.Empty;
 
-    [JsonPropertyName("url")]
+    [JsonProperty("url")]
     public string Url { get; set; } = string.Empty;
 
-    [JsonPropertyName("edgarUrl")]
+    [JsonProperty("edgarUrl")]
     public string EdgarUrl { get; set; } = string.Empty;
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class SecFilingsQuoteSummary
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<SecFilingsResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class SecFilingsResult
 {
-    [JsonPropertyName("secFilings")] 
+    [JsonProperty("secFilings")] 
     public SecFilings SecFilings { get; set; } = new();
 }
 
 public class SecFilingsData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public SecFilingsQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class SecFilings
 {
-    [JsonPropertyName("filings")]
+    [JsonProperty("filings")]
     public List<Filing> Filings { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }

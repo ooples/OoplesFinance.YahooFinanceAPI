@@ -2,30 +2,30 @@
 
 public class FundOwnership
 {
-    [JsonPropertyName("ownershipList")] 
+    [JsonProperty("ownershipList")] 
     public List<OwnershipList> OwnershipList { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class FundOwnershipQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<FundOwnershipResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class FundOwnershipResult
 {
-    [JsonPropertyName("fundOwnership")]
+    [JsonProperty("fundOwnership")]
     public FundOwnership FundOwnership { get; set; } = new();
 }
 
 public class FundOwnershipData
 {
-    [JsonPropertyName("quoteSummary")] 
+    [JsonProperty("quoteSummary")] 
     public FundOwnershipQuoteSummary QuoteSummary { get; set; } = new();
 }

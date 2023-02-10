@@ -2,114 +2,114 @@
 
 public class InsiderHolder
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; } = string.Empty;
 
-    [JsonPropertyName("relation")]
+    [JsonProperty("relation")]
     public string Relation { get; set; } = string.Empty;
 
-    [JsonPropertyName("url")] 
+    [JsonProperty("url")] 
     public string Url { get; set; } = string.Empty;
 
-    [JsonPropertyName("transactionDescription")] 
+    [JsonProperty("transactionDescription")] 
     public string TransactionDescription { get; set; } = string.Empty;
 
-    [JsonPropertyName("latestTransDate")]
+    [JsonProperty("latestTransDate")]
     public LatestTransDate LatestTransDate { get; set; } = new();
 
-    [JsonPropertyName("positionDirect")]
+    [JsonProperty("positionDirect")]
     public PositionDirect PositionDirect { get; set; } = new();
 
-    [JsonPropertyName("positionDirectDate")] 
+    [JsonProperty("positionDirectDate")] 
     public PositionDirectDate PositionDirectDate { get; set; } = new();
 
-    [JsonPropertyName("positionIndirect")] 
+    [JsonProperty("positionIndirect")] 
     public PositionIndirect PositionIndirect { get; set; } = new();
 
-    [JsonPropertyName("positionIndirectDate")] 
+    [JsonProperty("positionIndirectDate")] 
     public PositionIndirectDate PositionIndirectDate { get; set; } = new();
 }
 
 public class InsiderHolders
 {
-    [JsonPropertyName("holders")]
+    [JsonProperty("holders")]
     public List<InsiderHolder> Holders { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class LatestTransDate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class PositionDirect
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class PositionDirectDate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class PositionIndirect
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class PositionIndirectDate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class InsiderHolderQuoteSummary
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<InsiderHolderResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class InsiderHolderResult
 {
-    [JsonPropertyName("insiderHolders")]
+    [JsonProperty("insiderHolders")]
     public InsiderHolders InsiderHolders { get; set; } = new();
 }
 
 public class InsiderHolderData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public InsiderHolderQuoteSummary QuoteSummary { get; set; } = new();
 }

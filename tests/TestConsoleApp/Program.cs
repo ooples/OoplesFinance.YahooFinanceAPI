@@ -50,10 +50,10 @@ try
     //var sparkChartInfoList = await yahooClient.GetSparkChartInfoAsync(symbols, TimeRange._1Month, TimeInterval._1Day);
     //var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbols);
     //var marketSummaryList = await yahooClient.GetMarketSummaryAsync();
-    //var autoCompleteList = await yahooClient.GetAutoCompleteInfoAsync("Google");
-    var topGainersList = await yahooClient.GetTopGainersAsync(10);
-    var topLosersList = await yahooClient.GetTopLosersAsync(10);
-    var smallCapGainersList = await yahooClient.GetSmallCapGainersAsync(10);
+    var autoCompleteList = await yahooClient.GetAutoCompleteInfoAsync("Google");
+    //var topGainersList = await yahooClient.GetTopGainersAsync(10);
+    //var topLosersList = await yahooClient.GetTopLosersAsync(10);
+    //var smallCapGainersList = await yahooClient.GetSmallCapGainersAsync(10);
 
     Console.WriteLine();
 }

@@ -2,141 +2,141 @@
 
 public class Actual
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class CurrentQuarterEstimate
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class EarningsInfo
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("earningsChart")]
+    [JsonProperty("earningsChart")]
     public EarningsChart EarningsChart { get; set; } = new();
 
-    [JsonPropertyName("financialsChart")]
+    [JsonProperty("financialsChart")]
     public FinancialsChart FinancialsChart { get; set; } = new();
 
-    [JsonPropertyName("financialCurrency")]
+    [JsonProperty("financialCurrency")]
     public string FinancialCurrency { get; set; } = string.Empty;
 
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class EarningsChart
 {
-    [JsonPropertyName("quarterly")]
+    [JsonProperty("quarterly")]
     public List<Quarterly> Quarterly { get; set; } = new();
 
-    [JsonPropertyName("currentQuarterEstimate")]
+    [JsonProperty("currentQuarterEstimate")]
     public CurrentQuarterEstimate CurrentQuarterEstimate { get; set; } = new();
 
-    [JsonPropertyName("currentQuarterEstimateDate")]
+    [JsonProperty("currentQuarterEstimateDate")]
     public string CurrentQuarterEstimateDate { get; set; } = string.Empty;
 
-    [JsonPropertyName("currentQuarterEstimateYear")]
+    [JsonProperty("currentQuarterEstimateYear")]
     public int? CurrentQuarterEstimateYear { get; set; }
 
-    [JsonPropertyName("earningsDate")]
+    [JsonProperty("earningsDate")]
     public List<EarningsDate> EarningsDate { get; set; } = new();
 }
 
 public class EarningsEstimateInfo
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class FinancialsChart
 {
-    [JsonPropertyName("yearly")]
+    [JsonProperty("yearly")]
     public List<Yearly> Yearly { get; set; } = new();
 
-    [JsonPropertyName("quarterly")]
+    [JsonProperty("quarterly")]
     public List<Quarterly> Quarterly { get; set; } = new();
 }
 
 public class Quarterly
 {
-    [JsonPropertyName("date")]
+    [JsonProperty("date")]
     public string Date { get; set; } = string.Empty;
 
-    [JsonPropertyName("actual")]
+    [JsonProperty("actual")]
     public Actual Actual { get; set; } = new();
 
-    [JsonPropertyName("estimate")] 
+    [JsonProperty("estimate")] 
     public EarningsEstimateInfo Estimate { get; set; } = new();
 
-    [JsonPropertyName("revenue")] 
+    [JsonProperty("revenue")] 
     public Revenue Revenue { get; set; } = new();
 
-    [JsonPropertyName("earnings")]
+    [JsonProperty("earnings")]
     public EarningsInfo Earnings { get; set; } = new();
 }
 
 public class EarningsQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<EarningsResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class EarningsResult
 {
-    [JsonPropertyName("earnings")] 
+    [JsonProperty("earnings")] 
     public EarningsInfo Earnings { get; set; } = new();
 }
 
 public class Revenue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public object Raw { get; set; } = new();
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class EarningsData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public EarningsQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class Yearly
 {
-    [JsonPropertyName("date")]
+    [JsonProperty("date")]
     public int? Date { get; set; }
 
-    [JsonPropertyName("revenue")]
+    [JsonProperty("revenue")]
     public Revenue Revenue { get; set; } = new();
 
-    [JsonPropertyName("earnings")]
+    [JsonProperty("earnings")]
     public EarningsInfo Earnings { get; set; } = new();
 }

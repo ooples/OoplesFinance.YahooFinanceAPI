@@ -2,51 +2,51 @@
 
 public class RecommendationTrendQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<RecommendationTrendResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class RecommendationTrend
 {
-    [JsonPropertyName("trend")] 
+    [JsonProperty("trend")] 
     public List<Trend> Trend { get; set; } = new();
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class RecommendationTrendResult
 {
-    [JsonPropertyName("recommendationTrend")]
+    [JsonProperty("recommendationTrend")]
     public RecommendationTrend RecommendationTrend { get; set; } = new();
 }
 
 public class RecommendationTrendData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public RecommendationTrendQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class Trend
 {
-    [JsonPropertyName("period")]
+    [JsonProperty("period")]
     public string Period { get; set; } = string.Empty;
 
-    [JsonPropertyName("strongBuy")]
+    [JsonProperty("strongBuy")]
     public int? StrongBuy { get; set; }
 
-    [JsonPropertyName("buy")]
+    [JsonProperty("buy")]
     public int? Buy { get; set; }
 
-    [JsonPropertyName("hold")]
+    [JsonProperty("hold")]
     public int? Hold { get; set; }
 
-    [JsonPropertyName("sell")]
+    [JsonProperty("sell")]
     public int? Sell { get; set; }
 
-    [JsonPropertyName("strongSell")]
+    [JsonProperty("strongSell")]
     public int? StrongSell { get; set; }
 }

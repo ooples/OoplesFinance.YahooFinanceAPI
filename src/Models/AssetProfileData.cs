@@ -2,150 +2,150 @@
 
 public class AssetProfile
 {
-    [JsonPropertyName("address1")]
+    [JsonProperty("address1")]
     public string Address1 { get; set; } = string.Empty;
 
-    [JsonPropertyName("city")]
+    [JsonProperty("city")]
     public string City { get; set; } = string.Empty;
 
-    [JsonPropertyName("state")] 
+    [JsonProperty("state")] 
     public string State { get; set; } = string.Empty;
 
-    [JsonPropertyName("zip")] 
+    [JsonProperty("zip")] 
     public string Zip { get; set; } = string.Empty;
 
-    [JsonPropertyName("country")] 
+    [JsonProperty("country")] 
     public string Country { get; set; } = string.Empty;
 
-    [JsonPropertyName("phone")] 
+    [JsonProperty("phone")] 
     public string Phone { get; set; } = string.Empty;
 
-    [JsonPropertyName("website")] 
+    [JsonProperty("website")] 
     public string Website { get; set; } = string.Empty;
 
-    [JsonPropertyName("industry")] 
+    [JsonProperty("industry")] 
     public string Industry { get; set; } = string.Empty;
 
-    [JsonPropertyName("sector")] 
+    [JsonProperty("sector")] 
     public string Sector { get; set; } = string.Empty;
 
-    [JsonPropertyName("longBusinessSummary")] 
+    [JsonProperty("longBusinessSummary")] 
     public string LongBusinessSummary { get; set; } = string.Empty;
 
-    [JsonPropertyName("fullTimeEmployees")]
+    [JsonProperty("fullTimeEmployees")]
     public int? FullTimeEmployees { get; set; }
 
-    [JsonPropertyName("companyOfficers")]
+    [JsonProperty("companyOfficers")]
     public List<CompanyOfficer> CompanyOfficers { get; set; } = new();
 
-    [JsonPropertyName("auditRisk")]
+    [JsonProperty("auditRisk")]
     public int? AuditRisk { get; set; }
 
-    [JsonPropertyName("boardRisk")]
+    [JsonProperty("boardRisk")]
     public int? BoardRisk { get; set; }
 
-    [JsonPropertyName("compensationRisk")]
+    [JsonProperty("compensationRisk")]
     public int? CompensationRisk { get; set; }
 
-    [JsonPropertyName("shareHolderRightsRisk")]
+    [JsonProperty("shareHolderRightsRisk")]
     public int? ShareHolderRightsRisk { get; set; }
 
-    [JsonPropertyName("overallRisk")]
+    [JsonProperty("overallRisk")]
     public int? OverallRisk { get; set; }
 
-    [JsonPropertyName("governanceEpochDate")]
+    [JsonProperty("governanceEpochDate")]
     public int? GovernanceEpochDate { get; set; }
 
-    [JsonPropertyName("compensationAsOfEpochDate")]
+    [JsonProperty("compensationAsOfEpochDate")]
     public int? CompensationAsOfEpochDate { get; set; }
 
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 }
 
 public class CompanyOfficer
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; } = string.Empty;
 
-    [JsonPropertyName("age")]
+    [JsonProperty("age")]
     public int? Age { get; set; }
 
-    [JsonPropertyName("title")]
+    [JsonProperty("title")]
     public string Title { get; set; } = string.Empty;
 
-    [JsonPropertyName("yearBorn")]
+    [JsonProperty("yearBorn")]
     public int? YearBorn { get; set; }
 
-    [JsonPropertyName("fiscalYear")]
+    [JsonProperty("fiscalYear")]
     public int? FiscalYear { get; set; }
 
-    [JsonPropertyName("totalPay")]
+    [JsonProperty("totalPay")]
     public TotalPay TotalPay { get; set; } = new();
 
-    [JsonPropertyName("exercisedValue")]
+    [JsonProperty("exercisedValue")]
     public ExercisedValue ExercisedValue { get; set; } = new();
 
-    [JsonPropertyName("unexercisedValue")]
+    [JsonProperty("unexercisedValue")]
     public UnexercisedValue UnexercisedValue { get; set; } = new();
 }
 
 public class ExercisedValue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public object Fmt { get; set; } = new();
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class AssetProfileQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<AssetProfileResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")] 
+    [JsonProperty("error")] 
     public object Error { get; set; } = new();
 }
 
 public class AssetProfileResult
 {
-    [JsonPropertyName("assetProfile")] 
+    [JsonProperty("assetProfile")] 
     public AssetProfile AssetProfile { get; set; } = new();
 }
 
 public class AssetProfileData
 {
-    [JsonPropertyName("quoteSummary")] 
+    [JsonProperty("quoteSummary")] 
     public AssetProfileQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class TotalPay
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class UnexercisedValue
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public object Fmt { get; set; } = new();
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }

@@ -2,171 +2,171 @@
 
 public class BuyInfoCount
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class BuyInfoShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class BuyPercentInsiderShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class NetInfoCount
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class NetInfoShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class NetPercentInsiderShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class NetSharePurchaseActivity
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("period")]
+    [JsonProperty("period")]
     public string Period { get; set; } = string.Empty;
 
-    [JsonPropertyName("buyInfoCount")] 
+    [JsonProperty("buyInfoCount")] 
     public BuyInfoCount BuyInfoCount { get; set; } = new();
 
-    [JsonPropertyName("buyInfoShares")] 
+    [JsonProperty("buyInfoShares")] 
     public BuyInfoShares BuyInfoShares { get; set; } = new();
 
-    [JsonPropertyName("buyPercentInsiderShares")] 
+    [JsonProperty("buyPercentInsiderShares")] 
     public BuyPercentInsiderShares BuyPercentInsiderShares { get; set; } = new();
 
-    [JsonPropertyName("sellInfoCount")] 
+    [JsonProperty("sellInfoCount")] 
     public SellInfoCount SellInfoCount { get; set; } = new();
 
-    [JsonPropertyName("sellInfoShares")] 
+    [JsonProperty("sellInfoShares")] 
     public SellInfoShares SellInfoShares { get; set; } = new();
 
-    [JsonPropertyName("sellPercentInsiderShares")] 
+    [JsonProperty("sellPercentInsiderShares")] 
     public SellPercentInsiderShares SellPercentInsiderShares { get; set; } = new();
 
-    [JsonPropertyName("netInfoCount")] 
+    [JsonProperty("netInfoCount")] 
     public NetInfoCount NetInfoCount { get; set; } = new();
 
-    [JsonPropertyName("netInfoShares")] 
+    [JsonProperty("netInfoShares")] 
     public NetInfoShares NetInfoShares { get; set; } = new();
 
-    [JsonPropertyName("netPercentInsiderShares")] 
+    [JsonProperty("netPercentInsiderShares")] 
     public NetPercentInsiderShares NetPercentInsiderShares { get; set; } = new();
 
-    [JsonPropertyName("totalInsiderShares")] 
+    [JsonProperty("totalInsiderShares")] 
     public TotalInsiderShares TotalInsiderShares { get; set; } = new();
 }
 
 public class NetSharePurchaseActivityQuoteSummary
 {
-    [JsonPropertyName("result")] 
+    [JsonProperty("result")] 
     public List<NetSharePurchaseActivityResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class NetSharePurchaseActivityResult
 {
-    [JsonPropertyName("netSharePurchaseActivity")] 
+    [JsonProperty("netSharePurchaseActivity")] 
     public NetSharePurchaseActivity NetSharePurchaseActivity { get; set; } = new();
 }
 
 public class NetSharePurchaseActivityData
 {
-    [JsonPropertyName("quoteSummary")]
+    [JsonProperty("quoteSummary")]
     public NetSharePurchaseActivityQuoteSummary QuoteSummary { get; set; } = new();
 }
 
 public class SellInfoCount
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class SellInfoShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")] 
+    [JsonProperty("longFmt")] 
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class SellPercentInsiderShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class TotalInsiderShares
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }

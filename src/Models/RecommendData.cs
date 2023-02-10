@@ -2,33 +2,33 @@
 
 public class RecommendFinance
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<RecommendResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class RecommendedSymbol
 {
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
 
-    [JsonPropertyName("score")]
+    [JsonProperty("score")]
     public double Score { get; set; }
 }
 
 public class RecommendResult
 {
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
 
-    [JsonPropertyName("recommendedSymbols")]
+    [JsonProperty("recommendedSymbols")]
     public List<RecommendedSymbol> RecommendedSymbols { get; set; } = new();
 }
 
 public class RecommendData
 {
-    [JsonPropertyName("finance")]
+    [JsonProperty("finance")]
     public RecommendFinance Finance { get; set; } = new();
 }

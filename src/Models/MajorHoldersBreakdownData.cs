@@ -2,78 +2,78 @@
 
 public class InsidersPercentHeld
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class InstitutionsCount
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public int? Raw { get; set; }
 
-    [JsonPropertyName("fmt")] 
+    [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
 
-    [JsonPropertyName("longFmt")]
+    [JsonProperty("longFmt")]
     public string LongFmt { get; set; } = string.Empty;
 }
 
 public class InstitutionsFloatPercentHeld
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class InstitutionsPercentHeld
 {
-    [JsonPropertyName("raw")]
+    [JsonProperty("raw")]
     public double? Raw { get; set; }
 
-    [JsonPropertyName("fmt")]
+    [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
 }
 
 public class MajorHoldersBreakdown
 {
-    [JsonPropertyName("maxAge")]
+    [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
 
-    [JsonPropertyName("insidersPercentHeld")] 
+    [JsonProperty("insidersPercentHeld")] 
     public InsidersPercentHeld InsidersPercentHeld { get; set; } = new();
 
-    [JsonPropertyName("institutionsPercentHeld")] 
+    [JsonProperty("institutionsPercentHeld")] 
     public InstitutionsPercentHeld InstitutionsPercentHeld { get; set; } = new();
 
-    [JsonPropertyName("institutionsFloatPercentHeld")] 
+    [JsonProperty("institutionsFloatPercentHeld")] 
     public InstitutionsFloatPercentHeld InstitutionsFloatPercentHeld { get; set; } = new();
 
-    [JsonPropertyName("institutionsCount")]
+    [JsonProperty("institutionsCount")]
     public InstitutionsCount InstitutionsCount { get; set; } = new();
 }
 
 public class MajorHoldersBreakdownQuoteSummary
 {
-    [JsonPropertyName("result")]
+    [JsonProperty("result")]
     public List<MajorHoldersBreakdownResult> Results { get; set; } = new();
 
-    [JsonPropertyName("error")]
+    [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
 public class MajorHoldersBreakdownResult
 {
-    [JsonPropertyName("majorHoldersBreakdown")] 
+    [JsonProperty("majorHoldersBreakdown")] 
     public MajorHoldersBreakdown MajorHoldersBreakdown { get; set; } = new();
 }
 
 public class MajorHoldersBreakdownData
 {
-    [JsonPropertyName("quoteSummary")] 
+    [JsonProperty("quoteSummary")] 
     public MajorHoldersBreakdownQuoteSummary QuoteSummary { get; set; } = new();
 }
