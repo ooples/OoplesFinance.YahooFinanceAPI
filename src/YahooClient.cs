@@ -622,4 +622,14 @@ public class YahooClient
     {
         return new DayGainersLosersHelper().ParseYahooJsonData<DayGainersLosersResult>(await DownloadScreenerDataAsync(ScreenerType.DayLosers, count));
     }
+
+    /// <summary>
+    /// Gets the small cap gainers data using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<DayGainersLosersResult>> GetSmallCapGainersAsync(int count)
+    {
+        return new DayGainersLosersHelper().ParseYahooJsonData<DayGainersLosersResult>(await DownloadScreenerDataAsync(ScreenerType.SmallCapGainers, count));
+    }
 }

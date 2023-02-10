@@ -53,6 +53,7 @@ try
     //var autoCompleteList = await yahooClient.GetAutoCompleteInfoAsync("Google");
     var topGainersList = await yahooClient.GetTopGainersAsync(10);
     var topLosersList = await yahooClient.GetTopLosersAsync(10);
+    var smallCapGainersList = await yahooClient.GetSmallCapGainersAsync(10);
 
     Console.WriteLine();
 }
