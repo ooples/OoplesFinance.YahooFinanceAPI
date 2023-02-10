@@ -18,12 +18,12 @@ public record Criterion(
     [property: JsonPropertyName("dependentValues")] IReadOnlyList<object> DependentValues
 );
 
-public record DayGainersFinance(
-    [property: JsonPropertyName("result")] IReadOnlyList<DayGainersResult> Results,
+public record DayGainersLosersFinance(
+    [property: JsonPropertyName("result")] IReadOnlyList<DayGainersLosersResult> Results,
     [property: JsonPropertyName("error")] object Error
 );
 
-public record DayGainersQuote(
+public record DayGainersLosersQuote(
     [property: JsonPropertyName("language")] string Language,
     [property: JsonPropertyName("region")] string Region,
     [property: JsonPropertyName("quoteType")] string QuoteType,
@@ -107,7 +107,7 @@ public record DayGainersQuote(
     [property: JsonPropertyName("trailingPE")] double? TrailingPE
 );
 
-public record DayGainersResult(
+public record DayGainersLosersResult(
     [property: JsonPropertyName("id")] string Id,
     [property: JsonPropertyName("title")] string Title,
     [property: JsonPropertyName("description")] string Description,
@@ -117,7 +117,7 @@ public record DayGainersResult(
     [property: JsonPropertyName("start")] int? Start,
     [property: JsonPropertyName("count")] int? Count,
     [property: JsonPropertyName("total")] int? Total,
-    [property: JsonPropertyName("quotes")] IReadOnlyList<DayGainersQuote> Quotes,
+    [property: JsonPropertyName("quotes")] IReadOnlyList<DayGainersLosersQuote> Quotes,
     [property: JsonPropertyName("useRecords")] bool? UseRecords,
     [property: JsonPropertyName("predefinedScr")] bool? PredefinedScr,
     [property: JsonPropertyName("versionId")] int? VersionId,
@@ -127,6 +127,6 @@ public record DayGainersResult(
     [property: JsonPropertyName("iconUrl")] string IconUrl
 );
 
-public record DayGainersData(
-    [property: JsonPropertyName("finance")] DayGainersFinance Finance
+public record DayGainersLosersData(
+    [property: JsonPropertyName("finance")] DayGainersLosersFinance Finance
 );

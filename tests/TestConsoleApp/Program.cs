@@ -52,6 +52,7 @@ try
     //var marketSummaryList = await yahooClient.GetMarketSummaryAsync();
     //var autoCompleteList = await yahooClient.GetAutoCompleteInfoAsync("Google");
     var topGainersList = await yahooClient.GetTopGainersAsync(10);
+    var topLosersList = await yahooClient.GetTopLosersAsync(10);
 
     Console.WriteLine();
 }

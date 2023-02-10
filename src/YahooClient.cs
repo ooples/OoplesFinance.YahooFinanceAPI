@@ -608,8 +608,18 @@ public class YahooClient
     /// </summary>
     /// <param name="count"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<DayGainersResult>> GetTopGainersAsync(int count)
+    public async Task<IEnumerable<DayGainersLosersResult>> GetTopGainersAsync(int count)
     {
-        return new DayGainersHelper().ParseYahooJsonData<DayGainersResult>(await DownloadScreenerDataAsync(ScreenerType.DayGainers, count));
+        return new DayGainersLosersHelper().ParseYahooJsonData<DayGainersLosersResult>(await DownloadScreenerDataAsync(ScreenerType.DayGainers, count));
+    }
+
+    /// <summary>
+    /// Gets the top losers data using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<IEnumerable<DayGainersLosersResult>> GetTopLosersAsync(int count)
+    {
+        return new DayGainersLosersHelper().ParseYahooJsonData<DayGainersLosersResult>(await DownloadScreenerDataAsync(ScreenerType.DayLosers, count));
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-internal class DayGainersHelper : YahooJsonBase
+internal class DayGainersLosersHelper : YahooJsonBase
 {
     /// <summary>
     /// Parses the raw json data for the Day Gainers data
@@ -10,8 +10,8 @@ internal class DayGainersHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var dayGainers = JsonSerializer.Deserialize<DayGainersData>(jsonData);
+        var dayGainersLosers = JsonSerializer.Deserialize<DayGainersLosersData>(jsonData);
 
-        return dayGainers != null ? (IEnumerable<T>)dayGainers.Finance.Results : Enumerable.Empty<T>();
+        return dayGainersLosers != null ? (IEnumerable<T>)dayGainersLosers.Finance.Results : Enumerable.Empty<T>();
     }
 }
