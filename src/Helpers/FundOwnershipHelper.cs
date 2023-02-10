@@ -10,7 +10,7 @@ internal class FundOwnershipHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var fundOwnership = JsonSerializer.Deserialize<FundOwnershipData>(jsonData);
+        var fundOwnership = JsonConvert.DeserializeObject<FundOwnershipData>(jsonData);
 
         return fundOwnership != null ? (IEnumerable<T>)fundOwnership.QuoteSummary.Results.Select(x => x.FundOwnership).First().OwnershipList : Enumerable.Empty<T>();
     }

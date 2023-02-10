@@ -9,7 +9,7 @@ internal class TrendingHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var rawTrendingData = JsonSerializer.Deserialize<TrendingData>(jsonData);
+        var rawTrendingData = JsonConvert.DeserializeObject<TrendingData>(jsonData);
 
         return rawTrendingData != null ? (IEnumerable<T>)rawTrendingData.Finance.Results.First().Quotes.Select(x => x.Symbol) : Enumerable.Empty<T>();
     }

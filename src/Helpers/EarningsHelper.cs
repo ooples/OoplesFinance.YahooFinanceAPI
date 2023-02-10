@@ -10,7 +10,7 @@ internal class EarningsHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var earnings = JsonSerializer.Deserialize<EarningsData>(jsonData);
+        var earnings = JsonConvert.DeserializeObject<EarningsData>(jsonData);
 
         return earnings != null ? (IEnumerable<T>)earnings.QuoteSummary.Results.Select(x => x.Earnings) : Enumerable.Empty<T>();
     }

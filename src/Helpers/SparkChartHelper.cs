@@ -11,7 +11,7 @@ internal class SparkChartHelper : YahooJsonBase
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
         var rootObjects = JsonDocument.Parse(jsonData).RootElement.EnumerateObject();
-        var sparkChartData = rootObjects.Select(x => JsonSerializer.Deserialize<SparkInfo>(x.Value));
+        var sparkChartData = rootObjects.Select(x => JsonConvert.DeserializeObject<SparkInfo>(x.Value.ToString()));
 
         return sparkChartData != null ? (IEnumerable<T>)sparkChartData : Enumerable.Empty<T>();
     }

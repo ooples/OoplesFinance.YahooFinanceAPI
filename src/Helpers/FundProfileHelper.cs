@@ -10,7 +10,7 @@ internal class FundProfileHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var fundProfile = JsonSerializer.Deserialize<FundProfileData>(jsonData);
+        var fundProfile = JsonConvert.DeserializeObject<FundProfileData>(jsonData);
 
         return fundProfile != null ? (IEnumerable<T>)fundProfile.QuoteSummary.Results.Select(x => x.FundProfile) : Enumerable.Empty<T>();
     }

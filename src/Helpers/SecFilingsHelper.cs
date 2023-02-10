@@ -7,7 +7,7 @@ internal class SecFilingsHelper : YahooJsonBase
 {
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var secFilings = JsonSerializer.Deserialize<SecFilingsData>(jsonData);
+        var secFilings = JsonConvert.DeserializeObject<SecFilingsData>(jsonData);
 
         return secFilings != null ? (IEnumerable<T>)secFilings.QuoteSummary.Results.Select(x => x.SecFilings).First().Filings : Enumerable.Empty<T>();
     }

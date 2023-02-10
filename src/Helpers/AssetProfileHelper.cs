@@ -10,7 +10,7 @@ internal class AssetProfileHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var assetProfile = JsonSerializer.Deserialize<AssetProfileData>(jsonData);
+        var assetProfile = JsonConvert.DeserializeObject<AssetProfileData>(jsonData);
 
         return assetProfile != null ? (IEnumerable<T>)assetProfile.QuoteSummary.Results.Select(x => x.AssetProfile) : Enumerable.Empty<T>();
     }

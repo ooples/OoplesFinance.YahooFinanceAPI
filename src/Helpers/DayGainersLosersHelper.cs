@@ -10,7 +10,7 @@ internal class DayGainersLosersHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var dayGainersLosers = JsonSerializer.Deserialize<DayGainersLosersData>(jsonData);
+        var dayGainersLosers = JsonConvert.DeserializeObject<DayGainersLosersData>(jsonData);
 
         return dayGainersLosers != null ? (IEnumerable<T>)dayGainersLosers.Finance.Results : Enumerable.Empty<T>();
     }

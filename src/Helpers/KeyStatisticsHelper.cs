@@ -10,7 +10,7 @@ internal class KeyStatisticsHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var keyStatisticData = JsonSerializer.Deserialize<KeyStatisticData>(jsonData);
+        var keyStatisticData = JsonConvert.DeserializeObject<KeyStatisticData>(jsonData);
 
         return keyStatisticData != null ? (IEnumerable<T>)keyStatisticData.QuoteSummary.Results.Select(x => x.DefaultKeyStatistics) : Enumerable.Empty<T>();
     }

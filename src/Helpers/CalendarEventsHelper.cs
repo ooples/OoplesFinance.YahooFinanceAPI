@@ -10,7 +10,7 @@ internal class CalendarEventsHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var calendarEvents = JsonSerializer.Deserialize<CalendarEventsData>(jsonData);
+        var calendarEvents = JsonConvert.DeserializeObject<CalendarEventsData>(jsonData);
 
         return calendarEvents != null ? (IEnumerable<T>)calendarEvents.QuoteSummary.Results.Select(x => x.CalendarEvents) : Enumerable.Empty<T>();
     }

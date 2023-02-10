@@ -10,7 +10,7 @@ internal class QuoteTypeHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var quoteType = JsonSerializer.Deserialize<QuoteTypeData>(jsonData);
+        var quoteType = JsonConvert.DeserializeObject<QuoteTypeData>(jsonData);
 
         return quoteType != null ? (IEnumerable<T>)quoteType.QuoteSummary.Results.Select(x => x.QuoteType) : Enumerable.Empty<T>();
     }

@@ -10,7 +10,7 @@ internal class SectorTrendHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var sectorTrend = JsonSerializer.Deserialize<SectorTrendData>(jsonData);
+        var sectorTrend = JsonConvert.DeserializeObject<SectorTrendData>(jsonData);
 
         return sectorTrend != null ? (IEnumerable<T>)sectorTrend.QuoteSummary.Results.Select(x => x.SectorTrend) : Enumerable.Empty<T>();
     }

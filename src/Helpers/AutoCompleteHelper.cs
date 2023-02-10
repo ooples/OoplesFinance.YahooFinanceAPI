@@ -10,7 +10,7 @@ internal class AutoCompleteHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var autoComplete = JsonSerializer.Deserialize<AutoCompleteData>(jsonData);
+        var autoComplete = JsonConvert.DeserializeObject<AutoCompleteData>(jsonData);
 
         return autoComplete != null ? (IEnumerable<T>)autoComplete.ResultSet.Results : Enumerable.Empty<T>();
     }

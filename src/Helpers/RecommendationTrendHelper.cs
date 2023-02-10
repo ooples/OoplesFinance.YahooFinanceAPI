@@ -10,7 +10,7 @@ internal class RecommendationTrendHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var recommendationTrend = JsonSerializer.Deserialize<RecommendationTrendData>(jsonData);
+        var recommendationTrend = JsonConvert.DeserializeObject<RecommendationTrendData>(jsonData);
 
         return recommendationTrend != null ? (IEnumerable<T>)recommendationTrend.QuoteSummary.Results.Select(x => x.RecommendationTrend).First().Trend : Enumerable.Empty<T>();
     }

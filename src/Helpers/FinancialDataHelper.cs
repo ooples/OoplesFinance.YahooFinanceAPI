@@ -10,7 +10,7 @@ internal class FinancialDataHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var financialData = JsonSerializer.Deserialize<FinancialDataRoot>(jsonData);
+        var financialData = JsonConvert.DeserializeObject<FinancialDataRoot>(jsonData);
 
         return financialData != null ? (IEnumerable<T>)financialData.QuoteSummary.Results.Select(x => x.FinancialData) : Enumerable.Empty<T>();
     }

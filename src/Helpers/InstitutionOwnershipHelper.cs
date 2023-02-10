@@ -10,7 +10,7 @@ internal class InstitutionOwnershipHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var institutionOwnership = JsonSerializer.Deserialize<InstitutionOwnershipData>(jsonData);
+        var institutionOwnership = JsonConvert.DeserializeObject<InstitutionOwnershipData>(jsonData);
 
         return institutionOwnership != null ? (IEnumerable<T>)institutionOwnership.QuoteSummary.Results.Select(x => x.InstitutionOwnership).First().OwnershipList : Enumerable.Empty<T>();
     }

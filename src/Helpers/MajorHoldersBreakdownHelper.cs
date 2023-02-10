@@ -10,7 +10,7 @@ internal class MajorHoldersBreakdownHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var majorHoldersBreakdown = JsonSerializer.Deserialize<MajorHoldersBreakdownData>(jsonData);
+        var majorHoldersBreakdown = JsonConvert.DeserializeObject<MajorHoldersBreakdownData>(jsonData);
 
         return majorHoldersBreakdown != null ? (IEnumerable<T>)majorHoldersBreakdown.QuoteSummary.Results.Select(x => x.MajorHoldersBreakdown) : Enumerable.Empty<T>();
     }

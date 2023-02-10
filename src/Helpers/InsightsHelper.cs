@@ -10,7 +10,7 @@ internal class InsightsHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var insights = JsonSerializer.Deserialize<InsightsData>(jsonData);
+        var insights = JsonConvert.DeserializeObject<InsightsData>(jsonData);
 
         return insights != null ? Enumerable.Cast<T>(new InsightsResult[] { insights.Finance.Result }) : Enumerable.Empty<T>();
     }

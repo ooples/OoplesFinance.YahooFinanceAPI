@@ -10,7 +10,7 @@ internal class MarketSummaryHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var marketSummary = JsonSerializer.Deserialize<MarketSummaryData>(jsonData);
+        var marketSummary = JsonConvert.DeserializeObject<MarketSummaryData>(jsonData);
 
         return marketSummary != null ? (IEnumerable<T>)marketSummary.MarketSummaryResponse.Results : Enumerable.Empty<T>();
     }

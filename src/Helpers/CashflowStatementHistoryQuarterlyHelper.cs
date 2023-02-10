@@ -10,7 +10,7 @@ internal class CashflowStatementHistoryQuarterlyHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var cashflowStatementHistoryQuarterlyData = JsonSerializer.Deserialize<CashflowStatementHistoryQuarterlyData>(jsonData);
+        var cashflowStatementHistoryQuarterlyData = JsonConvert.DeserializeObject<CashflowStatementHistoryQuarterlyData>(jsonData);
 
         return cashflowStatementHistoryQuarterlyData != null ? (IEnumerable<T>)cashflowStatementHistoryQuarterlyData.QuoteSummary.Results.
             Select(x => x.CashflowStatementHistoryQuarterly).First().CashflowStatements : Enumerable.Empty<T>();

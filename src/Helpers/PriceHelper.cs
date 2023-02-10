@@ -10,7 +10,7 @@ internal class PriceHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var priceInfo = JsonSerializer.Deserialize<PriceData>(jsonData);
+        var priceInfo = JsonConvert.DeserializeObject<PriceData>(jsonData);
 
         return priceInfo != null ? (IEnumerable<T>)priceInfo.QuoteSummary.Results.Select(x => x.Price) : Enumerable.Empty<T>();
     }

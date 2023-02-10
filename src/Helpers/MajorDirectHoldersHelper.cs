@@ -10,7 +10,7 @@ internal class MajorDirectHoldersHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var majorDirectHolders = JsonSerializer.Deserialize<MajorDirectHoldersData>(jsonData);
+        var majorDirectHolders = JsonConvert.DeserializeObject<MajorDirectHoldersData>(jsonData);
 
         return majorDirectHolders != null ? (IEnumerable<T>)majorDirectHolders.QuoteSummary.Results.Select(x => x.MajorDirectHolders).First().Holders : Enumerable.Empty<T>();
     }

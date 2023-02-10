@@ -10,7 +10,7 @@ internal class UpgradeDowngradeHistoryHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var upgradeDowngradeHistory = JsonSerializer.Deserialize<UpgradeDowngradeHistoryData>(jsonData);
+        var upgradeDowngradeHistory = JsonConvert.DeserializeObject<UpgradeDowngradeHistoryData>(jsonData);
 
         return upgradeDowngradeHistory != null ? (IEnumerable<T>)upgradeDowngradeHistory.QuoteSummary.Results.
             Select(x => x.UpgradeDowngradeHistory).First().History : Enumerable.Empty<T>();

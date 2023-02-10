@@ -10,7 +10,7 @@ internal class InsiderTransactionHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var insiderTransactionData = JsonSerializer.Deserialize<InsiderTransactionData>(jsonData);
+        var insiderTransactionData = JsonConvert.DeserializeObject<InsiderTransactionData>(jsonData);
 
         return insiderTransactionData != null ? (IEnumerable<T>)insiderTransactionData.QuoteSummary.Results.Select(x => x.InsiderTransactions).First().Transactions : Enumerable.Empty<T>();
     }
