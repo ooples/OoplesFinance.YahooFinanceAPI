@@ -584,7 +584,7 @@ public class YahooClient
         return new RealTimeQuoteHelper().ParseYahooJsonData<RealTimeQuoteResult>(await DownloadRealTimeQuoteDataAsync(symbols, Country, Language));
     }
 
-    /// <summary>
+    /// <summary>m,km 
     /// Gets market summary data
     /// </summary>
     /// <returns></returns>
@@ -608,9 +608,9 @@ public class YahooClient
     /// </summary>
     /// <param name="count"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<DayGainersLosersResult>> GetTopGainersAsync(int count)
+    public async Task<ScreenerResult> GetTopGainersAsync(int count)
     {
-        return new DayGainersLosersHelper().ParseYahooJsonData<DayGainersLosersResult>(await DownloadScreenerDataAsync(ScreenerType.DayGainers, count));
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.DayGainers, count)).First();
     }
 
     /// <summary>
@@ -618,9 +618,9 @@ public class YahooClient
     /// </summary>
     /// <param name="count"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<DayGainersLosersResult>> GetTopLosersAsync(int count)
+    public async Task<ScreenerResult> GetTopLosersAsync(int count)
     {
-        return new DayGainersLosersHelper().ParseYahooJsonData<DayGainersLosersResult>(await DownloadScreenerDataAsync(ScreenerType.DayLosers, count));
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.DayLosers, count)).First();
     }
 
     /// <summary>
@@ -628,8 +628,158 @@ public class YahooClient
     /// </summary>
     /// <param name="count"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<DayGainersLosersResult>> GetSmallCapGainersAsync(int count)
+    public async Task<ScreenerResult> GetSmallCapGainersAsync(int count)
     {
-        return new DayGainersLosersHelper().ParseYahooJsonData<DayGainersLosersResult>(await DownloadScreenerDataAsync(ScreenerType.SmallCapGainers, count));
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.SmallCapGainers, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the most active stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetMostActiveStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.MostActives, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the aggressive small cap stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetAggressiveSmallCapStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.AggressiveSmallCaps, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the conservative foreign funds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetConservativeForeignFundsAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.ConservativeForeignFunds, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the growth technology stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetGrowthTechnologyStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.GrowthTechnologyStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the high yield bonds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetHighYieldBondsAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.HighYieldBond, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the most shorted stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetMostShortedStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.MostShortedStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the portfolio anchors using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetPortfolioAnchorsAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.PortfolioAnchors, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the solid large growth funds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetSolidLargeGrowthFundsAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.SolidLargeGrowthFunds, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the solid midcap growth funds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetSolidMidcapGrowthFundsAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.SolidMidcapGrowthFunds, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top mutual funds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetTopMutualFundsAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.TopMutualFunds, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the undervalued growth stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetUndervaluedGrowthStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.UndervaluedGrowthStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the undervalued large cap stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetUndervaluedLargeCapStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.UndervaluedLargeCaps, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the undervalued wide moat stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetUndervaluedWideMoatStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.UndervaluedWideMoatStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the morningstar five star stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetMorningstarFiveStarStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.MorningstarFiveStarStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the strong undervalued stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<ScreenerResult> GetStrongUndervaluedStocksAsync(int count)
+    {
+        return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.StrongUndervaluedStocks, count)).First();
     }
 }

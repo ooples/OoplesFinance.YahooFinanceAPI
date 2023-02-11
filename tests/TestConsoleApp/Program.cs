@@ -54,6 +54,21 @@ try
     //var topGainersList = await yahooClient.GetTopGainersAsync(10);
     //var topLosersList = await yahooClient.GetTopLosersAsync(10);
     //var smallCapGainersList = await yahooClient.GetSmallCapGainersAsync(10);
+    var mostActiveStocksList = await yahooClient.GetMostActiveStocksAsync(10);
+    var aggressiveSmallCapsList = await yahooClient.GetAggressiveSmallCapStocksAsync(10);
+    var conservativeForeignFundsList = await yahooClient.GetConservativeForeignFundsAsync(10);
+    var growthTechStocksList = await yahooClient.GetGrowthTechnologyStocksAsync(10);
+    var highYieldBondsList = await yahooClient.GetHighYieldBondsAsync(10);
+    var mostShortedStocksList = await yahooClient.GetMostShortedStocksAsync(10);
+    var portfolioAnchorsList = await yahooClient.GetPortfolioAnchorsAsync(10);
+    var solidLargeGrowthFundsList = await yahooClient.GetSolidLargeGrowthFundsAsync(10);
+    var solidMidcapGrowthFundsList = await yahooClient.GetSolidMidcapGrowthFundsAsync(10);
+    var topMutualFundsList = await yahooClient.GetTopMutualFundsAsync(10);
+    var undervaluedGrowthStocksList = await yahooClient.GetUndervaluedGrowthStocksAsync(10);
+    var undervaluedLargeCapsList = await yahooClient.GetUndervaluedLargeCapStocksAsync(10);
+    var undervaluedWideMoatStocksList = await yahooClient.GetUndervaluedWideMoatStocksAsync(10);
+    var morningstarFiveStarStocksList = await yahooClient.GetMorningstarFiveStarStocksAsync(10);
+    var strongUndervaluedStocksList = await yahooClient.GetStrongUndervaluedStocksAsync(10);
 
     Console.WriteLine();
 }
