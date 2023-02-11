@@ -64,9 +64,29 @@ var netSharePurchaseActivityList = await yahooClient.GetNetSharePurchaseActivity
 var incomeStatementHistoryQuarterlyList = await yahooClient.GetIncomeStatementHistoryQuarterlyAsync(symbol);
 var cashflowStatementHistoryQuarterlyList = await yahooClient.GetCashflowStatementHistoryQuarterlyAsync(symbol);
 var balanceSheetHistoryQuarterlyList = await yahooClient.GetBalanceSheetHistoryQuarterlyAsync(symbol);
-var chartInfoList = await yahooClient.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
+var chartInfoList = await yahooClient.GetChartInfoAsync("GOOG", TimeRange._1Year, TimeInterval._1Day);
 var sparkChartInfoList = await yahooClient.GetSparkChartInfoAsync(symbols, TimeRange._1Month, TimeInterval._1Day);
-var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbol);
+var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbols);
+var marketSummaryList = await yahooClient.GetMarketSummaryAsync();
+var autoCompleteList = await yahooClient.GetAutoCompleteInfoAsync("Google");
+var topGainersList = await yahooClient.GetTopGainersAsync(10);
+var topLosersList = await yahooClient.GetTopLosersAsync(10);
+var smallCapGainersList = await yahooClient.GetSmallCapGainersAsync(10);
+var mostActiveStocksList = await yahooClient.GetMostActiveStocksAsync(10);
+var aggressiveSmallCapsList = await yahooClient.GetAggressiveSmallCapStocksAsync(10);
+var conservativeForeignFundsList = await yahooClient.GetConservativeForeignFundsAsync(10);
+var growthTechStocksList = await yahooClient.GetGrowthTechnologyStocksAsync(10);
+var highYieldBondsList = await yahooClient.GetHighYieldBondsAsync(10);
+var mostShortedStocksList = await yahooClient.GetMostShortedStocksAsync(10);
+var portfolioAnchorsList = await yahooClient.GetPortfolioAnchorsAsync(10);
+var solidLargeGrowthFundsList = await yahooClient.GetSolidLargeGrowthFundsAsync(10);
+var solidMidcapGrowthFundsList = await yahooClient.GetSolidMidcapGrowthFundsAsync(10);
+var topMutualFundsList = await yahooClient.GetTopMutualFundsAsync(10);
+var undervaluedGrowthStocksList = await yahooClient.GetUndervaluedGrowthStocksAsync(10);
+var undervaluedLargeCapsList = await yahooClient.GetUndervaluedLargeCapStocksAsync(10);
+var undervaluedWideMoatStocksList = await yahooClient.GetUndervaluedWideMoatStocksAsync(10);
+var morningstarFiveStarStocksList = await yahooClient.GetMorningstarFiveStarStocksAsync(10);
+var strongUndervaluedStocksList = await yahooClient.GetStrongUndervaluedStocksAsync(10);
 ```
 
 
@@ -75,6 +95,8 @@ var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbol);
 BTC: 36DRmZefJNW82q9pHY1kWYSZhLUWQkpgGq
 
 ETH: 0x7D6e58754476189ffF736B63b6159D2647f74f34
+
+USDC: 0x587Ae0709f45b970992bdD772bF693141D95CAED
 
 DOGE: DF1nsK1nLASzmwHNAfNengBGS4w7bNyJ1e
 
