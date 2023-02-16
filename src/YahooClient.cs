@@ -782,4 +782,44 @@ public class YahooClient
     {
         return new ScreenerHelper().ParseYahooJsonData<ScreenerResult>(await DownloadScreenerDataAsync(ScreenerType.StrongUndervaluedStocks, count)).First();
     }
+
+    /// <summary>
+    /// Gets the analyst strong buy stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<AnalystResult> GetAnalystStrongBuyStocksAsync(int count)
+    {
+        return new AnalystHelper().ParseYahooJsonData<AnalystResult>(await DownloadScreenerDataAsync(ScreenerType.AnalystStrongBuyStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the latest analyst upgraded stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<AnalystResult> GetLatestAnalystUpgradedStocksAsync(int count)
+    {
+        return new AnalystHelper().ParseYahooJsonData<AnalystResult>(await DownloadScreenerDataAsync(ScreenerType.LatestAnalystUpgradedStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the most institutionally bought large cap stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetMostInstitutionallyBoughtLargeCapStocksAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.MostInstitutionallyBoughtLargeCapStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the most institutionally held large cap stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetMostInstitutionallyHeldLargeCapStocksAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.MostInstitutionallyHeldLargeCapStocks, count)).First();
+    }
 }

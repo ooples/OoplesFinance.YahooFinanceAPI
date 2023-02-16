@@ -69,6 +69,10 @@ try
     var undervaluedWideMoatStocksList = await yahooClient.GetUndervaluedWideMoatStocksAsync(10);
     var morningstarFiveStarStocksList = await yahooClient.GetMorningstarFiveStarStocksAsync(10);
     var strongUndervaluedStocksList = await yahooClient.GetStrongUndervaluedStocksAsync(10);
+    var analystStrongBuyStocksList = await yahooClient.GetAnalystStrongBuyStocksAsync(10);
+    var latestAnalystUpgradedStocksList = await yahooClient.GetLatestAnalystUpgradedStocksAsync(10);
+    var mostInstitutionallyBoughtLargeCapStocksList = await yahooClient.GetMostInstitutionallyBoughtLargeCapStocksAsync(10);
+    var mostInstitutionallyHeldLargeCapStocksList = await yahooClient.GetMostInstitutionallyHeldLargeCapStocksAsync(10);
 
     Console.WriteLine();
 }
