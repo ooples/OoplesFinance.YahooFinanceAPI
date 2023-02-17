@@ -48,7 +48,8 @@ public record InstitutionRecord(
     [property: JsonProperty("percentOfSharesOutHeldByInstitutions", NullValueHandling = NullValueHandling.Ignore)] double? PercentOfSharesOutHeldByInstitutions,
     [property: JsonProperty("lastReportDate", NullValueHandling = NullValueHandling.Ignore)] string LastReportDate,
     [property: JsonProperty("averageRating", NullValueHandling = NullValueHandling.Ignore)] string AverageRating,
-    [property: JsonProperty("fiftyTwoWeekRange", NullValueHandling = NullValueHandling.Ignore)] string FiftyTwoWeekRange
+    [property: JsonProperty("fiftyTwoWeekRange", NullValueHandling = NullValueHandling.Ignore)] string FiftyTwoWeekRange,
+    [property: JsonProperty("logoUrl", NullValueHandling = NullValueHandling.Ignore)] string LogoUrl
 );
 
 public record InstitutionResult(

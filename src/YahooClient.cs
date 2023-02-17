@@ -822,4 +822,144 @@ public class YahooClient
     {
         return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.MostInstitutionallyHeldLargeCapStocks, count)).First();
     }
+
+    /// <summary>
+    /// Gets the most institutionally sold large cap stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetMostInstitutionallySoldLargeCapStocksAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.MostInstitutionallySoldLargeCapStocks, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the stocks with most institutional buyers using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetStocksWithMostInstitutionalBuyersAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.StocksWithMostInstitutionalBuyers, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the stocks with most institutional sellers using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetStocksWithMostInstitutionalSellersAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.StocksWithMostInstitutionalSellers, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the stocks most bought by hedge funds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetStocksMostBoughtByHedgeFundsAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.StocksMostBoughtByHedgeFunds, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the stocks most bought by pension funds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetStocksMostBoughtByPensionFundsAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.StocksMostBoughtByPensionFunds, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the stocks most bought by private equity using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetStocksMostBoughtByPrivateEquityAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.StocksMostBoughtByPrivateEquity, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the stocks most bought by sovereign wealth funds using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<InstitutionResult> GetStocksMostBoughtBySovereignWealthFundsAsync(int count)
+    {
+        return new InstitutionHelper().ParseYahooJsonData<InstitutionResult>(await DownloadScreenerDataAsync(ScreenerType.StocksMostBoughtBySovereignWealthFunds, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top stocks owned by Cathie Wood using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<StocksOwnedResult> GetTopStocksOwnedByCathieWoodAsync(int count)
+    {
+        return new StocksOwnedHelper().ParseYahooJsonData<StocksOwnedResult>(await DownloadScreenerDataAsync(ScreenerType.TopStocksOwnedByCathieWood, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top stocks owned by Goldman Sachs using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<StocksOwnedResult> GetTopStocksOwnedByGoldmanSachsAsync(int count)
+    {
+        return new StocksOwnedHelper().ParseYahooJsonData<StocksOwnedResult>(await DownloadScreenerDataAsync(ScreenerType.TopStocksOwnedByGoldmanSachs, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top stocks owned by Warren Buffet using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<StocksOwnedResult> GetTopStocksOwnedByWarrenBuffetAsync(int count)
+    {
+        return new StocksOwnedHelper().ParseYahooJsonData<StocksOwnedResult>(await DownloadScreenerDataAsync(ScreenerType.TopStocksOwnedByWarrenBuffet, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top stocks owned by Ray Dalio using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<StocksOwnedResult> GetTopStocksOwnedByRayDalioAsync(int count)
+    {
+        return new StocksOwnedHelper().ParseYahooJsonData<StocksOwnedResult>(await DownloadScreenerDataAsync(ScreenerType.TopStocksOwnedByRayDalio, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top bearish stocks right now using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<TrendingStocksResult> GetTopBearishStocksRightNowAsync(int count)
+    {
+        return new TrendingStocksHelper().ParseYahooJsonData<TrendingStocksResult>(await DownloadScreenerDataAsync(ScreenerType.BearishStocksRightNow, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top bullish stocks right now using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<TrendingStocksResult> GetTopBullishStocksRightNowAsync(int count)
+    {
+        return new TrendingStocksHelper().ParseYahooJsonData<TrendingStocksResult>(await DownloadScreenerDataAsync(ScreenerType.BullishStocksRightNow, count)).First();
+    }
+
+    /// <summary>
+    /// Gets the top upside breakout stocks using the selected parameters
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public async Task<TrendingStocksResult> GetTopUpsideBreakoutStocksAsync(int count)
+    {
+        return new TrendingStocksHelper().ParseYahooJsonData<TrendingStocksResult>(await DownloadScreenerDataAsync(ScreenerType.UpsideBreakoutStocksDaily, count)).First();
+    }
 }
