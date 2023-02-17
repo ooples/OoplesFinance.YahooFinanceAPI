@@ -87,6 +87,24 @@ var undervaluedLargeCapsList = await yahooClient.GetUndervaluedLargeCapStocksAsy
 var undervaluedWideMoatStocksList = await yahooClient.GetUndervaluedWideMoatStocksAsync(10);
 var morningstarFiveStarStocksList = await yahooClient.GetMorningstarFiveStarStocksAsync(10);
 var strongUndervaluedStocksList = await yahooClient.GetStrongUndervaluedStocksAsync(10);
+var analystStrongBuyStocksList = await yahooClient.GetAnalystStrongBuyStocksAsync(10);
+var latestAnalystUpgradedStocksList = await yahooClient.GetLatestAnalystUpgradedStocksAsync(10);
+var mostInstitutionallyBoughtLargeCapStocksList = await yahooClient.GetMostInstitutionallyBoughtLargeCapStocksAsync(10);
+var mostInstitutionallyHeldLargeCapStocksList = await yahooClient.GetMostInstitutionallyHeldLargeCapStocksAsync(10);
+var mostInstitutionallySoldLargeCapStocksList = await yahooClient.GetMostInstitutionallySoldLargeCapStocksAsync(10);
+var stocksWithMostInstitutionalBuyersList = await yahooClient.GetStocksWithMostInstitutionalBuyersAsync(10);
+var stocksWithMostInstitutionalSellersList = await yahooClient.GetStocksWithMostInstitutionalSellersAsync(10);
+var stocksMostBoughtByHedgeFundsList = await yahooClient.GetStocksMostBoughtByHedgeFundsAsync(10);
+var stocksMostBoughtByPensionFundsList = await yahooClient.GetStocksMostBoughtByPensionFundsAsync(10);
+var stocksMostBoughtByPrivateEquityList = await yahooClient.GetStocksMostBoughtByPrivateEquityAsync(10);
+var stocksMostBoughtBySovereignWealthFundsList = await yahooClient.GetStocksMostBoughtBySovereignWealthFundsAsync(10);
+var topStocksOwnedByCathieWoodList = await yahooClient.GetTopStocksOwnedByCathieWoodAsync(10);
+var topStocksOwnedByGoldmanSachsList = await yahooClient.GetTopStocksOwnedByGoldmanSachsAsync(10);
+var topStocksOwnedByWarrenBuffetList = await yahooClient.GetTopStocksOwnedByWarrenBuffetAsync(10);
+var topStocksOwnedByRayDalioList = await yahooClient.GetTopStocksOwnedByRayDalioAsync(10);
+var topBearishStocksRightNowList = await yahooClient.GetTopBearishStocksRightNowAsync(10);
+var topBullishStocksRightNowList = await yahooClient.GetTopBullishStocksRightNowAsync(10);
+var topUpsideBreakoutStocksList = await yahooClient.GetTopUpsideBreakoutStocksAsync(10);
 ```
 
 

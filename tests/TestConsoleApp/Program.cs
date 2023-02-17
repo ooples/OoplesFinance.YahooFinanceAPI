@@ -86,6 +86,7 @@ try
     var topStocksOwnedByRayDalioList = await yahooClient.GetTopStocksOwnedByRayDalioAsync(10);
     var topBearishStocksRightNowList = await yahooClient.GetTopBearishStocksRightNowAsync(10);
     var topBullishStocksRightNowList = await yahooClient.GetTopBullishStocksRightNowAsync(10);
+    var topUpsideBreakoutStocksList = await yahooClient.GetTopUpsideBreakoutStocksAsync(10);
 
     Console.WriteLine();
 }
