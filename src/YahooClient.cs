@@ -584,7 +584,7 @@ public class YahooClient
         return new RealTimeQuoteHelper().ParseYahooJsonData<RealTimeQuoteResult>(await DownloadRealTimeQuoteDataAsync(symbols, Country, Language));
     }
 
-    /// <summary>m,km 
+    /// <summary>
     /// Gets market summary data
     /// </summary>
     /// <returns></returns>

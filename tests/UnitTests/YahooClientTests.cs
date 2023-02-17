@@ -1,3 +1,6 @@
+using NSubstitute;
+using OoplesFinance.YahooFinanceAPI.Models;
+
 namespace OoplesFinance.YahooFinanceAPI.Tests.Unit;
 
 public sealed class YahooClientTests
@@ -1094,5 +1097,462 @@ public sealed class YahooClientTests
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Can't Have More Than 250 Symbols");
+    }
+
+    [Fact]
+    public async Task GetMarketSummary_ReturnsInfo_WhenValidResultsAreFound()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMarketSummaryAsync();
+
+        // Assert
+        result.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task GetAutoCompleteInfo_ThrowsException_WhenEmptySearchTermIsUsed()
+    {
+        // Arrange
+        var searchTerm = "";
+
+        // Act
+        var result = async () => await _sut.GetAutoCompleteInfoAsync(searchTerm);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("The Search Term Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetTopGainers_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopGainersAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopLosers_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopLosersAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetSmallCapGainers_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetSmallCapGainersAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostActiveStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetMostActiveStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetAggressiveSmallCapStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetAggressiveSmallCapStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetConservativeForeignFunds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetConservativeForeignFundsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetGrowthTechnologyStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetGrowthTechnologyStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetHighYieldBonds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetHighYieldBondsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostShortedStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetMostShortedStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetPortfolioAnchors_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetPortfolioAnchorsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetSolidLargeGrowthFunds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetSolidLargeGrowthFundsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetSolidMidcapGrowthFunds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetSolidMidcapGrowthFundsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopMutualFunds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopMutualFundsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetUndervaluedGrowthStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetUndervaluedGrowthStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetUndervaluedLargeCapStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetUndervaluedLargeCapStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetUndervaluedWideMoatStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetUndervaluedWideMoatStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMorningstarFiveStarStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetMorningstarFiveStarStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStrongUndervaluedStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetStrongUndervaluedStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetAnalystStrongBuyStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetAnalystStrongBuyStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetLatestAnalystUpgradedStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetLatestAnalystUpgradedStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostInstitutionallyBoughtLargeCapStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetMostInstitutionallyBoughtLargeCapStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostInstitutionallyHeldLargeCapStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetMostInstitutionallyHeldLargeCapStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostInstitutionallySoldLargeCapStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetMostInstitutionallySoldLargeCapStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksWithMostInstitutionalBuyers_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetStocksWithMostInstitutionalBuyersAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksWithMostInstitutionalSellers_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetStocksWithMostInstitutionalSellersAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtByHedgeFunds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetStocksMostBoughtByHedgeFundsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtByPensionFunds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetStocksMostBoughtByPensionFundsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtByPrivateEquity_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetStocksMostBoughtByPrivateEquityAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtBySovereignWealthFunds_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetStocksMostBoughtBySovereignWealthFundsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByCathieWood_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopStocksOwnedByCathieWoodAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByGoldmanSachs_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopStocksOwnedByGoldmanSachsAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByRayDalio_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopStocksOwnedByRayDalioAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByWarrenBuffet_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopStocksOwnedByWarrenBuffetAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopBearishStocksRightNow_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopBearishStocksRightNowAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopBullishStocksRightNow_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopBullishStocksRightNowAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopUpsideBreakoutStocks_ThrowsException_WhenCountIsInvalid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopUpsideBreakoutStocksAsync(-1);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
     }
 }
