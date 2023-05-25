@@ -1,26 +1,25 @@
-using NSubstitute;
-using OoplesFinance.YahooFinanceAPI.Models;
-
 namespace OoplesFinance.YahooFinanceAPI.Tests.Unit;
 
 public sealed class YahooClientTests
 {
     private readonly YahooClient _sut;
+    private const string BadSymbol = "OOPLES";
+    private const string EmptySymbol = "";
+    private readonly DateTime _startDate;
 
     public YahooClientTests()
     {
-        _sut = new();
+        _sut = new YahooClient();
+        _startDate = DateTime.Now.AddYears(-1);
     }
 
     [Fact]
     public async Task GetHistoricalData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
-        var startDate = DateTime.Now.AddYears(-1);
 
         // Act
-        var result = async () => await _sut.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetHistoricalDataAsync(BadSymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -30,12 +29,9 @@ public sealed class YahooClientTests
     public async Task GetStockSplitData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
-        var startDate = DateTime.Now.AddYears(-1);
-        var _sut = new YahooClient();
 
         // Act
-        var result = async () => await _sut.GetStockSplitDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetStockSplitDataAsync(BadSymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -45,11 +41,9 @@ public sealed class YahooClientTests
     public async Task GetDividendData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
-        var startDate = DateTime.Now.AddYears(-1);
 
         // Act
-        var result = async () => await _sut.GetDividendDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetDividendDataAsync(BadSymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -59,11 +53,9 @@ public sealed class YahooClientTests
     public async Task GetCapitalGainData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
-        var startDate = DateTime.Now.AddYears(-1);
 
         // Act
-        var result = async () => await _sut.GetCapitalGainDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetCapitalGainDataAsync(BadSymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -73,11 +65,9 @@ public sealed class YahooClientTests
     public async Task GetCapitalGainData_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
-        var startDate = DateTime.Now.AddYears(-1);
 
         // Act
-        var result = async () => await _sut.GetCapitalGainDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetCapitalGainDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -87,11 +77,9 @@ public sealed class YahooClientTests
     public async Task GetHistoricalData_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
-        var startDate = DateTime.Now.AddYears(-1);
 
         // Act
-        var result = async () => await _sut.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetHistoricalDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -101,11 +89,9 @@ public sealed class YahooClientTests
     public async Task GetDividendData_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
-        var startDate = DateTime.Now.AddYears(-1);
 
         // Act
-        var result = async () => await _sut.GetDividendDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetDividendDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -115,11 +101,9 @@ public sealed class YahooClientTests
     public async Task GetStockSplitData_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
-        var startDate = DateTime.Now.AddYears(-1);
 
         // Act
-        var result = async () => await _sut.GetStockSplitDataAsync(symbol, DataFrequency.Daily, startDate);
+        var result = async () => await _sut.GetStockSplitDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -141,10 +125,9 @@ public sealed class YahooClientTests
     public async Task GetStockRecommendations_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetStockRecommendationsAsync(symbol);
+        var result = async () => await _sut.GetStockRecommendationsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -154,10 +137,9 @@ public sealed class YahooClientTests
     public async Task GetStockRecommendations_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetStockRecommendationsAsync(symbol);
+        var result = async () => await _sut.GetStockRecommendationsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -167,10 +149,9 @@ public sealed class YahooClientTests
     public async Task GetKeyStatistics_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetKeyStatisticsAsync(symbol);
+        var result = async () => await _sut.GetKeyStatisticsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -180,10 +161,9 @@ public sealed class YahooClientTests
     public async Task GetKeyStatistics_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetKeyStatisticsAsync(symbol);
+        var result = async () => await _sut.GetKeyStatisticsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -193,10 +173,9 @@ public sealed class YahooClientTests
     public async Task GetSummaryDetails_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetSummaryDetailsAsync(symbol);
+        var result = async () => await _sut.GetSummaryDetailsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -206,10 +185,9 @@ public sealed class YahooClientTests
     public async Task GetSummaryDetails_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetSummaryDetailsAsync(symbol);
+        var result = async () => await _sut.GetSummaryDetailsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -219,10 +197,9 @@ public sealed class YahooClientTests
     public async Task GetInsiderHolders_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetInsiderHoldersAsync(symbol);
+        var result = async () => await _sut.GetInsiderHoldersAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -232,10 +209,9 @@ public sealed class YahooClientTests
     public async Task GetInsiderHolders_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetInsiderHoldersAsync(symbol);
+        var result = async () => await _sut.GetInsiderHoldersAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -245,10 +221,9 @@ public sealed class YahooClientTests
     public async Task GetInsiderTransactions_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetInsiderTransactionsAsync(symbol);
+        var result = async () => await _sut.GetInsiderTransactionsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -258,10 +233,9 @@ public sealed class YahooClientTests
     public async Task GetInsiderTransactions_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetInsiderTransactionsAsync(symbol);
+        var result = async () => await _sut.GetInsiderTransactionsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -271,10 +245,9 @@ public sealed class YahooClientTests
     public async Task GetFinancialData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetFinancialDataAsync(symbol);
+        var result = async () => await _sut.GetFinancialDataAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -284,10 +257,9 @@ public sealed class YahooClientTests
     public async Task GetFinancialData_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetFinancialDataAsync(symbol);
+        var result = async () => await _sut.GetFinancialDataAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -297,10 +269,9 @@ public sealed class YahooClientTests
     public async Task GetInstitutionOwnership_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetInstitutionOwnershipAsync(symbol);
+        var result = async () => await _sut.GetInstitutionOwnershipAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -310,10 +281,9 @@ public sealed class YahooClientTests
     public async Task GetInstitutionOwnership_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetInstitutionOwnershipAsync(symbol);
+        var result = async () => await _sut.GetInstitutionOwnershipAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -323,10 +293,9 @@ public sealed class YahooClientTests
     public async Task GetFundOwnership_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetFundOwnershipAsync(symbol);
+        var result = async () => await _sut.GetFundOwnershipAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -336,10 +305,9 @@ public sealed class YahooClientTests
     public async Task GetFundOwnership_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetFundOwnershipAsync(symbol);
+        var result = async () => await _sut.GetFundOwnershipAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -349,10 +317,9 @@ public sealed class YahooClientTests
     public async Task GetMajorDirectHolders_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetMajorDirectHoldersAsync(symbol);
+        var result = async () => await _sut.GetMajorDirectHoldersAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -362,10 +329,9 @@ public sealed class YahooClientTests
     public async Task GetMajorDirectHolders_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetMajorDirectHoldersAsync(symbol);
+        var result = async () => await _sut.GetMajorDirectHoldersAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -375,10 +341,9 @@ public sealed class YahooClientTests
     public async Task GetSecFilings_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetSecFilingsAsync(symbol);
+        var result = async () => await _sut.GetSecFilingsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -388,10 +353,9 @@ public sealed class YahooClientTests
     public async Task GetSecFilings_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetSecFilingsAsync(symbol);
+        var result = async () => await _sut.GetSecFilingsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -401,10 +365,9 @@ public sealed class YahooClientTests
     public async Task GetInsights_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetInsightsAsync(symbol);
+        var result = async () => await _sut.GetInsightsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -414,10 +377,9 @@ public sealed class YahooClientTests
     public async Task GetInsights_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetInsightsAsync(symbol);
+        var result = async () => await _sut.GetInsightsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -427,10 +389,9 @@ public sealed class YahooClientTests
     public async Task GetMajorHoldersBreakdown_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetMajorHoldersBreakdownAsync(symbol);
+        var result = async () => await _sut.GetMajorHoldersBreakdownAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -440,10 +401,9 @@ public sealed class YahooClientTests
     public async Task GetMajorHoldersBreakdown_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetMajorHoldersBreakdownAsync(symbol);
+        var result = async () => await _sut.GetMajorHoldersBreakdownAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -453,10 +413,9 @@ public sealed class YahooClientTests
     public async Task GetUpgradeDowngradeHistory_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetUpgradeDowngradeHistoryAsync(symbol);
+        var result = async () => await _sut.GetUpgradeDowngradeHistoryAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -466,10 +425,9 @@ public sealed class YahooClientTests
     public async Task GetUpgradeDowngradeHistory_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetUpgradeDowngradeHistoryAsync(symbol);
+        var result = async () => await _sut.GetUpgradeDowngradeHistoryAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -479,10 +437,9 @@ public sealed class YahooClientTests
     public async Task GetEsgScores_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetEsgScoresAsync(symbol);
+        var result = async () => await _sut.GetEsgScoresAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -492,10 +449,9 @@ public sealed class YahooClientTests
     public async Task GetEsgScores_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetEsgScoresAsync(symbol);
+        var result = async () => await _sut.GetEsgScoresAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -505,10 +461,9 @@ public sealed class YahooClientTests
     public async Task GetRecommendationTrend_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetRecommendationTrendAsync(symbol);
+        var result = async () => await _sut.GetRecommendationTrendAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -518,10 +473,9 @@ public sealed class YahooClientTests
     public async Task GetRecommendationTrend_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetRecommendationTrendAsync(symbol);
+        var result = async () => await _sut.GetRecommendationTrendAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -531,10 +485,9 @@ public sealed class YahooClientTests
     public async Task GetIndexTrend_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetIndexTrendAsync(symbol);
+        var result = async () => await _sut.GetIndexTrendAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -544,10 +497,9 @@ public sealed class YahooClientTests
     public async Task GetIndexTrend_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetIndexTrendAsync(symbol);
+        var result = async () => await _sut.GetIndexTrendAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -557,10 +509,9 @@ public sealed class YahooClientTests
     public async Task GetSectorTrend_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetSectorTrendAsync(symbol);
+        var result = async () => await _sut.GetSectorTrendAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -570,10 +521,9 @@ public sealed class YahooClientTests
     public async Task GetSectorTrend_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetSectorTrendAsync(symbol);
+        var result = async () => await _sut.GetSectorTrendAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -583,10 +533,9 @@ public sealed class YahooClientTests
     public async Task GetEarningsTrend_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetEarningsTrendAsync(symbol);
+        var result = async () => await _sut.GetEarningsTrendAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -596,10 +545,9 @@ public sealed class YahooClientTests
     public async Task GetEarningsTrend_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetEarningsTrendAsync(symbol);
+        var result = async () => await _sut.GetEarningsTrendAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -609,10 +557,9 @@ public sealed class YahooClientTests
     public async Task GetAssetProfile_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetAssetProfileAsync(symbol);
+        var result = async () => await _sut.GetAssetProfileAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -622,10 +569,9 @@ public sealed class YahooClientTests
     public async Task GetAssetProfile_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetAssetProfileAsync(symbol);
+        var result = async () => await _sut.GetAssetProfileAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -635,10 +581,9 @@ public sealed class YahooClientTests
     public async Task GetFundProfile_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetFundProfileAsync(symbol);
+        var result = async () => await _sut.GetFundProfileAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -648,10 +593,9 @@ public sealed class YahooClientTests
     public async Task GetFundProfile_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetFundProfileAsync(symbol);
+        var result = async () => await _sut.GetFundProfileAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -661,10 +605,9 @@ public sealed class YahooClientTests
     public async Task GetCalendarEvents_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetCalendarEventsAsync(symbol);
+        var result = async () => await _sut.GetCalendarEventsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -674,10 +617,9 @@ public sealed class YahooClientTests
     public async Task GetCalendarEvents_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetCalendarEventsAsync(symbol);
+        var result = async () => await _sut.GetCalendarEventsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -687,10 +629,9 @@ public sealed class YahooClientTests
     public async Task GetEarnings_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetEarningsAsync(symbol);
+        var result = async () => await _sut.GetEarningsAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -700,10 +641,9 @@ public sealed class YahooClientTests
     public async Task GetEarnings_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetEarningsAsync(symbol);
+        var result = async () => await _sut.GetEarningsAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -713,10 +653,9 @@ public sealed class YahooClientTests
     public async Task GetBalanceSheetHistory_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetBalanceSheetHistoryAsync(symbol);
+        var result = async () => await _sut.GetBalanceSheetHistoryAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -726,10 +665,9 @@ public sealed class YahooClientTests
     public async Task GetBalanceSheetHistory_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetBalanceSheetHistoryAsync(symbol);
+        var result = async () => await _sut.GetBalanceSheetHistoryAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -739,10 +677,9 @@ public sealed class YahooClientTests
     public async Task GetCashflowStatementHistory_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetCashflowStatementHistoryAsync(symbol);
+        var result = async () => await _sut.GetCashflowStatementHistoryAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -752,10 +689,9 @@ public sealed class YahooClientTests
     public async Task GetCashflowStatementHistory_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetCashflowStatementHistoryAsync(symbol);
+        var result = async () => await _sut.GetCashflowStatementHistoryAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -765,10 +701,9 @@ public sealed class YahooClientTests
     public async Task GetIncomeStatementHistory_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetIncomeStatementHistoryAsync(symbol);
+        var result = async () => await _sut.GetIncomeStatementHistoryAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -778,10 +713,9 @@ public sealed class YahooClientTests
     public async Task GetIncomeStatementHistory_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetIncomeStatementHistoryAsync(symbol);
+        var result = async () => await _sut.GetIncomeStatementHistoryAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -791,10 +725,9 @@ public sealed class YahooClientTests
     public async Task GetEarningsHistory_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetEarningsHistoryAsync(symbol);
+        var result = async () => await _sut.GetEarningsHistoryAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -804,10 +737,9 @@ public sealed class YahooClientTests
     public async Task GetEarningsHistory_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetEarningsHistoryAsync(symbol);
+        var result = async () => await _sut.GetEarningsHistoryAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -817,10 +749,9 @@ public sealed class YahooClientTests
     public async Task GetQuoteType_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetQuoteTypeAsync(symbol);
+        var result = async () => await _sut.GetQuoteTypeAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -830,10 +761,9 @@ public sealed class YahooClientTests
     public async Task GetQuoteType_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetQuoteTypeAsync(symbol);
+        var result = async () => await _sut.GetQuoteTypeAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -843,10 +773,9 @@ public sealed class YahooClientTests
     public async Task GetPriceInfo_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetPriceInfoAsync(symbol);
+        var result = async () => await _sut.GetPriceInfoAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -856,10 +785,9 @@ public sealed class YahooClientTests
     public async Task GetPriceInfo_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetPriceInfoAsync(symbol);
+        var result = async () => await _sut.GetPriceInfoAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -869,10 +797,9 @@ public sealed class YahooClientTests
     public async Task GetNetSharePurchaseActivity_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetNetSharePurchaseActivityAsync(symbol);
+        var result = async () => await _sut.GetNetSharePurchaseActivityAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -882,10 +809,9 @@ public sealed class YahooClientTests
     public async Task GetNetSharePurchaseActivity_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetNetSharePurchaseActivityAsync(symbol);
+        var result = async () => await _sut.GetNetSharePurchaseActivityAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -895,10 +821,9 @@ public sealed class YahooClientTests
     public async Task GetIncomeStatementHistoryQuarterly_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetIncomeStatementHistoryQuarterlyAsync(symbol);
+        var result = async () => await _sut.GetIncomeStatementHistoryQuarterlyAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -908,10 +833,9 @@ public sealed class YahooClientTests
     public async Task GetIncomeStatementHistoryQuarterly_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetIncomeStatementHistoryQuarterlyAsync(symbol);
+        var result = async () => await _sut.GetIncomeStatementHistoryQuarterlyAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -921,10 +845,9 @@ public sealed class YahooClientTests
     public async Task GetCashflowStatementHistoryQuarterly_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetCashflowStatementHistoryQuarterlyAsync(symbol);
+        var result = async () => await _sut.GetCashflowStatementHistoryQuarterlyAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -934,10 +857,9 @@ public sealed class YahooClientTests
     public async Task GetCashflowStatementHistoryQuarterly_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetCashflowStatementHistoryQuarterlyAsync(symbol);
+        var result = async () => await _sut.GetCashflowStatementHistoryQuarterlyAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -947,10 +869,9 @@ public sealed class YahooClientTests
     public async Task GetBalanceSheetHistoryQuarterly_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetBalanceSheetHistoryQuarterlyAsync(symbol);
+        var result = async () => await _sut.GetBalanceSheetHistoryQuarterlyAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -960,10 +881,9 @@ public sealed class YahooClientTests
     public async Task GetBalanceSheetHistoryQuarterly_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetBalanceSheetHistoryQuarterlyAsync(symbol);
+        var result = async () => await _sut.GetBalanceSheetHistoryQuarterlyAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -973,10 +893,9 @@ public sealed class YahooClientTests
     public async Task GetChartInfo_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetChartInfoAsync(BadSymbol, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -986,10 +905,9 @@ public sealed class YahooClientTests
     public async Task GetChartInfo_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetChartInfoAsync(EmptySymbol, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -999,10 +917,9 @@ public sealed class YahooClientTests
     public async Task GetSparkChartInfo_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetSparkChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetSparkChartInfoAsync(BadSymbol, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -1012,10 +929,9 @@ public sealed class YahooClientTests
     public async Task GetSparkChartInfo_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetSparkChartInfoAsync(symbol, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetSparkChartInfoAsync(EmptySymbol, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -1051,10 +967,9 @@ public sealed class YahooClientTests
     public async Task GetRealTimeQuotes_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
-        var symbol = "OOPLES";
 
         // Act
-        var result = async () => await _sut.GetRealTimeQuotesAsync(symbol);
+        var result = async () => await _sut.GetRealTimeQuotesAsync(BadSymbol);
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
@@ -1064,10 +979,9 @@ public sealed class YahooClientTests
     public async Task GetRealTimeQuotes_ThrowsException_WhenEmptySymbolIsUsed()
     {
         // Arrange
-        var symbol = "";
 
         // Act
-        var result = async () => await _sut.GetRealTimeQuotesAsync(symbol);
+        var result = async () => await _sut.GetRealTimeQuotesAsync(EmptySymbol);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");

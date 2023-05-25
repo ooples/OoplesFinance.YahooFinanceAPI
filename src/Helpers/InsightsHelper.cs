@@ -1,4 +1,6 @@
-﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
+﻿using Microsoft.VisualBasic;
+
+namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal class InsightsHelper : YahooJsonBase
 {
@@ -12,6 +14,11 @@ internal class InsightsHelper : YahooJsonBase
     {
         var insights = JsonConvert.DeserializeObject<InsightsData>(jsonData);
 
-        return insights != null ? Enumerable.Cast<T>(new InsightsResult[] { insights.Finance.Result }) : Enumerable.Empty<T>();
+        if (insights == null || !insights.Finance.Result.Reports.Any())
+        {
+            throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
+        }
+
+        return new[] { insights.Finance.Result }.Cast<T>();
     }
 }

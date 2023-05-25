@@ -98,19 +98,15 @@ internal static class DownloadHelper
             }
             else
             {
-                // Handle failure
-                if (response.StatusCode == HttpStatusCode.NotFound)
+                throw response.StatusCode switch
                 {
-                    throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized || response.StatusCode == HttpStatusCode.Forbidden)
-                {
-                    throw new InvalidOperationException("Yahoo Finance Authentication Error");
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unspecified Error Occurred");
-                }
+                    // Handle failure
+                    HttpStatusCode.NotFound => new InvalidOperationException(
+                        "Requested Information Not Available On Yahoo Finance"),
+                    HttpStatusCode.Unauthorized => new InvalidOperationException("Yahoo Finance Authentication Error"),
+                    HttpStatusCode.Forbidden => new InvalidOperationException("Yahoo Finance Authentication Error"),
+                    _ => new InvalidOperationException("Unspecified Error Occurred")
+                };
             }
         }
     }

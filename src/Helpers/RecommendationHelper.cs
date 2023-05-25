@@ -11,6 +11,12 @@ internal class RecommendationHelper : YahooJsonBase
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
         var rawRecommendData = JsonConvert.DeserializeObject<RecommendData>(jsonData);
+        var rawResults = rawRecommendData?.Finance.Results;
+
+        if (rawResults == null || !rawResults.Any())
+        {
+            throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
+        }
 
         return rawRecommendData != null ? (IEnumerable<T>)rawRecommendData.Finance.Results.First().RecommendedSymbols : Enumerable.Empty<T>();
     }
