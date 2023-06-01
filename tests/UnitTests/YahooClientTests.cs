@@ -4,13 +4,21 @@ public sealed class YahooClientTests
 {
     private readonly YahooClient _sut;
     private const string BadSymbol = "OOPLES";
-    private const string EmptySymbol = "";
+    private const string GoodSymbol = "MSFT";
+    private const int ValidCount = 10;
+    private const int InvalidCount = -1;
     private readonly DateTime _startDate;
+    private readonly IEnumerable<string> _emptySymbols;
+    private readonly IEnumerable<string> _tooManySymbols;
+    private readonly IEnumerable<string> _goodSymbols;
 
     public YahooClientTests()
     {
         _sut = new YahooClient();
         _startDate = DateTime.Now.AddYears(-1);
+        _emptySymbols = Enumerable.Empty<string>();
+        _tooManySymbols = Enumerable.Repeat(GoodSymbol, 255);
+        _goodSymbols = Enumerable.Repeat(GoodSymbol, 50);
     }
 
     [Fact]
@@ -26,6 +34,18 @@ public sealed class YahooClientTests
     }
 
     [Fact]
+    public async Task GetHistoricalData_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetHistoricalDataAsync(GoodSymbol, DataFrequency.Daily, _startDate);
+
+        // Assert
+        result.Should().NotBeEmpty();
+    }
+
+    [Fact]
     public async Task GetStockSplitData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
@@ -38,6 +58,18 @@ public sealed class YahooClientTests
     }
 
     [Fact]
+    public async Task GetStockSplitData_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStockSplitDataAsync(GoodSymbol, DataFrequency.Daily, _startDate);
+
+        // Assert
+        result.Should().NotBeEmpty();
+    }
+
+    [Fact]
     public async Task GetDividendData_ThrowsException_WhenNoSymbolIsFound()
     {
         // Arrange
@@ -47,6 +79,18 @@ public sealed class YahooClientTests
 
         // Assert
         await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+    }
+
+    [Fact]
+    public async Task GetDividendData_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetDividendDataAsync(GoodSymbol, DataFrequency.Daily, _startDate);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -67,10 +111,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetCapitalGainDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
+        var result = async () => await _sut.GetCapitalGainDataAsync(string.Empty, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetCapitalGainData_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetCapitalGainDataAsync(GoodSymbol, DataFrequency.Daily, _startDate);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -79,7 +135,7 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetHistoricalDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
+        var result = async () => await _sut.GetHistoricalDataAsync(string.Empty, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -91,7 +147,7 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetDividendDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
+        var result = async () => await _sut.GetDividendDataAsync(string.Empty, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -103,7 +159,7 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStockSplitDataAsync(EmptySymbol, DataFrequency.Daily, _startDate);
+        var result = async () => await _sut.GetStockSplitDataAsync(string.Empty, DataFrequency.Daily, _startDate);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
@@ -115,7 +171,19 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, -1);
+        var result = async () => await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, InvalidCount);
+
+        // Assert
+        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopTrendingStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = async () => await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, ValidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
@@ -139,10 +207,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStockRecommendationsAsync(EmptySymbol);
+        var result = async () => await _sut.GetStockRecommendationsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetStockRecommendations_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStockRecommendationsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -163,10 +243,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetKeyStatisticsAsync(EmptySymbol);
+        var result = async () => await _sut.GetKeyStatisticsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetKeyStatistics_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetKeyStatisticsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -187,10 +279,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetSummaryDetailsAsync(EmptySymbol);
+        var result = async () => await _sut.GetSummaryDetailsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetSummaryDetails_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSummaryDetailsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -211,10 +315,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetInsiderHoldersAsync(EmptySymbol);
+        var result = async () => await _sut.GetInsiderHoldersAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetInsiderHolders_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetInsiderHoldersAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -235,10 +351,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetInsiderTransactionsAsync(EmptySymbol);
+        var result = async () => await _sut.GetInsiderTransactionsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetInsiderTransactions_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetInsiderTransactionsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -259,10 +387,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetFinancialDataAsync(EmptySymbol);
+        var result = async () => await _sut.GetFinancialDataAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetFinancialData_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetFinancialDataAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -283,10 +423,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetInstitutionOwnershipAsync(EmptySymbol);
+        var result = async () => await _sut.GetInstitutionOwnershipAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetInstitutionOwnership_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetInstitutionOwnershipAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -307,10 +459,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetFundOwnershipAsync(EmptySymbol);
+        var result = async () => await _sut.GetFundOwnershipAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetFundOwnership_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetFundOwnershipAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -331,10 +495,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMajorDirectHoldersAsync(EmptySymbol);
+        var result = async () => await _sut.GetMajorDirectHoldersAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetMajorDirectHolders_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMajorDirectHoldersAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -355,10 +531,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetSecFilingsAsync(EmptySymbol);
+        var result = async () => await _sut.GetSecFilingsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetSecFilings_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSecFilingsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -379,10 +567,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetInsightsAsync(EmptySymbol);
+        var result = async () => await _sut.GetInsightsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetInsights_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetInsightsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -403,10 +603,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMajorHoldersBreakdownAsync(EmptySymbol);
+        var result = async () => await _sut.GetMajorHoldersBreakdownAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetMajorHoldersBreakdown_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMajorHoldersBreakdownAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -427,10 +639,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetUpgradeDowngradeHistoryAsync(EmptySymbol);
+        var result = async () => await _sut.GetUpgradeDowngradeHistoryAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetUpgradeDowngradeHistory_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetUpgradeDowngradeHistoryAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -451,10 +675,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetEsgScoresAsync(EmptySymbol);
+        var result = async () => await _sut.GetEsgScoresAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetEsgScores_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetEsgScoresAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -475,10 +711,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetRecommendationTrendAsync(EmptySymbol);
+        var result = async () => await _sut.GetRecommendationTrendAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetRecommendationTrend_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetRecommendationTrendAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -499,10 +747,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetIndexTrendAsync(EmptySymbol);
+        var result = async () => await _sut.GetIndexTrendAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetIndexTrend_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetIndexTrendAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -523,10 +783,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetSectorTrendAsync(EmptySymbol);
+        var result = async () => await _sut.GetSectorTrendAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetSectorTrend_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSectorTrendAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -547,10 +819,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetEarningsTrendAsync(EmptySymbol);
+        var result = async () => await _sut.GetEarningsTrendAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetEarningsTrend_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetEarningsTrendAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -571,10 +855,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetAssetProfileAsync(EmptySymbol);
+        var result = async () => await _sut.GetAssetProfileAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetAssetProfile_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetAssetProfileAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -595,10 +891,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetFundProfileAsync(EmptySymbol);
+        var result = async () => await _sut.GetFundProfileAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetFundProfile_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetFundProfileAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -619,10 +927,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetCalendarEventsAsync(EmptySymbol);
+        var result = async () => await _sut.GetCalendarEventsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetCalendarEvents_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetCalendarEventsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -643,10 +963,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetEarningsAsync(EmptySymbol);
+        var result = async () => await _sut.GetEarningsAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetEarnings_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetEarningsAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -667,10 +999,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetBalanceSheetHistoryAsync(EmptySymbol);
+        var result = async () => await _sut.GetBalanceSheetHistoryAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetBalanceSheetHistory_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetBalanceSheetHistoryAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -691,10 +1035,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetCashflowStatementHistoryAsync(EmptySymbol);
+        var result = async () => await _sut.GetCashflowStatementHistoryAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetCashflowStatementHistory_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetCashflowStatementHistoryAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -715,10 +1071,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetIncomeStatementHistoryAsync(EmptySymbol);
+        var result = async () => await _sut.GetIncomeStatementHistoryAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetIncomeStatementHistory_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetIncomeStatementHistoryAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -739,10 +1107,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetEarningsHistoryAsync(EmptySymbol);
+        var result = async () => await _sut.GetEarningsHistoryAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetEarningsHistory_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetEarningsHistoryAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -763,10 +1143,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetQuoteTypeAsync(EmptySymbol);
+        var result = async () => await _sut.GetQuoteTypeAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetQuoteType_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetQuoteTypeAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -787,10 +1179,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetPriceInfoAsync(EmptySymbol);
+        var result = async () => await _sut.GetPriceInfoAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetPriceInfo_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetPriceInfoAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -811,10 +1215,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetNetSharePurchaseActivityAsync(EmptySymbol);
+        var result = async () => await _sut.GetNetSharePurchaseActivityAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetNetSharePurchaseActivity_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetNetSharePurchaseActivityAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -835,10 +1251,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetIncomeStatementHistoryQuarterlyAsync(EmptySymbol);
+        var result = async () => await _sut.GetIncomeStatementHistoryQuarterlyAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetIncomeStatementHistoryQuarterly_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetIncomeStatementHistoryQuarterlyAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -859,10 +1287,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetCashflowStatementHistoryQuarterlyAsync(EmptySymbol);
+        var result = async () => await _sut.GetCashflowStatementHistoryQuarterlyAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetCashflowStatementHistoryQuarterly_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetCashflowStatementHistoryQuarterlyAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -883,10 +1323,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetBalanceSheetHistoryQuarterlyAsync(EmptySymbol);
+        var result = async () => await _sut.GetBalanceSheetHistoryQuarterlyAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetBalanceSheetHistoryQuarterly_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetBalanceSheetHistoryQuarterlyAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -907,10 +1359,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetChartInfoAsync(EmptySymbol, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetChartInfoAsync(string.Empty, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetChartInfo_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetChartInfoAsync(GoodSymbol, TimeRange._1Day, TimeInterval._1Minute);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -931,20 +1395,31 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetSparkChartInfoAsync(EmptySymbol, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetSparkChartInfoAsync(string.Empty, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
     }
 
     [Fact]
+    public async Task GetSparkChartInfo_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSparkChartInfoAsync(GoodSymbol, TimeRange._1Day, TimeInterval._1Minute);
+
+        // Assert
+        result.Should().NotBeNull();
+    }
+
+    [Fact]
     public async Task GetSparkChartInfo_ThrowsException_WhenEmptySymbolListIsUsed()
     {
         // Arrange
-        var symbols = Enumerable.Empty<string>();
 
         // Act
-        var result = async () => await _sut.GetSparkChartInfoAsync(symbols, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetSparkChartInfoAsync(_emptySymbols, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Must Contain At Least One Symbol");
@@ -954,13 +1429,24 @@ public sealed class YahooClientTests
     public async Task GetSparkChartInfo_ThrowsException_WhenTooManySymbolsAreUsed()
     {
         // Arrange
-        var symbols = Enumerable.Repeat("AAPL", 255);
 
         // Act
-        var result = async () => await _sut.GetSparkChartInfoAsync(symbols, TimeRange._1Day, TimeInterval._1Minute);
+        var result = async () => await _sut.GetSparkChartInfoAsync(_tooManySymbols, TimeRange._1Day, TimeInterval._1Minute);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Can't Have More Than 250 Symbols");
+    }
+
+    [Fact]
+    public async Task GetSparkChartInfo_ReturnsData_WhenValidSymbolsListIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSparkChartInfoAsync(_goodSymbols, TimeRange._1Day, TimeInterval._1Minute);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -981,20 +1467,31 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetRealTimeQuotesAsync(EmptySymbol);
+        var result = async () => await _sut.GetRealTimeQuotesAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbol Parameter Can't Be Empty Or Null");
     }
 
     [Fact]
+    public async Task GetRealTimeQuotes_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetRealTimeQuotesAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeNull();
+    }
+
+    [Fact]
     public async Task GetRealTimeQuotes_ThrowsException_WhenEmptySymbolListIsUsed()
     {
         // Arrange
-        var symbols = Enumerable.Empty<string>();
 
         // Act
-        var result = async () => await _sut.GetRealTimeQuotesAsync(symbols);
+        var result = async () => await _sut.GetRealTimeQuotesAsync(_emptySymbols);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Must Contain At Least One Symbol");
@@ -1004,13 +1501,24 @@ public sealed class YahooClientTests
     public async Task GetRealTimeQuotes_ThrowsException_WhenTooManySymbolsAreUsed()
     {
         // Arrange
-        var symbols = Enumerable.Repeat("AAPL", 255);
 
         // Act
-        var result = async () => await _sut.GetRealTimeQuotesAsync(symbols);
+        var result = async () => await _sut.GetRealTimeQuotesAsync(_tooManySymbols);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Symbols Parameter Can't Have More Than 250 Symbols");
+    }
+
+    [Fact]
+    public async Task GetRealTimeQuotes_ReturnsData_WhenValidSymbolsListIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetRealTimeQuotesAsync(_goodSymbols);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -1029,13 +1537,24 @@ public sealed class YahooClientTests
     public async Task GetAutoCompleteInfo_ThrowsException_WhenEmptySearchTermIsUsed()
     {
         // Arrange
-        var searchTerm = "";
 
         // Act
-        var result = async () => await _sut.GetAutoCompleteInfoAsync(searchTerm);
+        var result = async () => await _sut.GetAutoCompleteInfoAsync(string.Empty);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("The Search Term Parameter Can't Be Empty Or Null");
+    }
+
+    [Fact]
+    public async Task GetAutoCompleteInfo_ReturnsData_WhenValidSymbolIsUsed()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetAutoCompleteInfoAsync(GoodSymbol);
+
+        // Assert
+        result.Should().NotBeEmpty();
     }
 
     [Fact]
@@ -1044,10 +1563,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopGainersAsync(-1);
+        var result = async () => await _sut.GetTopGainersAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopGainers_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopGainersAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1056,10 +1587,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopLosersAsync(-1);
+        var result = async () => await _sut.GetTopLosersAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopLosers_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopLosersAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1068,10 +1611,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetSmallCapGainersAsync(-1);
+        var result = async () => await _sut.GetSmallCapGainersAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetSmallCapGainers_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSmallCapGainersAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1080,10 +1635,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMostActiveStocksAsync(-1);
+        var result = async () => await _sut.GetMostActiveStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostActiveStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMostActiveStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1092,10 +1659,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetAggressiveSmallCapStocksAsync(-1);
+        var result = async () => await _sut.GetAggressiveSmallCapStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetAggressiveSmallCapStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetAggressiveSmallCapStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1104,10 +1683,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetConservativeForeignFundsAsync(-1);
+        var result = async () => await _sut.GetConservativeForeignFundsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetConservativeForeignFunds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetConservativeForeignFundsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1116,10 +1707,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetGrowthTechnologyStocksAsync(-1);
+        var result = async () => await _sut.GetGrowthTechnologyStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetGrowthTechnologyStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetGrowthTechnologyStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1128,10 +1731,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetHighYieldBondsAsync(-1);
+        var result = async () => await _sut.GetHighYieldBondsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetHighYieldBonds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetHighYieldBondsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1140,10 +1755,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMostShortedStocksAsync(-1);
+        var result = async () => await _sut.GetMostShortedStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostShortedStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMostShortedStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1152,10 +1779,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetPortfolioAnchorsAsync(-1);
+        var result = async () => await _sut.GetPortfolioAnchorsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetPortfolioAnchors_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetPortfolioAnchorsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1164,10 +1803,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetSolidLargeGrowthFundsAsync(-1);
+        var result = async () => await _sut.GetSolidLargeGrowthFundsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetSolidLargeGrowthFunds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSolidLargeGrowthFundsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1176,10 +1827,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetSolidMidcapGrowthFundsAsync(-1);
+        var result = async () => await _sut.GetSolidMidcapGrowthFundsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetSolidMidcapGrowthFunds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetSolidMidcapGrowthFundsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1188,10 +1851,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopMutualFundsAsync(-1);
+        var result = async () => await _sut.GetTopMutualFundsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopMutualFunds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopMutualFundsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1200,10 +1875,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetUndervaluedGrowthStocksAsync(-1);
+        var result = async () => await _sut.GetUndervaluedGrowthStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetUndervaluedGrowthStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetUndervaluedGrowthStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1212,10 +1899,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetUndervaluedLargeCapStocksAsync(-1);
+        var result = async () => await _sut.GetUndervaluedLargeCapStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetUndervaluedLargeCapStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetUndervaluedLargeCapStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1224,10 +1923,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetUndervaluedWideMoatStocksAsync(-1);
+        var result = async () => await _sut.GetUndervaluedWideMoatStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetUndervaluedWideMoatStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetUndervaluedWideMoatStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1236,10 +1947,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMorningstarFiveStarStocksAsync(-1);
+        var result = async () => await _sut.GetMorningstarFiveStarStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMorningstarFiveStarStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMorningstarFiveStarStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1248,10 +1971,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStrongUndervaluedStocksAsync(-1);
+        var result = async () => await _sut.GetStrongUndervaluedStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStrongUndervaluedStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStrongUndervaluedStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1260,10 +1995,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetAnalystStrongBuyStocksAsync(-1);
+        var result = async () => await _sut.GetAnalystStrongBuyStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetAnalystStrongBuyStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetAnalystStrongBuyStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1272,10 +2019,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetLatestAnalystUpgradedStocksAsync(-1);
+        var result = async () => await _sut.GetLatestAnalystUpgradedStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetLatestAnalystUpgradedStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetLatestAnalystUpgradedStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1284,10 +2043,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMostInstitutionallyBoughtLargeCapStocksAsync(-1);
+        var result = async () => await _sut.GetMostInstitutionallyBoughtLargeCapStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostInstitutionallyBoughtLargeCapStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMostInstitutionallyBoughtLargeCapStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1296,10 +2067,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMostInstitutionallyHeldLargeCapStocksAsync(-1);
+        var result = async () => await _sut.GetMostInstitutionallyHeldLargeCapStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostInstitutionallyHeldLargeCapStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMostInstitutionallyHeldLargeCapStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1308,10 +2091,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetMostInstitutionallySoldLargeCapStocksAsync(-1);
+        var result = async () => await _sut.GetMostInstitutionallySoldLargeCapStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetMostInstitutionallySoldLargeCapStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetMostInstitutionallySoldLargeCapStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1320,10 +2115,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStocksWithMostInstitutionalBuyersAsync(-1);
+        var result = async () => await _sut.GetStocksWithMostInstitutionalBuyersAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksWithMostInstitutionalBuyers_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStocksWithMostInstitutionalBuyersAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1332,10 +2139,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStocksWithMostInstitutionalSellersAsync(-1);
+        var result = async () => await _sut.GetStocksWithMostInstitutionalSellersAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksWithMostInstitutionalSellers_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStocksWithMostInstitutionalSellersAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1344,10 +2163,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStocksMostBoughtByHedgeFundsAsync(-1);
+        var result = async () => await _sut.GetStocksMostBoughtByHedgeFundsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtByHedgeFunds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStocksMostBoughtByHedgeFundsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1356,10 +2187,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStocksMostBoughtByPensionFundsAsync(-1);
+        var result = async () => await _sut.GetStocksMostBoughtByPensionFundsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtByPensionFunds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStocksMostBoughtByPensionFundsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1368,10 +2211,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStocksMostBoughtByPrivateEquityAsync(-1);
+        var result = async () => await _sut.GetStocksMostBoughtByPrivateEquityAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtByPrivateEquity_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStocksMostBoughtByPrivateEquityAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1380,10 +2235,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetStocksMostBoughtBySovereignWealthFundsAsync(-1);
+        var result = async () => await _sut.GetStocksMostBoughtBySovereignWealthFundsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetStocksMostBoughtBySovereignWealthFunds_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetStocksMostBoughtBySovereignWealthFundsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1392,10 +2259,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopStocksOwnedByCathieWoodAsync(-1);
+        var result = async () => await _sut.GetTopStocksOwnedByCathieWoodAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByCathieWood_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopStocksOwnedByCathieWoodAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1404,10 +2283,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopStocksOwnedByGoldmanSachsAsync(-1);
+        var result = async () => await _sut.GetTopStocksOwnedByGoldmanSachsAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByGoldmanSachs_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopStocksOwnedByGoldmanSachsAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1416,10 +2307,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopStocksOwnedByRayDalioAsync(-1);
+        var result = async () => await _sut.GetTopStocksOwnedByRayDalioAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByRayDalio_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopStocksOwnedByRayDalioAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1428,10 +2331,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopStocksOwnedByWarrenBuffetAsync(-1);
+        var result = async () => await _sut.GetTopStocksOwnedByWarrenBuffetAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopStocksOwnedByWarrenBuffet_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopStocksOwnedByWarrenBuffetAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1440,10 +2355,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopBearishStocksRightNowAsync(-1);
+        var result = async () => await _sut.GetTopBearishStocksRightNowAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopBearishStocksRightNow_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopBearishStocksRightNowAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1452,10 +2379,22 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopBullishStocksRightNowAsync(-1);
+        var result = async () => await _sut.GetTopBullishStocksRightNowAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopBullishStocksRightNow_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopBullishStocksRightNowAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -1464,9 +2403,21 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopUpsideBreakoutStocksAsync(-1);
+        var result = async () => await _sut.GetTopUpsideBreakoutStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+    }
+
+    [Fact]
+    public async Task GetTopUpsideBreakoutStocks_ReturnsData_WhenCountIsValid()
+    {
+        // Arrange
+
+        // Act
+        var result = await _sut.GetTopUpsideBreakoutStocksAsync(ValidCount);
+
+        // Assert
+        result.Should().NotBeNull();
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualBasic;
-
-namespace OoplesFinance.YahooFinanceAPI.Helpers;
+﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal class InsightsHelper : YahooJsonBase
 {
