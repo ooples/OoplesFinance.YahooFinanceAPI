@@ -234,7 +234,7 @@ public class NetIncome
 public class OtherCashflowsFromFinancingActivities
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")] 
     public string Fmt { get; set; } = string.Empty;
@@ -246,7 +246,7 @@ public class OtherCashflowsFromFinancingActivities
 public class OtherCashflowsFromInvestingActivities
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;

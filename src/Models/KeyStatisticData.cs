@@ -304,7 +304,7 @@ public class HeldPercentInstitutions
 public class ImpliedSharesOutstanding
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")]
     public object Fmt { get; set; } = new();
