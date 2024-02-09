@@ -87,9 +87,8 @@ internal static class DownloadHelper
         }
         else
         {
-            using var client = new HttpClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, urlString);
-            var response = await client.SendAsync(request);
+            using var client = CrumbHelper.Instance.GetHttpClient();   
+            var response = await client.GetAsync(urlString);
 
             if (response.IsSuccessStatusCode)
             {
