@@ -11,10 +11,10 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: Setup .NET 6.0.x
+    - name: Setup .NET 8.0.x
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '8.0.x'
 
     - name: Cache NuGet Packages
       uses: actions/cache@v3
@@ -23,9 +23,13 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
+          
     - name: Restore .NET Tools
       run: dotnet tool restore
       working-directory: ./tests/UnitTests
+
+    - name: Dotnet Test (Debug)
+      run: dotnet dotcover test --dcXML=Configuration.xml
 
     - name: Dotnet Build (Release)
       run: dotnet build -c Release
@@ -37,19 +41,18 @@ jobs:
         path: |
           src/bin/Release/*.nupkg
           src/bin/Release/*.snupkg
-          
-    #- name: Coveralls GitHub Action
-    #  uses: coverallsapp/github-action@1.1.3
-    #  with:
-    #    github-token: ${{ secrets.github_token }}
-    #    path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
 
+    - name: Send Coverage to Codacy
+      if: "${{env.CODACY_PROJECT_TOKEN != ''}}"
+      env:
+        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r OoplesFinance.YahooFinanceAPI.Coverage.xml
 
   publish-sdk:
     name: Publish SDK Binaries
     runs-on: ubuntu-latest
     needs: build
-    if: github.repository == 'ooples/OoplesFinance.YahooFinanceAPI' && startsWith(github.ref, 'refs/tags/sdk')
+    if: github.repository == 'ooples/OoplesFinance.YahooFinanceAPI'
 
     steps:
     - name: Load SDK Packages
@@ -59,6 +62,14 @@ jobs:
 
     - name: Create NuGet Version
       run: dotnet nuget push **.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
+
+    - name: Publish Github Packages
+      uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
+      with:
+        nupkg-path:  './artifacts/*.nupkg'
+        repo-owner:  'ooples'
+        gh-user:  'ooples'
+        token:  ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
