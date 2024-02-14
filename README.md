@@ -128,6 +128,3 @@ Patreon: [https://patreon.com/cheatcountry](https://patreon.com/cheatcountry)
 ### Support or Contact
 
 Email me at cheatcountry@gmail.com for any help or support or to let me know of ways to further improve this library.
-### Support or Contact
-
-Email me at cheatcountry@gmail.com for any help or support or to let me know of ways to further improve this library.

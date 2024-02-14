@@ -9,3 +9,4 @@ global using OoplesFinance.YahooFinanceAPI.Interfaces;
 global using System.Text.Json;
 global using Newtonsoft.Json;
 global using System.Text.Json.Nodes;
+global using System.Net.Http;

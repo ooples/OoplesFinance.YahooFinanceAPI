@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageParams>
+  <Filters>
+    <IncludeFilters>
+      <FilterEntry>
+        <ModuleMask>OoplesFinance.YahooFinanceAPI</ModuleMask>
+      </FilterEntry>
+    </IncludeFilters>
+  </Filters>
+  <Output>OoplesFinance.YahooFinanceAPI.Coverage.xml</Output>
+  <ReportType>DetailedXml</ReportType>
+</CoverageParams>
