@@ -97,6 +97,7 @@ internal static class DownloadHelper
             }
             else
             {
+                CrumbHelper.Instance.Destory();
                 throw response.StatusCode switch
                 {
                     // Handle failure

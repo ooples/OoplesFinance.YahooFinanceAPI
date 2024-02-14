@@ -1,5 +1,7 @@
 ﻿using System.Net.Http;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("OoplesFinance.YahooFinanceAPI.Tests.Unit")]
 namespace OoplesFinance.YahooFinanceAPI.Helpers
 {
     internal sealed class CrumbHelper
@@ -8,7 +10,8 @@ namespace OoplesFinance.YahooFinanceAPI.Helpers
         ///  Crumb value for the Yahoo Finance API
         /// </summary>
         internal readonly string Crumb;
-                
+
+        internal static HttpMessageHandler handler = new HttpClientHandler();
         private static List<string> cookies = new List<string>();
         private static CrumbHelper? _instance;
         CrumbHelper()
@@ -39,9 +42,13 @@ namespace OoplesFinance.YahooFinanceAPI.Helpers
             }
         }
 
+        internal void Destory()
+        {
+            _instance = null;
+        }
+
         public HttpClient GetHttpClient()
         {
-            HttpClientHandler handler = new HttpClientHandler();
             HttpClient client = new HttpClient(handler);            
             client.DefaultRequestHeaders.Add("Cookie", cookies);
             client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");

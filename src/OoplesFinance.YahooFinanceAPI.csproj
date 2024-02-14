@@ -132,6 +132,9 @@
     <EmbeddedResource Remove="src\**" />
     <None Remove="Images\**" />
     <None Remove="src\**" />
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>OoplesFinance.YahooFinanceAPI.Tests.Unit</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <ItemGroup>

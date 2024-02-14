@@ -1,3 +1,7 @@
+using Moq;
+using Moq.Contrib.HttpClient;
+using System.Net;
+
 namespace OoplesFinance.YahooFinanceAPI.Tests.Unit;
 
 public sealed class YahooClientTests
@@ -2421,4 +2425,35 @@ public sealed class YahooClientTests
         // Assert
         result.Should().NotBeNull();
     }
+
+    [Fact]
+    public void CreateCrumbHelpInstnace_ReturnCrumb()
+    {
+        // Arrange
+
+        // Act
+        var crumbHelperInstance = OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.Instance;
+
+        // Assert
+        crumbHelperInstance.Crumb.Should().NotBeNullOrEmpty();
+    }
+
+    [Fact]
+    public void CreateCrumHelpInstance_ThrowsException_WhenFetchCrumbFailed()
+    {
+        // Arrange
+        var mockHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+        mockHandler.SetupRequest(HttpMethod.Get, "https://login.yahoo.com/")
+            .ReturnsJsonResponse(HttpStatusCode.OK, "");
+        mockHandler.SetupRequest(HttpMethod.Get, "https://query1.finance.yahoo.com/v1/test/getcrumb")
+            .ReturnsJsonResponse(HttpStatusCode.OK,"");
+
+        //act
+        OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.handler = mockHandler.Object;
+        var ex = Record.Exception((() => OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.Instance));
+
+        //assert
+        ex.Message.Should().Be("Failed to get crumb");
+    }
+
 }
