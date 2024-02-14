@@ -85,7 +85,7 @@ public record TrendingStocksQuote(
     [property: JsonProperty("epsForward", NullValueHandling = NullValueHandling.Ignore)] double? EpsForward,
     [property: JsonProperty("epsCurrentYear", NullValueHandling = NullValueHandling.Ignore)] double? EpsCurrentYear,
     [property: JsonProperty("priceEpsCurrentYear", NullValueHandling = NullValueHandling.Ignore)] double? PriceEpsCurrentYear,
-    [property: JsonProperty("sharesOutstanding", NullValueHandling = NullValueHandling.Ignore)] int? SharesOutstanding,
+    [property: JsonProperty("sharesOutstanding", NullValueHandling = NullValueHandling.Ignore)] long? SharesOutstanding,
     [property: JsonProperty("bookValue", NullValueHandling = NullValueHandling.Ignore)] double? BookValue,
     [property: JsonProperty("fiftyDayAverage", NullValueHandling = NullValueHandling.Ignore)] double? FiftyDayAverage,
     [property: JsonProperty("fiftyDayAverageChange", NullValueHandling = NullValueHandling.Ignore)] double? FiftyDayAverageChange,

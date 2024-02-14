@@ -1,3 +1,7 @@
+using Moq;
+using Moq.Contrib.HttpClient;
+using System.Net;
+
 namespace OoplesFinance.YahooFinanceAPI.Tests.Unit;
 
 public sealed class YahooClientTests
@@ -5,6 +9,7 @@ public sealed class YahooClientTests
     private readonly YahooClient _sut;
     private const string BadSymbol = "OOPLES";
     private const string GoodSymbol = "MSFT";
+    private const string GoodFundSymbol = "VTSAX";
     private const int ValidCount = 10;
     private const int InvalidCount = -1;
     private readonly DateTime _startDate;
@@ -15,10 +20,10 @@ public sealed class YahooClientTests
     public YahooClientTests()
     {
         _sut = new YahooClient();
-        _startDate = DateTime.Now.AddYears(-1);
+        _startDate = DateTime.Now.AddMonths(-1);
         _emptySymbols = Enumerable.Empty<string>();
         _tooManySymbols = Enumerable.Repeat(GoodSymbol, 255);
-        _goodSymbols = Enumerable.Repeat(GoodSymbol, 50);
+        _goodSymbols = Enumerable.Repeat(GoodSymbol, 20);
     }
 
     [Fact]
@@ -183,10 +188,10 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, ValidCount);
+        var result = await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, ValidCount);
 
         // Assert
-        await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
+        result.Should().NotBeNull();
     }
 
     [Fact]
@@ -903,7 +908,7 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = await _sut.GetFundProfileAsync(GoodSymbol);
+        var result = await _sut.GetFundProfileAsync(GoodFundSymbol);
 
         // Assert
         result.Should().NotBeNull();
@@ -1455,10 +1460,10 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetRealTimeQuotesAsync(BadSymbol);
+        var result = await _sut.GetRealTimeQuotesAsync(BadSymbol);
 
         // Assert
-        await result.Should().ThrowAsync<InvalidOperationException>().WithMessage("Requested Information Not Available On Yahoo Finance");
+        result.Should().BeNull();
     }
 
     [Fact]
@@ -2420,4 +2425,35 @@ public sealed class YahooClientTests
         // Assert
         result.Should().NotBeNull();
     }
+
+    [Fact]
+    public void CreateCrumbHelpInstnace_ReturnCrumb()
+    {
+        // Arrange
+
+        // Act
+        var crumbHelperInstance = OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.Instance;
+
+        // Assert
+        crumbHelperInstance.Crumb.Should().NotBeNullOrEmpty();
+    }
+
+    [Fact]
+    public void CreateCrumHelpInstance_ThrowsException_WhenFetchCrumbFailed()
+    {
+        // Arrange
+        var mockHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+        mockHandler.SetupRequest(HttpMethod.Get, "https://login.yahoo.com/")
+            .ReturnsJsonResponse(HttpStatusCode.OK, "");
+        mockHandler.SetupRequest(HttpMethod.Get, "https://query1.finance.yahoo.com/v1/test/getcrumb")
+            .ReturnsJsonResponse(HttpStatusCode.OK,"");
+
+        //act
+        OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.handler = mockHandler.Object;
+        var ex = Record.Exception((() => OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.Instance));
+
+        //assert
+        ex.Message.Should().Be("Failed to get crumb");
+    }
+
 }

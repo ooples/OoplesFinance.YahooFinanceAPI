@@ -14,7 +14,7 @@ internal static class UrlHelper
     /// <param name="includeAdjClose"></param>
     /// <returns></returns>
     internal static string BuildYahooCsvUrl(string symbol, DataType dataType, DataFrequency dataFrequency, DateTime startDate, DateTime? endDate, bool includeAdjClose) => 
-        string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v7/finance/download/{symbol}?period1={startDate.ToUnixTimestamp()}" +
+        string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v7/finance/download/{symbol}?period1={startDate.ToUnixTimestamp()}" +
             $"&period2={(endDate ?? DateTime.Now).ToUnixTimestamp()}&interval={GetFrequencyString(dataFrequency)}&events={GetEventsString(dataType)}" +
             $"&includeAdjustedClose={includeAdjClose}");
 
@@ -103,8 +103,7 @@ internal static class UrlHelper
     /// <param name="module"></param>
     /// <returns></returns>
     internal static string BuildYahooStatsUrl(string symbol, Country country, Language language, YahooModule module) =>
-        string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v11/finance/quoteSummary/{symbol}?lang={GetLanguageString(language)}" +
-            $"&region={GetCountryString(country)}&modules={GetModuleString(module)}");
+        string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{symbol}?crumb={CrumbHelper.Instance.Crumb}&lang={GetLanguageString(language)}&region={GetCountryString(country)}&modules={GetModuleString(module)}");
 
     /// <summary>
     /// Creates a url that will be used to get real-time quotes for multiple symbols
@@ -114,8 +113,8 @@ internal static class UrlHelper
     /// <param name="language"></param>
     /// <returns></returns>
     internal static string BuildYahooRealTimeQuoteUrl(IEnumerable<string> symbols, Country country, Language language) =>
-        string.Format(CultureInfo.InvariantCulture, $"https://query1.finance.yahoo.com/v6/finance/quote?region=" +
-            $"{GetCountryString(country)}&lang={GetLanguageString(language)}&symbols={GetSymbolsString(symbols)}");
+        string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v7/finance/quote?region=" +
+            $"{GetCountryString(country)}&lang={GetLanguageString(language)}&symbols={GetSymbolsString(symbols)}&crumb={CrumbHelper.Instance.Crumb}");
 
     /// <summary>
     /// Returns a custom string for the symbols option
