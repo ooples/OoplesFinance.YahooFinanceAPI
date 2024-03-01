@@ -26,7 +26,7 @@ namespace OoplesFinance.YahooFinanceAPI.Helpers
 
         public async Task SetCrumbAsync()
         {
-            using var client = GetHttpClient();
+            var client = GetHttpClient();
             var loginResponse = await client.GetAsync("https://login.yahoo.com/");            
 
             if (loginResponse.IsSuccessStatusCode)
