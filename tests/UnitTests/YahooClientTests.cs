@@ -2456,5 +2456,8 @@ public sealed class YahooClientTests
         // Assert
         ex.Should().NotBeNull();
         ex.Message.Should().Be("Failed to get crumb");
+
+        OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.handler = new HttpClientHandler();
+        
     }
 }
