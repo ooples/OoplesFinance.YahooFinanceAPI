@@ -2427,36 +2427,37 @@ public sealed class YahooClientTests
     }
 
     [Fact]
-    public void CreateCrumbHelpInstnace_ReturnCrumb()
+    public async Task CreateCrumbHelpInstance_ReturnsValidCrumb()
     {
         // Arrange
 
         // Act
-        var crumbHelperInstance = OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.Instance;
+        var crumbHelperInstance = await Helpers.CrumbHelper.GetInstance();
 
         // Assert
         crumbHelperInstance.Crumb.Should().NotBeNullOrEmpty();
     }
 
     [Fact]
-    public void CreateCrumHelpInstance_ThrowsException_WhenFetchCrumbFailed()
+    public async Task CreateCrumbHelpInstance_ThrowsException_WhenFetchCrumbFailed()
     {
         // Arrange
-        var mockHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+        var mockHandler = new Mock<HttpMessageHandler>(MockBehavior.Default);
         mockHandler.SetupRequest(HttpMethod.Get, "https://login.yahoo.com/")
             .ReturnsJsonResponse(HttpStatusCode.OK, "");
         mockHandler.SetupRequest(HttpMethod.Get, "https://query1.finance.yahoo.com/v1/test/getcrumb")
-            .ReturnsJsonResponse(HttpStatusCode.OK,"");
+            .ReturnsJsonResponse(HttpStatusCode.OK, "");
 
-        //act
-        OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.handler = mockHandler.Object;
-        var ex = Record.Exception((() => OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.Instance));
+        // Act
+        Helpers.CrumbHelper.handler = mockHandler.Object;
+        using var client = Helpers.CrumbHelper.GetHttpClient();
+        var ex = await Record.ExceptionAsync(Helpers.CrumbHelper.GetInstance);
 
-        //assert
+        // Assert
+        ex.Should().NotBeNull();
         ex.Message.Should().Be("Failed to get crumb");
 
         OoplesFinance.YahooFinanceAPI.Helpers.CrumbHelper.handler = new HttpClientHandler();
         
     }
-
 }

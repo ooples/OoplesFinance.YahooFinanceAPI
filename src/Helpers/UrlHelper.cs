@@ -102,8 +102,9 @@ internal static class UrlHelper
     /// <param name="country"></param>
     /// <param name="module"></param>
     /// <returns></returns>
-    internal static string BuildYahooStatsUrl(string symbol, Country country, Language language, YahooModule module) =>
-        string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{symbol}?crumb={CrumbHelper.Instance.Crumb}&lang={GetLanguageString(language)}&region={GetCountryString(country)}&modules={GetModuleString(module)}");
+    internal static async Task<string> BuildYahooStatsUrl(string symbol, Country country, Language language, YahooModule module) =>
+        string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{symbol}" +
+            $"?crumb={(await CrumbHelper.GetInstance()).Crumb}&lang={GetLanguageString(language)}&region={GetCountryString(country)}&modules={GetModuleString(module)}");
 
     /// <summary>
     /// Creates a url that will be used to get real-time quotes for multiple symbols
@@ -112,9 +113,9 @@ internal static class UrlHelper
     /// <param name="country"></param>
     /// <param name="language"></param>
     /// <returns></returns>
-    internal static string BuildYahooRealTimeQuoteUrl(IEnumerable<string> symbols, Country country, Language language) =>
+    internal static async Task<string> BuildYahooRealTimeQuoteUrl(IEnumerable<string> symbols, Country country, Language language) =>
         string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v7/finance/quote?region=" +
-            $"{GetCountryString(country)}&lang={GetLanguageString(language)}&symbols={GetSymbolsString(symbols)}&crumb={CrumbHelper.Instance.Crumb}");
+            $"{GetCountryString(country)}&lang={GetLanguageString(language)}&symbols={GetSymbolsString(symbols)}&crumb={(await CrumbHelper.GetInstance()).Crumb}");
 
     /// <summary>
     /// Returns a custom string for the symbols option
