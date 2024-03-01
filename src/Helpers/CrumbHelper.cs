@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("OoplesFinance.YahooFinanceAPI.Tests.Unit")]
 namespace OoplesFinance.YahooFinanceAPI.Helpers
@@ -9,68 +8,79 @@ namespace OoplesFinance.YahooFinanceAPI.Helpers
         /// <summary>
         ///  Crumb value for the Yahoo Finance API
         /// </summary>
-        internal readonly string Crumb;
-
-        internal static HttpMessageHandler handler = new HttpClientHandler();
-        private static List<string> cookies = new List<string>();
+        internal string Crumb { get; private set; }
+        internal static HttpMessageHandler? handler;
+        private List<string> cookies = [];
         private static CrumbHelper? _instance;
+
         CrumbHelper()
         {
+            handler = new HttpClientHandler();
             Crumb = string.Empty;
+        }
 
-            HttpClient client = GetHttpClient();
-            
-            var loginResponse = client.GetAsync("https://login.yahoo.com/").Result;            
+        internal void Destroy()
+        {
+            _instance = null;
+        }
+
+        public async Task SetCrumbAsync()
+        {
+            using var client = GetHttpClient();
+            var loginResponse = await client.GetAsync("https://login.yahoo.com/");            
 
             if (loginResponse.IsSuccessStatusCode)
             {
-                var login = loginResponse.Content.ReadAsStringAsync().Result;
+                var login = await loginResponse.Content.ReadAsStringAsync();
                 if (loginResponse.Headers.TryGetValues(name: "Set-Cookie", out IEnumerable<string>? setCookie))
                 {
-                    cookies = setCookie.Where(c => c.ToLower().IndexOf("domain=.yahoo.com") != -1).ToList();                    
-                    var crumbResponse = client.GetAsync("https://query1.finance.yahoo.com/v1/test/getcrumb").Result;
+                    cookies = new List<string>(setCookie.Where(c => c.ToLower().IndexOf("domain=.yahoo.com") > 0));                   
+                    var crumbResponse = await client.GetAsync("https://query1.finance.yahoo.com/v1/test/getcrumb");
 
                     if (crumbResponse.IsSuccessStatusCode)
                     {
-                        Crumb = crumbResponse.Content.ReadAsStringAsync().Result;
+                        Crumb = await crumbResponse.Content.ReadAsStringAsync();
                     }
                 }
             }
+
             if (string.IsNullOrEmpty(Crumb))
             {
                 throw new Exception("Failed to get crumb");
             }
         }
 
-        internal void Destory()
+        public static HttpClient GetHttpClient()
         {
-            _instance = null;
-        }
-
-        public HttpClient GetHttpClient()
-        {
-            HttpClient client = new HttpClient(handler);            
-            client.DefaultRequestHeaders.Add("Cookie", cookies);
+            HttpClient client = new(handler ?? new HttpClientHandler());     
+            client.DefaultRequestHeaders.Add("Cookie", Instance.cookies);
             client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
             client.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
             client.DefaultRequestHeaders.Add("Connection", "keep-alive");
             client.DefaultRequestHeaders.Add("Pragma", "no-cache");
             client.DefaultRequestHeaders.Add("Upgrade-Insecure-Requests", "1");
+
             return client;
+        }
+
+        public static async Task<CrumbHelper> GetInstance()
+        {
+            if (string.IsNullOrEmpty(Instance.Crumb))
+            {
+                await Instance.SetCrumbAsync();
+            }
+
+            return Instance;
         }
 
         /// <summary>
         /// Single instance of the CrumbHelper
         /// </summary>        
-        public static CrumbHelper Instance
+        private static CrumbHelper Instance
         {
             get
             {
-                if (_instance == null)
-                {
-                    _instance = new CrumbHelper();
-                }
-                return _instance;
+                return _instance ??= new CrumbHelper();
             }
         }
     }

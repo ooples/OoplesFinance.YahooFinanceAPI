@@ -30,7 +30,7 @@ internal static class DownloadHelper
             }
         }
 
-        return Enumerable.Empty<string[]>();
+        return [];
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ internal static class DownloadHelper
         }
         else
         {
-            using var client = CrumbHelper.Instance.GetHttpClient();   
+            using var client = CrumbHelper.GetHttpClient();   
             var response = await client.GetAsync(urlString);
 
             if (response.IsSuccessStatusCode)
@@ -97,7 +97,8 @@ internal static class DownloadHelper
             }
             else
             {
-                CrumbHelper.Instance.Destory();
+                (await CrumbHelper.GetInstance()).Destroy();
+
                 throw response.StatusCode switch
                 {
                     // Handle failure
@@ -183,7 +184,7 @@ internal static class DownloadHelper
         }
         else
         {
-            return await DownloadRawDataAsync(BuildYahooSparkChartUrl(new string[] { symbol }, timeRange, timeInterval));
+            return await DownloadRawDataAsync(BuildYahooSparkChartUrl([symbol], timeRange, timeInterval));
         }
     }
 
@@ -228,7 +229,7 @@ internal static class DownloadHelper
         }
         else
         {
-            return await DownloadRawDataAsync(BuildYahooStatsUrl(symbol, country, language, module));
+            return await DownloadRawDataAsync(await BuildYahooStatsUrl(symbol, country, language, module));
         }
     }
 
@@ -248,7 +249,7 @@ internal static class DownloadHelper
         }
         else
         {
-            return await DownloadRawDataAsync(BuildYahooRealTimeQuoteUrl(new string[] { symbol }, country, language));
+            return await DownloadRawDataAsync(await BuildYahooRealTimeQuoteUrl([symbol], country, language));
         }
     }
 
@@ -272,7 +273,7 @@ internal static class DownloadHelper
         }
         else
         {
-            return await DownloadRawDataAsync(BuildYahooRealTimeQuoteUrl(symbols, country, language));
+            return await DownloadRawDataAsync(await BuildYahooRealTimeQuoteUrl(symbols, country, language));
         }
     }
 
@@ -314,7 +315,7 @@ internal static class DownloadHelper
     /// <returns></returns>
     internal static IEnumerable<string[]> GetBaseCsvData(string? csvData)
     {
-        IEnumerable<string[]> result = Enumerable.Empty<string[]>();
+        IEnumerable<string[]> result = [];
         var rows = csvData?.Split('\n');
 
         if (rows != null && rows.Length > 1)

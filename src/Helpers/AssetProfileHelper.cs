@@ -12,6 +12,6 @@ internal class AssetProfileHelper : YahooJsonBase
     {
         var assetProfile = JsonConvert.DeserializeObject<AssetProfileData>(jsonData);
 
-        return assetProfile != null ? (IEnumerable<T>)assetProfile.QuoteSummary.Results.Select(x => x.AssetProfile) : Enumerable.Empty<T>();
+        return assetProfile != null ? (IEnumerable<T>)assetProfile.QuoteSummary.Results.Select(x => x.AssetProfile) : [];
     }
 }
