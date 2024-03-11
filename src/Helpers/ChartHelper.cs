@@ -12,8 +12,14 @@ internal class ChartHelper : YahooJsonBase
     {
         var chartNodes = JsonNode.Parse(jsonData)!;
         var root = chartNodes["chart"]!["result"]![0];
-        var dates = root!["timestamp"]!.AsArray().Select(x => x!.GetValue<long>().FromUnixTimeStamp());
+        var dates = root!["timestamp"]?.AsArray().Select(x => x!.GetValue<long>().FromUnixTimeStamp());
         var indicatorRoot = root["indicators"]!["quote"]![0];
+
+        if (dates == null  || indicatorRoot == null || indicatorRoot.AsArray().Count == 0)
+        {
+            throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
+        }
+
         var closePrices = indicatorRoot!["close"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
         var openPrices = indicatorRoot!["open"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
         var lowPrices = indicatorRoot!["low"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
@@ -22,12 +28,12 @@ internal class ChartHelper : YahooJsonBase
 
         var result = new ChartData
         {
-            DateList = dates.ToList(),
-            CloseList = closePrices.ToList(),
-            OpenList = openPrices.ToList(),
-            HighList = highPrices.ToList(),
-            VolumeList = volumes.ToList(),
-            LowList = lowPrices.ToList()
+            DateList = new List<DateTime>(dates),
+            CloseList = new List<double>(closePrices),
+            OpenList = new List<double>(openPrices),
+            HighList = new List<double>(highPrices),
+            VolumeList = new List<double>(volumes),
+            LowList = new List<double>(lowPrices)
         };
 
         return new[] { result }.Cast<T>();
