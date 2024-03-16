@@ -12,6 +12,6 @@ internal class StocksOwnedHelper : YahooJsonBase
     {
         var stocksOwned = JsonConvert.DeserializeObject<StocksOwnedData>(jsonData);
 
-        return stocksOwned != null ? (IEnumerable<T>)stocksOwned.Finance.Results : Enumerable.Empty<T>();
+        return stocksOwned != null ? (IEnumerable<T>)stocksOwned.Finance.Results : [];
     }
 }

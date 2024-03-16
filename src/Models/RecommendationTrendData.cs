@@ -3,7 +3,7 @@
 public class RecommendationTrendQuoteSummary
 {
     [JsonProperty("result")]
-    public List<RecommendationTrendResult> Results { get; set; } = new();
+    public List<RecommendationTrendResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -12,7 +12,7 @@ public class RecommendationTrendQuoteSummary
 public class RecommendationTrend
 {
     [JsonProperty("trend")] 
-    public List<Trend> Trend { get; set; } = new();
+    public List<Trend> Trend { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }

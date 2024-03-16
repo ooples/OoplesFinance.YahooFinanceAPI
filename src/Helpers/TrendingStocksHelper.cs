@@ -12,6 +12,6 @@ internal class TrendingStocksHelper : YahooJsonBase
     {
         var trendingStocks = JsonConvert.DeserializeObject<TrendingStocksData>(jsonData);
 
-        return trendingStocks != null ? (IEnumerable<T>)trendingStocks.Finance.Results : Enumerable.Empty<T>();
+        return trendingStocks != null ? (IEnumerable<T>)trendingStocks.Finance.Results : [];
     }
 }

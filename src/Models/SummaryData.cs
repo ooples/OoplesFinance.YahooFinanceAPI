@@ -251,7 +251,7 @@ public class PriceToSalesTrailing12Months
 public class QuoteSummary
 {
     [JsonProperty("result")]
-    public List<ResultSummary> Results { get; set; } = new();
+    public List<ResultSummary> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

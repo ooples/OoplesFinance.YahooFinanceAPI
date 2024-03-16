@@ -63,7 +63,7 @@ public class IncomeBeforeTax
 public class IncomeStatementHistory
 {
     [JsonProperty("incomeStatementHistory")]
-    public List<IncomeStatementHistory> IncomeStatementHistoryInfo { get; set; } = new();
+    public List<IncomeStatementHistory> IncomeStatementHistoryInfo { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -217,7 +217,7 @@ public class OtherOperatingExpenses
 public class IncomeStatementHistoryQuoteSummary
 {
     [JsonProperty("result")]
-    public List<IncomeStatementHistoryResult> Results { get; set; } = new();
+    public List<IncomeStatementHistoryResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

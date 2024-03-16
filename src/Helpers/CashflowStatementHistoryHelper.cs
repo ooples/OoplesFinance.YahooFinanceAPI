@@ -13,6 +13,6 @@ internal class CashflowStatementHistoryHelper : YahooJsonBase
         var balanceSheetHistory = JsonConvert.DeserializeObject<CashflowStatementHistoryData>(jsonData);
 
         return balanceSheetHistory != null ? (IEnumerable<T>)balanceSheetHistory.QuoteSummary.Results.
-            Select(x => x.CashflowStatementHistory).First().CashflowStatements : Enumerable.Empty<T>();
+            Select(x => x.CashflowStatementHistory).First().CashflowStatements : [];
     }
 }

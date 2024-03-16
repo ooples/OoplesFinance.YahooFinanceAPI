@@ -12,6 +12,6 @@ internal class CalendarEventsHelper : YahooJsonBase
     {
         var calendarEvents = JsonConvert.DeserializeObject<CalendarEventsData>(jsonData);
 
-        return calendarEvents != null ? (IEnumerable<T>)calendarEvents.QuoteSummary.Results.Select(x => x.CalendarEvents) : Enumerable.Empty<T>();
+        return calendarEvents != null ? (IEnumerable<T>)calendarEvents.QuoteSummary.Results.Select(x => x.CalendarEvents) : [];
     }
 }

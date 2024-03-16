@@ -3,7 +3,7 @@
 public class EarningsHistory
 {
     [JsonProperty("history")]
-    public List<EarningsHistoryInfo> History { get; set; } = new();
+    public List<EarningsHistoryInfo> History { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -72,7 +72,7 @@ public class Quarter
 public class EarningsHistoryQuoteSummary
 {
     [JsonProperty("result")]
-    public List<EarningsHistoryResult> Results { get; set; } = new();
+    public List<EarningsHistoryResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

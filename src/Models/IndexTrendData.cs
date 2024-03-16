@@ -33,7 +33,7 @@ public class IndexTrend
     public PegRatio PegRatio { get; set; } = new();
 
     [JsonProperty("estimates")]
-    public List<Estimate> Estimates { get; set; } = new();
+    public List<Estimate> Estimates { get; set; } = [];
 }
 
 public class PeRatio
@@ -48,7 +48,7 @@ public class PeRatio
 public class IndexTrendQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<IndexTrendResult> Results { get; set; } = new();
+    public List<IndexTrendResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

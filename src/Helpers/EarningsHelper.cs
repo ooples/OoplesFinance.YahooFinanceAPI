@@ -12,6 +12,6 @@ internal class EarningsHelper : YahooJsonBase
     {
         var earnings = JsonConvert.DeserializeObject<EarningsData>(jsonData);
 
-        return earnings != null ? (IEnumerable<T>)earnings.QuoteSummary.Results.Select(x => x.Earnings) : Enumerable.Empty<T>();
+        return earnings != null ? (IEnumerable<T>)earnings.QuoteSummary.Results.Select(x => x.Earnings) : [];
     }
 }

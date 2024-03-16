@@ -36,7 +36,7 @@ public class InsiderHolder
 public class InsiderHolders
 {
     [JsonProperty("holders")]
-    public List<InsiderHolder> Holders { get; set; } = new();
+    public List<InsiderHolder> Holders { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -96,7 +96,7 @@ public class PositionIndirectDate
 public class InsiderHolderQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<InsiderHolderResult> Results { get; set; } = new();
+    public List<InsiderHolderResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

@@ -12,6 +12,6 @@ internal class IndexTrendHelper : YahooJsonBase
     {
         var indexTrend = JsonConvert.DeserializeObject<IndexTrendData>(jsonData);
 
-        return indexTrend != null ? (IEnumerable<T>)indexTrend.QuoteSummary.Results.Select(x => x.IndexTrend) : Enumerable.Empty<T>();
+        return indexTrend != null ? (IEnumerable<T>)indexTrend.QuoteSummary.Results.Select(x => x.IndexTrend) : [];
     }
 }

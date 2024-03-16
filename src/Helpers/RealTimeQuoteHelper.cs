@@ -12,6 +12,6 @@ internal class RealTimeQuoteHelper : YahooJsonBase
     {
         var realTimeQuoteData = JsonConvert.DeserializeObject<RealTimeQuoteData>(jsonData);
 
-        return realTimeQuoteData != null ? (IEnumerable<T>)realTimeQuoteData.QuoteResponse.Results : Enumerable.Empty<T>();
+        return realTimeQuoteData != null ? (IEnumerable<T>)realTimeQuoteData.QuoteResponse.Results : [];
     }
 }

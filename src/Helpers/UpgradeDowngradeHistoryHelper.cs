@@ -13,6 +13,6 @@ internal class UpgradeDowngradeHistoryHelper : YahooJsonBase
         var upgradeDowngradeHistory = JsonConvert.DeserializeObject<UpgradeDowngradeHistoryData>(jsonData);
 
         return upgradeDowngradeHistory != null ? (IEnumerable<T>)upgradeDowngradeHistory.QuoteSummary.Results.
-            Select(x => x.UpgradeDowngradeHistory).First().History : Enumerable.Empty<T>();
+            Select(x => x.UpgradeDowngradeHistory).First().History : [];
     }
 }

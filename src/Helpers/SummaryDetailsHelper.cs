@@ -12,6 +12,6 @@ internal class SummaryDetailsHelper : YahooJsonBase
     {
         var summaryDetailsData = JsonConvert.DeserializeObject<SummaryData>(jsonData);
 
-        return summaryDetailsData != null ? (IEnumerable<T>)summaryDetailsData.QuoteSummary.Results.Select(x => x.SummaryDetail) : Enumerable.Empty<T>();
+        return summaryDetailsData != null ? (IEnumerable<T>)summaryDetailsData.QuoteSummary.Results.Select(x => x.SummaryDetail) : [];
     }
 }

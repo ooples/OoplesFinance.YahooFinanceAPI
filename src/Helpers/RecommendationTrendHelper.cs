@@ -12,6 +12,6 @@ internal class RecommendationTrendHelper : YahooJsonBase
     {
         var recommendationTrend = JsonConvert.DeserializeObject<RecommendationTrendData>(jsonData);
 
-        return recommendationTrend != null ? (IEnumerable<T>)recommendationTrend.QuoteSummary.Results.Select(x => x.RecommendationTrend).First().Trend : Enumerable.Empty<T>();
+        return recommendationTrend != null ? (IEnumerable<T>)recommendationTrend.QuoteSummary.Results.Select(x => x.RecommendationTrend).First().Trend : [];
     }
 }

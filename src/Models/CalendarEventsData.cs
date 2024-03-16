@@ -27,7 +27,7 @@ public class DividendDate
 public class Earnings
 {
     [JsonProperty("earningsDate")]
-    public List<EarningsDate> EarningsDate { get; set; } = new();
+    public List<EarningsDate> EarningsDate { get; set; } = [];
 
     [JsonProperty("earningsAverage")] 
     public EarningsAverage EarningsAverage { get; set; } = new();
@@ -87,7 +87,7 @@ public class EarningsLow
 public class CalendarEventsQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<CalendarEventsResult> Results { get; set; } = new();
+    public List<CalendarEventsResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

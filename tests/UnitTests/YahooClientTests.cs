@@ -21,7 +21,7 @@ public sealed class YahooClientTests
     {
         _sut = new YahooClient();
         _startDate = DateTime.Now.AddMonths(-1);
-        _emptySymbols = Enumerable.Empty<string>();
+        _emptySymbols = [];
         _tooManySymbols = Enumerable.Repeat(GoodSymbol, 255);
         _goodSymbols = Enumerable.Repeat(GoodSymbol, 20);
     }

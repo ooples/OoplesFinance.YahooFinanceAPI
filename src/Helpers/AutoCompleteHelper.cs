@@ -12,6 +12,6 @@ internal class AutoCompleteHelper : YahooJsonBase
     {
         var autoComplete = JsonConvert.DeserializeObject<AutoCompleteData>(jsonData);
 
-        return autoComplete != null ? (IEnumerable<T>)autoComplete.ResultSet.Results : Enumerable.Empty<T>();
+        return autoComplete != null ? (IEnumerable<T>)autoComplete.ResultSet.Results : [];
     }
 }

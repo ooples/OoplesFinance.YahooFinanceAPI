@@ -3,7 +3,7 @@
 public class RecommendFinance
 {
     [JsonProperty("result")]
-    public List<RecommendResult> Results { get; set; } = new();
+    public List<RecommendResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -24,7 +24,7 @@ public class RecommendResult
     public string Symbol { get; set; } = string.Empty;
 
     [JsonProperty("recommendedSymbols")]
-    public List<RecommendedSymbol> RecommendedSymbols { get; set; } = new();
+    public List<RecommendedSymbol> RecommendedSymbols { get; set; } = [];
 }
 
 public class RecommendData

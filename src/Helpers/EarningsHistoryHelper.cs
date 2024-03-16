@@ -11,7 +11,8 @@ internal class EarningsHistoryHelper : YahooJsonBase
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
         var earningsHistory = JsonConvert.DeserializeObject<EarningsHistoryData>(jsonData);
+        var result = earningsHistory != null ? (IEnumerable<T>?)earningsHistory.QuoteSummary.Results.Select(x => x.EarningsHistory).FirstOrDefault()?.History : [];
 
-        return earningsHistory != null ? (IEnumerable<T>)earningsHistory.QuoteSummary.Results.Select(x => x.EarningsHistory).First().History : Enumerable.Empty<T>();
+        return result ?? [];
     }
 }

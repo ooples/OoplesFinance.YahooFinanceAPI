@@ -13,6 +13,6 @@ internal class IncomeStatementHistoryHelper : YahooJsonBase
         var incomeStatementHistory = JsonConvert.DeserializeObject<IncomeStatementHistoryData>(jsonData);
 
         return incomeStatementHistory != null ? (IEnumerable<T>)incomeStatementHistory.QuoteSummary.Results.
-            Select(x => x.IncomeStatementHistory).First().IncomeStatementHistoryInfo : Enumerable.Empty<T>();
+            Select(x => x.IncomeStatementHistory).First().IncomeStatementHistoryInfo : [];
     }
 }

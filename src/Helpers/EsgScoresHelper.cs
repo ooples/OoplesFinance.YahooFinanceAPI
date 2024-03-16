@@ -12,6 +12,6 @@ internal class EsgScoresHelper : YahooJsonBase
     {
         var esgScores = JsonConvert.DeserializeObject<EsgScoresData>(jsonData);
 
-        return esgScores != null ? (IEnumerable<T>)esgScores.QuoteSummary.Results.Select(x => x.EsgScores) : Enumerable.Empty<T>();
+        return esgScores != null ? (IEnumerable<T>)esgScores.QuoteSummary.Results.Select(x => x.EsgScores) : [];
     }
 }

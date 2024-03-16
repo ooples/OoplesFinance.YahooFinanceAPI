@@ -3,7 +3,7 @@
 public class InstitutionOwnership
 {
     [JsonProperty("ownershipList")]
-    public List<OwnershipList> OwnershipList { get; set; } = new();
+    public List<OwnershipList> OwnershipList { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -54,7 +54,7 @@ public class Position
 public class InstitutionOwnershipQuoteSummary
 {
     [JsonProperty("result")]
-    public List<InstitutionOwnershipResult> Results { get; set; } = new();
+    public List<InstitutionOwnershipResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

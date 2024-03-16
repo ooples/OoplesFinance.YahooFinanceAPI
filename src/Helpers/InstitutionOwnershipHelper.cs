@@ -12,6 +12,6 @@ internal class InstitutionOwnershipHelper : YahooJsonBase
     {
         var institutionOwnership = JsonConvert.DeserializeObject<InstitutionOwnershipData>(jsonData);
 
-        return institutionOwnership != null ? (IEnumerable<T>)institutionOwnership.QuoteSummary.Results.Select(x => x.InstitutionOwnership).First().OwnershipList : Enumerable.Empty<T>();
+        return institutionOwnership != null ? (IEnumerable<T>)institutionOwnership.QuoteSummary.Results.Select(x => x.InstitutionOwnership).First().OwnershipList : [];
     }
 }

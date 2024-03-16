@@ -36,7 +36,7 @@ public class AssetProfile
     public int? FullTimeEmployees { get; set; }
 
     [JsonProperty("companyOfficers")]
-    public List<CompanyOfficer> CompanyOfficers { get; set; } = new();
+    public List<CompanyOfficer> CompanyOfficers { get; set; } = [];
 
     [JsonProperty("auditRisk")]
     public int? AuditRisk { get; set; }
@@ -108,7 +108,7 @@ public class ExercisedValue
 public class AssetProfileQuoteSummary
 {
     [JsonProperty("result")]
-    public List<AssetProfileResult> Results { get; set; } = new();
+    public List<AssetProfileResult> Results { get; set; } = [];
 
     [JsonProperty("error")] 
     public object Error { get; set; } = new();

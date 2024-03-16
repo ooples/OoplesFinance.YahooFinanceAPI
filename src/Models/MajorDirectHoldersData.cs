@@ -3,7 +3,7 @@
 public class MajorDirectHolders
 {
     [JsonProperty("holders")]
-    public List<object> Holders { get; set; } = new();
+    public List<object> Holders { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -12,7 +12,7 @@ public class MajorDirectHolders
 public class MajorDirectHoldersQuoteSummary
 {
     [JsonProperty("result")]
-    public List<MajorDirectHoldersResult> Results { get; set; } = new();
+    public List<MajorDirectHoldersResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

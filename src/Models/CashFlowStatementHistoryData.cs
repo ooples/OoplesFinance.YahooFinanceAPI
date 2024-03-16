@@ -81,7 +81,7 @@ public class CashflowStatement
 public class CashflowStatementHistory
 {
     [JsonProperty("cashflowStatements")]
-    public List<CashflowStatement> CashflowStatements { get; set; } = new();
+    public List<CashflowStatement> CashflowStatements { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -258,7 +258,7 @@ public class OtherCashflowsFromInvestingActivities
 public class CashflowStatementHistoryQuoteSummary
 {
     [JsonProperty("result")]
-    public List<CashflowStatementHistoryResult> Results { get; set; } = new();
+    public List<CashflowStatementHistoryResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

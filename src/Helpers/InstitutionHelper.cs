@@ -12,6 +12,6 @@ internal class InstitutionHelper : YahooJsonBase
     {
         var institutionData = JsonConvert.DeserializeObject<InstitutionData>(jsonData);
 
-        return institutionData != null ? (IEnumerable<T>)institutionData.Finance.Results : Enumerable.Empty<T>();
+        return institutionData != null ? (IEnumerable<T>)institutionData.Finance.Results : [];
     }
 }

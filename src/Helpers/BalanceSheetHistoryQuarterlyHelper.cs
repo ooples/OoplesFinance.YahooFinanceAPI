@@ -13,6 +13,6 @@ internal class BalanceSheetHistoryQuarterlyHelper : YahooJsonBase
         var balanceSheetHistoryQuarterlyData = JsonConvert.DeserializeObject<BalanceSheetHistoryQuarterlyData>(jsonData);
 
         return balanceSheetHistoryQuarterlyData != null ? (IEnumerable<T>)balanceSheetHistoryQuarterlyData.QuoteSummary.Results.
-            Select(x => x.BalanceSheetHistoryQuarterly).First().BalanceSheetStatements : Enumerable.Empty<T>();
+            Select(x => x.BalanceSheetHistoryQuarterly).First().BalanceSheetStatements : [];
     }
 }

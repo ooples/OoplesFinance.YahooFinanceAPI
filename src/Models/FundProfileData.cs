@@ -153,7 +153,7 @@ public class FundProfile
     public SubseqAipInvestment SubseqAipInvestment { get; set; } = new();
 
     [JsonProperty("brokerages")]
-    public List<string> Brokerages { get; set; } = new();
+    public List<string> Brokerages { get; set; } = [];
 }
 
 public class GrossExpRatio
@@ -230,7 +230,7 @@ public class ProjectionValuesCat
 public class FundProfileQuoteSummary
 {
     [JsonProperty("result")]
-    public List<FundProfileResult> Results { get; set; } = new();
+    public List<FundProfileResult> Results { get; set; } = [];
 
     [JsonProperty("error")] 
     public object Error { get; set; } = new();

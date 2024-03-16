@@ -12,6 +12,6 @@ internal class ScreenerHelper : YahooJsonBase
     {
         var screener = JsonConvert.DeserializeObject<ScreenerData>(jsonData);
 
-        return screener != null ? (IEnumerable<T>)screener.Finance.Results : Enumerable.Empty<T>();
+        return screener != null ? (IEnumerable<T>)screener.Finance.Results : [];
     }
 }

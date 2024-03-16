@@ -12,6 +12,6 @@ internal class QuoteTypeHelper : YahooJsonBase
     {
         var quoteType = JsonConvert.DeserializeObject<QuoteTypeData>(jsonData);
 
-        return quoteType != null ? (IEnumerable<T>)quoteType.QuoteSummary.Results.Select(x => x.QuoteType) : Enumerable.Empty<T>();
+        return quoteType != null ? (IEnumerable<T>)quoteType.QuoteSummary.Results.Select(x => x.QuoteType) : [];
     }
 }
