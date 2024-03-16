@@ -21,7 +21,7 @@ public class History
 public class UpgradeDowngradeHistoryQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<Result> Results { get; set; } = new();
+    public List<Result> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -42,7 +42,7 @@ public class UpgradeDowngradeHistoryData
 public class UpgradeDowngradeHistory
 {
     [JsonProperty("history")]
-    public List<History> History { get; set; } = new();
+    public List<History> History { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }

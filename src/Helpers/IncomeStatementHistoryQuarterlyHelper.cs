@@ -13,6 +13,6 @@ internal class IncomeStatementHistoryQuarterlyHelper : YahooJsonBase
         var incomeStatementHistoryQuarterly = JsonConvert.DeserializeObject<IncomeStatementHistoryQuarterlyData>(jsonData);
 
         return incomeStatementHistoryQuarterly != null ? (IEnumerable<T>)incomeStatementHistoryQuarterly.QuoteSummary.Results.
-            Select(x => x.IncomeStatementHistoryQuarterly).First().IncomeStatementHistory : Enumerable.Empty<T>();
+            Select(x => x.IncomeStatementHistoryQuarterly).First().IncomeStatementHistory : [];
     }
 }

@@ -3,7 +3,7 @@
 public class SectorTrendQuoteSummary
 {
     [JsonProperty("result")]
-    public List<SectorTrendResult> Results { get; set; } = new();
+    public List<SectorTrendResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -36,5 +36,5 @@ public class SectorTrend
     public PegRatio PegRatio { get; set; } = new();
 
     [JsonProperty("estimates")] 
-    public List<object> Estimates { get; set; } = new();
+    public List<object> Estimates { get; set; } = [];
 }

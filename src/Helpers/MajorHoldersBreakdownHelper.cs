@@ -12,6 +12,6 @@ internal class MajorHoldersBreakdownHelper : YahooJsonBase
     {
         var majorHoldersBreakdown = JsonConvert.DeserializeObject<MajorHoldersBreakdownData>(jsonData);
 
-        return majorHoldersBreakdown != null ? (IEnumerable<T>)majorHoldersBreakdown.QuoteSummary.Results.Select(x => x.MajorHoldersBreakdown) : Enumerable.Empty<T>();
+        return majorHoldersBreakdown != null ? (IEnumerable<T>)majorHoldersBreakdown.QuoteSummary.Results.Select(x => x.MajorHoldersBreakdown) : [];
     }
 }

@@ -54,7 +54,7 @@ public class EsgScores
     public string PeerGroup { get; set; } = string.Empty;
 
     [JsonProperty("relatedControversy")]
-    public List<string> RelatedControversy { get; set; } = new();
+    public List<string> RelatedControversy { get; set; } = [];
 
     [JsonProperty("peerEsgScorePerformance")] 
     public PeerEsgScorePerformance PeerEsgScorePerformance { get; set; } = new();
@@ -219,7 +219,7 @@ public class Percentile
 public class EsgScoresQuoteSummary
 {
     [JsonProperty("result")]
-    public List<EsgScoresResult> Results { get; set; } = new();
+    public List<EsgScoresResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

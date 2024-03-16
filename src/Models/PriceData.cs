@@ -171,7 +171,7 @@ public class Price
 public class PriceQuoteSummary
 {
     [JsonProperty("result")]
-    public List<PriceResult> Results { get; set; } = new();
+    public List<PriceResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

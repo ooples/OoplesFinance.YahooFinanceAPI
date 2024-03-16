@@ -45,7 +45,7 @@ public class EarningsInfo
 public class EarningsChart
 {
     [JsonProperty("quarterly")]
-    public List<Quarterly> Quarterly { get; set; } = new();
+    public List<Quarterly> Quarterly { get; set; } = [];
 
     [JsonProperty("currentQuarterEstimate")]
     public CurrentQuarterEstimate CurrentQuarterEstimate { get; set; } = new();
@@ -57,7 +57,7 @@ public class EarningsChart
     public int? CurrentQuarterEstimateYear { get; set; }
 
     [JsonProperty("earningsDate")]
-    public List<EarningsDate> EarningsDate { get; set; } = new();
+    public List<EarningsDate> EarningsDate { get; set; } = [];
 }
 
 public class EarningsEstimateInfo
@@ -72,10 +72,10 @@ public class EarningsEstimateInfo
 public class FinancialsChart
 {
     [JsonProperty("yearly")]
-    public List<Yearly> Yearly { get; set; } = new();
+    public List<Yearly> Yearly { get; set; } = [];
 
     [JsonProperty("quarterly")]
-    public List<Quarterly> Quarterly { get; set; } = new();
+    public List<Quarterly> Quarterly { get; set; } = [];
 }
 
 public class Quarterly
@@ -99,7 +99,7 @@ public class Quarterly
 public class EarningsQuoteSummary
 {
     [JsonProperty("result")]
-    public List<EarningsResult> Results { get; set; } = new();
+    public List<EarningsResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

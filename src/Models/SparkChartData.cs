@@ -3,7 +3,7 @@
 public class SparkInfo
 {
     [JsonProperty("timestamp")] 
-    public List<int?> Timestamp { get; set; } = new();
+    public List<int?> Timestamp { get; set; } = [];
 
     [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
@@ -24,10 +24,5 @@ public class SparkInfo
     public object Start { get; set; } = new();
 
     [JsonProperty("close")]
-    public List<double?> Close { get; set; } = new();
-}
-
-public class SparkChartData
-{
-    public SparkInfo Result { get; set; } = new();
+    public List<double?> Close { get; set; } = [];
 }

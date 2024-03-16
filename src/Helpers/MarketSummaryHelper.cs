@@ -12,6 +12,6 @@ internal class MarketSummaryHelper : YahooJsonBase
     {
         var marketSummary = JsonConvert.DeserializeObject<MarketSummaryData>(jsonData);
 
-        return marketSummary != null ? (IEnumerable<T>)marketSummary.MarketSummaryResponse.Results : Enumerable.Empty<T>();
+        return marketSummary != null ? (IEnumerable<T>)marketSummary.MarketSummaryResponse.Results : [];
     }
 }

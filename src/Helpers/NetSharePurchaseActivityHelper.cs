@@ -12,6 +12,6 @@ internal class NetSharePurchaseActivityHelper : YahooJsonBase
     {
         var netSharePurchaseActivity = JsonConvert.DeserializeObject<NetSharePurchaseActivityData>(jsonData);
 
-        return netSharePurchaseActivity != null ? (IEnumerable<T>)netSharePurchaseActivity.QuoteSummary.Results.Select(x => x.NetSharePurchaseActivity) : Enumerable.Empty<T>();
+        return netSharePurchaseActivity != null ? (IEnumerable<T>)netSharePurchaseActivity.QuoteSummary.Results.Select(x => x.NetSharePurchaseActivity) : [];
     }
 }

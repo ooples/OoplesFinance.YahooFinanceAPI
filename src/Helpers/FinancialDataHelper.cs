@@ -12,6 +12,6 @@ internal class FinancialDataHelper : YahooJsonBase
     {
         var financialData = JsonConvert.DeserializeObject<FinancialDataRoot>(jsonData);
 
-        return financialData != null ? (IEnumerable<T>)financialData.QuoteSummary.Results.Select(x => x.FinancialData) : Enumerable.Empty<T>();
+        return financialData != null ? (IEnumerable<T>)financialData.QuoteSummary.Results.Select(x => x.FinancialData) : [];
     }
 }

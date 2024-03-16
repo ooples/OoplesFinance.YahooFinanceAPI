@@ -12,6 +12,6 @@ internal class KeyStatisticsHelper : YahooJsonBase
     {
         var keyStatisticData = JsonConvert.DeserializeObject<KeyStatisticData>(jsonData);
 
-        return keyStatisticData != null ? (IEnumerable<T>)keyStatisticData.QuoteSummary.Results.Select(x => x.DefaultKeyStatistics) : Enumerable.Empty<T>();
+        return keyStatisticData != null ? (IEnumerable<T>)keyStatisticData.QuoteSummary.Results.Select(x => x.DefaultKeyStatistics) : [];
     }
 }

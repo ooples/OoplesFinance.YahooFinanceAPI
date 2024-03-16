@@ -11,6 +11,6 @@ internal class TrendingHelper : YahooJsonBase
     {
         var rawTrendingData = JsonConvert.DeserializeObject<TrendingData>(jsonData);
 
-        return rawTrendingData != null ? (IEnumerable<T>)rawTrendingData.Finance.Results.First().Quotes.Select(x => x.Symbol) : Enumerable.Empty<T>();
+        return rawTrendingData != null ? (IEnumerable<T>)rawTrendingData.Finance.Results.First().Quotes.Select(x => x.Symbol) : [];
     }
 }

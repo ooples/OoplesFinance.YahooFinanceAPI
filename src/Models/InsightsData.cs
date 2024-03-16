@@ -111,7 +111,7 @@ public class InsightsResult
     public InstrumentInfo InstrumentInfo { get; set; } = new();
 
     [JsonProperty("reports")]
-    public List<Report> Reports { get; set; } = new();
+    public List<Report> Reports { get; set; } = [];
 
     [JsonProperty("companySnapshot")] 
     public CompanySnapshot CompanySnapshot { get; set; } = new();

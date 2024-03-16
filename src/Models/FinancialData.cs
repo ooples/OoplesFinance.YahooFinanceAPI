@@ -228,7 +228,7 @@ public class QuickRatio
 public class FinancialQuoteSummary
 {
     [JsonProperty("result")]
-    public List<FinancialDataResult> Results { get; set; } = new();
+    public List<FinancialDataResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

@@ -12,6 +12,6 @@ internal class PriceHelper : YahooJsonBase
     {
         var priceInfo = JsonConvert.DeserializeObject<PriceData>(jsonData);
 
-        return priceInfo != null ? (IEnumerable<T>)priceInfo.QuoteSummary.Results.Select(x => x.Price) : Enumerable.Empty<T>();
+        return priceInfo != null ? (IEnumerable<T>)priceInfo.QuoteSummary.Results.Select(x => x.Price) : [];
     }
 }

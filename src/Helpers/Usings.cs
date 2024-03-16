@@ -6,7 +6,6 @@ global using System.Net;
 global using static OoplesFinance.YahooFinanceAPI.Helpers.DownloadHelper;
 global using static OoplesFinance.YahooFinanceAPI.Helpers.UrlHelper;
 global using OoplesFinance.YahooFinanceAPI.Interfaces;
-global using System.Text.Json;
 global using Newtonsoft.Json;
-global using System.Text.Json.Nodes;
 global using System.Net.Http;
+global using Newtonsoft.Json.Linq;

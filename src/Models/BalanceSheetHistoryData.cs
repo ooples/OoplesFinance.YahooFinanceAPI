@@ -15,7 +15,7 @@ public class AccountsPayable
 public class BalanceSheetHistory
 {
     [JsonProperty("balanceSheetStatements")]
-    public List<BalanceSheetStatement> BalanceSheetStatements { get; set; } = new();
+    public List<BalanceSheetStatement> BalanceSheetStatements { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -267,7 +267,7 @@ public class PropertyPlantEquipment
 public class BalanceSheetHistoryQuoteSummary
 {
     [JsonProperty("result")]
-    public List<BalanceSheetHistoryResult> Results { get; set; } = new();
+    public List<BalanceSheetHistoryResult> Results { get; set; } = [];
 
     [JsonProperty("error")] 
     public object Error { get; set; } = new();

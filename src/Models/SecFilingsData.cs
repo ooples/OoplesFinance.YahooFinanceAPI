@@ -27,7 +27,7 @@ public class Filing
 public class SecFilingsQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<SecFilingsResult> Results { get; set; } = new();
+    public List<SecFilingsResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -48,7 +48,7 @@ public class SecFilingsData
 public class SecFilings
 {
     [JsonProperty("filings")]
-    public List<Filing> Filings { get; set; } = new();
+    public List<Filing> Filings { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }

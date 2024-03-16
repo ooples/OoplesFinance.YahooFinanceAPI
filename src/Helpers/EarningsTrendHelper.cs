@@ -13,6 +13,6 @@ internal class EarningsTrendHelper : YahooJsonBase
         var earningsTrend = JsonConvert.DeserializeObject<EarningsTrendData>(jsonData);
 
         return earningsTrend != null ? (IEnumerable<T>)earningsTrend.QuoteSummary.Results.
-            Select(x => x.EarningsTrend).First().Trends : Enumerable.Empty<T>();
+            Select(x => x.EarningsTrend).First().Trends : [];
     }
 }

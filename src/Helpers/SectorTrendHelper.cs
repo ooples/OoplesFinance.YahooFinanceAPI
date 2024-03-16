@@ -12,6 +12,6 @@ internal class SectorTrendHelper : YahooJsonBase
     {
         var sectorTrend = JsonConvert.DeserializeObject<SectorTrendData>(jsonData);
 
-        return sectorTrend != null ? (IEnumerable<T>)sectorTrend.QuoteSummary.Results.Select(x => x.SectorTrend) : Enumerable.Empty<T>();
+        return sectorTrend != null ? (IEnumerable<T>)sectorTrend.QuoteSummary.Results.Select(x => x.SectorTrend) : [];
     }
 }

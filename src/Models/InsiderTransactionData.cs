@@ -3,7 +3,7 @@
 public class InsiderTransactions
 {
     [JsonProperty("transactions")]
-    public List<Transaction> Transactions { get; set; } = new();
+    public List<Transaction> Transactions { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -12,7 +12,7 @@ public class InsiderTransactions
 public class InsiderTransactionQuoteSummary
 {
     [JsonProperty("result")]
-    public List<InsiderTransactionResult> Results { get; set; } = new();
+    public List<InsiderTransactionResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

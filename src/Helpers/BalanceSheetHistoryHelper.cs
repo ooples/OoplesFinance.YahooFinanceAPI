@@ -13,6 +13,6 @@ internal class BalanceSheetHistoryHelper : YahooJsonBase
         var balanceSheetHistory = JsonConvert.DeserializeObject<BalanceSheetHistoryData>(jsonData);
 
         return balanceSheetHistory != null ? (IEnumerable<T>)balanceSheetHistory.QuoteSummary.Results.
-            Select(x => x.BalanceSheetHistory).First().BalanceSheetStatements : Enumerable.Empty<T>();
+            Select(x => x.BalanceSheetHistory).First().BalanceSheetStatements : [];
     }
 }

@@ -12,6 +12,6 @@ internal class FundProfileHelper : YahooJsonBase
     {
         var fundProfile = JsonConvert.DeserializeObject<FundProfileData>(jsonData);
 
-        return fundProfile != null ? (IEnumerable<T>)fundProfile.QuoteSummary.Results.Select(x => x.FundProfile) : Enumerable.Empty<T>();
+        return fundProfile != null ? (IEnumerable<T>)fundProfile.QuoteSummary.Results.Select(x => x.FundProfile) : [];
     }
 }

@@ -433,7 +433,7 @@ public class ProfitMargins
 public class QuoteSummaryStatistic
 {
     [JsonProperty("result")] 
-    public List<KeyStatisticResult> Results { get; set; } = new();
+    public List<KeyStatisticResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

@@ -12,6 +12,6 @@ internal class InsiderTransactionHelper : YahooJsonBase
     {
         var insiderTransactionData = JsonConvert.DeserializeObject<InsiderTransactionData>(jsonData);
 
-        return insiderTransactionData != null ? (IEnumerable<T>)insiderTransactionData.QuoteSummary.Results.Select(x => x.InsiderTransactions).First().Transactions : Enumerable.Empty<T>();
+        return insiderTransactionData != null ? (IEnumerable<T>)insiderTransactionData.QuoteSummary.Results.Select(x => x.InsiderTransactions).First().Transactions : [];
     }
 }

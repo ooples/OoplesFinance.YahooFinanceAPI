@@ -108,7 +108,7 @@ public class NetSharePurchaseActivity
 public class NetSharePurchaseActivityQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<NetSharePurchaseActivityResult> Results { get; set; } = new();
+    public List<NetSharePurchaseActivityResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

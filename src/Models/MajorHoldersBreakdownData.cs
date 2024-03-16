@@ -60,7 +60,7 @@ public class MajorHoldersBreakdown
 public class MajorHoldersBreakdownQuoteSummary
 {
     [JsonProperty("result")]
-    public List<MajorHoldersBreakdownResult> Results { get; set; } = new();
+    public List<MajorHoldersBreakdownResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

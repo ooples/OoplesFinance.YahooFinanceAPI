@@ -105,7 +105,7 @@ public class EarningsEstimate
 public class EarningsTrend
 {
     [JsonProperty("trend")]
-    public List<EarningsTrendInfo> Trends { get; set; } = new();
+    public List<EarningsTrendInfo> Trends { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -183,7 +183,7 @@ public class NumberOfAnalysts
 public class EarningsTrendQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<EarningsTrendResult> Results { get; set; } = new();
+    public List<EarningsTrendResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

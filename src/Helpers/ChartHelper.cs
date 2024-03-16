@@ -10,31 +10,22 @@ internal class ChartHelper : YahooJsonBase
     /// <returns></returns>
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var chartNodes = JsonNode.Parse(jsonData)!;
-        var root = chartNodes["chart"]!["result"]![0];
-        var dates = root!["timestamp"]?.AsArray().Select(x => x!.GetValue<long>().FromUnixTimeStamp());
-        var indicatorRoot = root["indicators"]!["quote"]![0];
+        var root = JsonConvert.DeserializeObject<ChartRoot>(jsonData)?.Chart.Result.FirstOrDefault();
+        var result = new ChartInfo
+        {
+            DateList = new List<DateTime>(root != null ? root.Timestamp.Select(x => x.FromUnixTimeStamp()) : []),
+            CloseList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Close.Select(y => y.GetValueOrDefault())) : []),
+            OpenList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Open.Select(y => y.GetValueOrDefault())) : []),
+            HighList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.High.Select(y => y.GetValueOrDefault())) : []),
+            VolumeList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Volume.Select(y => y.GetValueOrDefault())) : []),
+            LowList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Low.Select(y => y.GetValueOrDefault())) : [])
+        };
 
-        if (dates == null  || indicatorRoot == null || indicatorRoot.AsArray().Count == 0)
+        if (result.DateList.Count == 0 || result.CloseList.Count == 0 || result.OpenList.Count == 0 || result.HighList.Count == 0 || 
+            result.VolumeList.Count == 0 || result.LowList.Count == 0)
         {
             throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
         }
-
-        var closePrices = indicatorRoot!["close"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
-        var openPrices = indicatorRoot!["open"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
-        var lowPrices = indicatorRoot!["low"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
-        var highPrices = indicatorRoot!["high"]!.AsArray().Select(x => x != null ? Math.Round(x.GetValue<double>(), 4) : 0);
-        var volumes = indicatorRoot!["volume"]!.AsArray().Select(x => x != null ? x.GetValue<double>() : 0);
-
-        var result = new ChartData
-        {
-            DateList = new List<DateTime>(dates),
-            CloseList = new List<double>(closePrices),
-            OpenList = new List<double>(openPrices),
-            HighList = new List<double>(highPrices),
-            VolumeList = new List<double>(volumes),
-            LowList = new List<double>(lowPrices)
-        };
 
         return new[] { result }.Cast<T>();
     }

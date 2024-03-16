@@ -3,7 +3,7 @@
 internal class TrendingFinance
 {
     [JsonProperty("result")]
-    public List<TrendingResult> Results { get; set; } = new();
+    public List<TrendingResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -21,7 +21,7 @@ internal class TrendingResult
     public int? Count { get; set; }
 
     [JsonProperty("quotes")]
-    public List<Quote> Quotes { get; set; } = new();
+    public List<Quote> Quotes { get; set; } = [];
 
     [JsonProperty("jobTimestamp")]
     public long? JobTimestamp { get; set; }

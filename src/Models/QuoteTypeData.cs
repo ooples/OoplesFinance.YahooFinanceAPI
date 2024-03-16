@@ -3,7 +3,7 @@
 public class QuoteTypeQuoteSummary
 {
     [JsonProperty("result")]
-    public List<QuoteTypeResult> Results { get; set; } = new();
+    public List<QuoteTypeResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

@@ -78,7 +78,7 @@ public class IncomeStatementHistoryItem
 public class IncomeStatementHistoryQuarterly
 {
     [JsonProperty("incomeStatementHistory")]
-    public List<IncomeStatementHistoryItem> IncomeStatementHistory { get; set; } = new();
+    public List<IncomeStatementHistoryItem> IncomeStatementHistory { get; set; } = [];
 
     [JsonProperty("maxAge")]
     public int? MaxAge { get; set; }
@@ -87,7 +87,7 @@ public class IncomeStatementHistoryQuarterly
 public class IncomeStatementHistoryQuarterlyQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<IncomeStatementHistoryQuarterlyResult> Results { get; set; } = new();
+    public List<IncomeStatementHistoryQuarterlyResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();

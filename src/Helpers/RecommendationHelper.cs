@@ -18,6 +18,6 @@ internal class RecommendationHelper : YahooJsonBase
             throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
         }
 
-        return rawRecommendData != null ? (IEnumerable<T>)rawRecommendData.Finance.Results.First().RecommendedSymbols : Enumerable.Empty<T>();
+        return rawRecommendData != null ? (IEnumerable<T>)rawRecommendData.Finance.Results.First().RecommendedSymbols : [];
     }
 }

@@ -12,6 +12,6 @@ internal class MajorDirectHoldersHelper : YahooJsonBase
     {
         var majorDirectHolders = JsonConvert.DeserializeObject<MajorDirectHoldersData>(jsonData);
 
-        return majorDirectHolders != null ? (IEnumerable<T>)majorDirectHolders.QuoteSummary.Results.Select(x => x.MajorDirectHolders).First().Holders : Enumerable.Empty<T>();
+        return majorDirectHolders != null ? (IEnumerable<T>)majorDirectHolders.QuoteSummary.Results.Select(x => x.MajorDirectHolders).First().Holders : [];
     }
 }

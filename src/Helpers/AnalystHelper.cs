@@ -12,6 +12,6 @@ internal class AnalystHelper : YahooJsonBase
     {
         var analystData = JsonConvert.DeserializeObject<AnalystData>(jsonData);
 
-        return analystData != null ? (IEnumerable<T>)analystData.Finance.Results : Enumerable.Empty<T>();
+        return analystData != null ? (IEnumerable<T>)analystData.Finance.Results : [];
     }
 }

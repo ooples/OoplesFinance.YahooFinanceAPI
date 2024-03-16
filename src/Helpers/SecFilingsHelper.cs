@@ -9,6 +9,6 @@ internal class SecFilingsHelper : YahooJsonBase
     {
         var secFilings = JsonConvert.DeserializeObject<SecFilingsData>(jsonData);
 
-        return secFilings != null ? (IEnumerable<T>)secFilings.QuoteSummary.Results.Select(x => x.SecFilings).First().Filings : Enumerable.Empty<T>();
+        return secFilings != null ? (IEnumerable<T>)secFilings.QuoteSummary.Results.Select(x => x.SecFilings).First().Filings : [];
     }
 }
