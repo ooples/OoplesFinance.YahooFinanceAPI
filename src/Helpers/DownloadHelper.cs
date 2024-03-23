@@ -106,7 +106,7 @@ internal static class DownloadHelper
                         "Requested Information Not Available On Yahoo Finance"),
                     HttpStatusCode.Unauthorized => new InvalidOperationException("Yahoo Finance Authentication Error"),
                     HttpStatusCode.Forbidden => new InvalidOperationException("Yahoo Finance Authentication Error"),
-                    _ => new InvalidOperationException($"Received An Unexpected Status Code: {response.StatusCode}")
+                    _ => new InvalidOperationException("Yahoo Finance Server Error")
                 };
             }
         }
