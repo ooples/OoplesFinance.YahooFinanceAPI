@@ -19,7 +19,7 @@ public sealed class YahooClientTests
 
     public YahooClientTests()
     {
-        _sut = new YahooClient();
+        _sut = new YahooClient(Country.UnitedStates, Language.English);
         _startDate = DateTime.Now.AddMonths(-1);
         _emptySymbols = [];
         _tooManySymbols = Enumerable.Repeat(GoodSymbol, 255);
@@ -176,7 +176,7 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = async () => await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, InvalidCount);
+        var result = async () => await _sut.GetTopTrendingStocksAsync(InvalidCount);
 
         // Assert
         await result.Should().ThrowAsync<ArgumentException>().WithMessage("Count Must Be At Least 1 To Return Any Data");
@@ -188,7 +188,7 @@ public sealed class YahooClientTests
         // Arrange
 
         // Act
-        var result = await _sut.GetTopTrendingStocksAsync(Country.UnitedStates, ValidCount);
+        var result = await _sut.GetTopTrendingStocksAsync(ValidCount);
 
         // Assert
         result.Should().NotBeNull();

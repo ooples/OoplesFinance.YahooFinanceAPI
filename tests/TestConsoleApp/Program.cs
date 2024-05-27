@@ -8,7 +8,9 @@ try
     var fundSymbol = "VSMPX";
     var symbols = new string[] { symbol, "MSFT", "NFLX", "TSLA", "YHOO", "SPY", "A", "AA", "GOOG", "F", "UBER", "LYFT" };
 
-    var yahooClient = new YahooClient();
+    var yahooClient = new YahooClient(Country.India);
+    var keyStatsList = await yahooClient.GetKeyStatisticsAsync(symbol);
+    Console.WriteLine();
     //var historicalDataList = await yahooClient.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
     //var capitalGainList = await yahooClient.GetCapitalGainDataAsync(symbol, DataFrequency.Monthly, startDate);
     //var dividendList = await yahooClient.GetDividendDataAsync(symbol, DataFrequency.Weekly, startDate);
@@ -46,7 +48,7 @@ try
     //var incomeStatementHistoryQuarterlyList = await yahooClient.GetIncomeStatementHistoryQuarterlyAsync(symbol);
     //var cashflowStatementHistoryQuarterlyList = await yahooClient.GetCashflowStatementHistoryQuarterlyAsync(symbol);
     //var balanceSheetHistoryQuarterlyList = await yahooClient.GetBalanceSheetHistoryQuarterlyAsync(symbol);
-    var chartInfoList = await yahooClient.GetChartInfoAsync("BIO.B", TimeRange._1Year, TimeInterval._1Day);
+    //var chartInfoList = await yahooClient.GetChartInfoAsync("BIO.B", TimeRange._1Year, TimeInterval._1Day);
     //var sparkChartInfoList = await yahooClient.GetSparkChartInfoAsync(symbols, TimeRange._1Month, TimeInterval._1Day);
     //var realTimeQuoteList = await yahooClient.GetRealTimeQuotesAsync(symbols);
     //var marketSummaryList = await yahooClient.GetMarketSummaryAsync();
