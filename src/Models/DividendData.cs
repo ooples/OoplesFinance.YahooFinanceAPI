@@ -1,103 +1,222 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
 [Serializable]
-public record DividendData(
-    [property: JsonProperty("amount", NullValueHandling = NullValueHandling.Ignore)] double? Amount,
-    [property: JsonProperty("date", NullValueHandling = NullValueHandling.Ignore)] int? Date
-);
 
-public record AdjClose(
-    [property: JsonProperty("adjclose", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<double?> Adjclose
-);
+public class AdjClose
+{
+    [JsonProperty("adjclose")]
+    public List<double?> Adjclose { get; set; } = [];
+}
 
-public record Chart(
-    [property: JsonProperty("result", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<Result> Result,
-    [property: JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)] object Error
-);
+public class Chart
+{
+    [JsonProperty("result")]
+    public List<Result> Result { get; set; } = [];
 
-public record CurrentTradingPeriod(
-    [property: JsonProperty("pre", NullValueHandling = NullValueHandling.Ignore)] Pre Pre,
-    [property: JsonProperty("regular", NullValueHandling = NullValueHandling.Ignore)] Regular Regular,
-    [property: JsonProperty("post", NullValueHandling = NullValueHandling.Ignore)] Post Post
-);
+    [JsonProperty("error")]
+    public object Error { get; set; } = new();
+}
 
-public record Dividends(
-    [property: JsonProperty("dividends", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<DividendData> DividendsList
-);
+public class CurrentTradingPeriod
+{
+    [JsonProperty("pre")]
+    public Pre Pre { get; set; } = new();
 
-public record Events(
-    [property: JsonProperty("dividends", NullValueHandling = NullValueHandling.Ignore)] Dividends Dividends
-);
+    [JsonProperty("regular")]
+    public Regular Regular { get; set; } = new();
 
-public record Indicators(
-    [property: JsonProperty("quote", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<Quote> Quote,
-    [property: JsonProperty("adjclose", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<AdjClose> Adjclose
-);
+    [JsonProperty("post")]
+    public Post Post { get; set; } = new();
+}
 
-public record Meta(
-    [property: JsonProperty("currency", NullValueHandling = NullValueHandling.Ignore)] string Currency,
-    [property: JsonProperty("symbol", NullValueHandling = NullValueHandling.Ignore)] string Symbol,
-    [property: JsonProperty("exchangeName", NullValueHandling = NullValueHandling.Ignore)] string ExchangeName,
-    [property: JsonProperty("fullExchangeName", NullValueHandling = NullValueHandling.Ignore)] string FullExchangeName,
-    [property: JsonProperty("instrumentType", NullValueHandling = NullValueHandling.Ignore)] string InstrumentType,
-    [property: JsonProperty("firstTradeDate", NullValueHandling = NullValueHandling.Ignore)] int? FirstTradeDate,
-    [property: JsonProperty("regularMarketTime", NullValueHandling = NullValueHandling.Ignore)] int? RegularMarketTime,
-    [property: JsonProperty("hasPrePostMarketData", NullValueHandling = NullValueHandling.Ignore)] bool? HasPrePostMarketData,
-    [property: JsonProperty("gmtoffset", NullValueHandling = NullValueHandling.Ignore)] int? Gmtoffset,
-    [property: JsonProperty("timezone", NullValueHandling = NullValueHandling.Ignore)] string Timezone,
-    [property: JsonProperty("exchangeTimezoneName", NullValueHandling = NullValueHandling.Ignore)] string ExchangeTimezoneName,
-    [property: JsonProperty("regularMarketPrice", NullValueHandling = NullValueHandling.Ignore)] double? RegularMarketPrice,
-    [property: JsonProperty("fiftyTwoWeekHigh", NullValueHandling = NullValueHandling.Ignore)] double? FiftyTwoWeekHigh,
-    [property: JsonProperty("fiftyTwoWeekLow", NullValueHandling = NullValueHandling.Ignore)] double? FiftyTwoWeekLow,
-    [property: JsonProperty("regularMarketDayHigh", NullValueHandling = NullValueHandling.Ignore)] double? RegularMarketDayHigh,
-    [property: JsonProperty("regularMarketDayLow", NullValueHandling = NullValueHandling.Ignore)] double? RegularMarketDayLow,
-    [property: JsonProperty("regularMarketVolume", NullValueHandling = NullValueHandling.Ignore)] int? RegularMarketVolume,
-    [property: JsonProperty("longName", NullValueHandling = NullValueHandling.Ignore)] string LongName,
-    [property: JsonProperty("shortName", NullValueHandling = NullValueHandling.Ignore)] string ShortName,
-    [property: JsonProperty("chartPreviousClose", NullValueHandling = NullValueHandling.Ignore)] double? ChartPreviousClose,
-    [property: JsonProperty("priceHint", NullValueHandling = NullValueHandling.Ignore)] int? PriceHint,
-    [property: JsonProperty("currentTradingPeriod", NullValueHandling = NullValueHandling.Ignore)] CurrentTradingPeriod CurrentTradingPeriod,
-    [property: JsonProperty("dataGranularity", NullValueHandling = NullValueHandling.Ignore)] string DataGranularity,
-    [property: JsonProperty("range", NullValueHandling = NullValueHandling.Ignore)] string Range,
-    [property: JsonProperty("validRanges", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<string> ValidRanges
-);
+public class Dividends
+{
+    [JsonProperty("amount")]
+    public double? Amount { get; set; }
 
-public record Post(
-    [property: JsonProperty("timezone", NullValueHandling = NullValueHandling.Ignore)] string Timezone,
-    [property: JsonProperty("start", NullValueHandling = NullValueHandling.Ignore)] int? Start,
-    [property: JsonProperty("end", NullValueHandling = NullValueHandling.Ignore)] int? End,
-    [property: JsonProperty("gmtoffset", NullValueHandling = NullValueHandling.Ignore)] int? Gmtoffset
-);
+    [JsonProperty("date")]
+    public int? Date { get; set; }
+}
 
-public record Pre(
-    [property: JsonProperty("timezone", NullValueHandling = NullValueHandling.Ignore)] string Timezone,
-    [property: JsonProperty("start", NullValueHandling = NullValueHandling.Ignore)] int? Start,
-    [property: JsonProperty("end", NullValueHandling = NullValueHandling.Ignore)] int? End,
-    [property: JsonProperty("gmtoffset", NullValueHandling = NullValueHandling.Ignore)] int? Gmtoffset
-);
+public class Events
+{
+    [JsonProperty("dividends")]
+    public Dictionary<long, Dividends> DividendData { get; set; } = new();
+}
 
-public record Quote(
-    [property: JsonProperty("close", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<double?> Close,
-    [property: JsonProperty("high", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<double?> High,
-    [property: JsonProperty("low", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<double?> Low,
-    [property: JsonProperty("volume", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<int?> Volume,
-    [property: JsonProperty("open", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<double?> Open
-);
+public class Indicators
+{
+    [JsonProperty("quote")]
+    public List<Quote> Quote { get; set; } = [];
 
-public record Regular(
-    [property: JsonProperty("timezone", NullValueHandling = NullValueHandling.Ignore)] string Timezone,
-    [property: JsonProperty("start", NullValueHandling = NullValueHandling.Ignore)] int? Start,
-    [property: JsonProperty("end", NullValueHandling = NullValueHandling.Ignore)] int? End,
-    [property: JsonProperty("gmtoffset", NullValueHandling = NullValueHandling.Ignore)] int? Gmtoffset
-);
+    [JsonProperty("adjclose")]
+    public List<AdjClose> Adjclose { get; set; } = [];
+}
 
-public record Result(
-    [property: JsonProperty("meta", NullValueHandling = NullValueHandling.Ignore)] Meta Meta,
-    [property: JsonProperty("timestamp", NullValueHandling = NullValueHandling.Ignore)] IReadOnlyList<int?> Timestamp,
-    [property: JsonProperty("events", NullValueHandling = NullValueHandling.Ignore)] Events Events,
-    [property: JsonProperty("indicators", NullValueHandling = NullValueHandling.Ignore)] Indicators Indicators
-);
+public class Meta
+{
+    [JsonProperty("currency")]
+    public string Currency { get; set; } = string.Empty;
 
-public record Root(
-    [property: JsonProperty("chart", NullValueHandling = NullValueHandling.Ignore)] Chart Chart
-);
+    [JsonProperty("symbol")]
+    public string Symbol { get; set; } = string.Empty;
+
+    [JsonProperty("exchangeName")]
+    public string ExchangeName { get; set; } = string.Empty;
+
+    [JsonProperty("fullExchangeName")]
+    public string FullExchangeName { get; set; } = string.Empty;
+
+    [JsonProperty("instrumentType")]
+    public string InstrumentType { get; set; } = string.Empty;
+
+    [JsonProperty("firstTradeDate")]
+    public int? FirstTradeDate { get; set; }
+
+    [JsonProperty("regularMarketTime")]
+    public int? RegularMarketTime { get; set; }
+
+    [JsonProperty("hasPrePostMarketData")]
+    public bool? HasPrePostMarketData { get; set; }
+
+    [JsonProperty("gmtoffset")]
+    public int? Gmtoffset { get; set; }
+
+    [JsonProperty("timezone")]
+    public string Timezone { get; set; } = string.Empty;
+
+    [JsonProperty("exchangeTimezoneName")]
+    public string ExchangeTimezoneName { get; set; } = string.Empty;
+
+    [JsonProperty("regularMarketPrice")]
+    public double? RegularMarketPrice { get; set; }
+
+    [JsonProperty("fiftyTwoWeekHigh")]
+    public double? FiftyTwoWeekHigh { get; set; }
+
+    [JsonProperty("fiftyTwoWeekLow")]
+    public double? FiftyTwoWeekLow { get; set; }
+
+    [JsonProperty("regularMarketDayHigh")]
+    public double? RegularMarketDayHigh { get; set; }
+
+    [JsonProperty("regularMarketDayLow")]
+    public double? RegularMarketDayLow { get; set; }
+
+    [JsonProperty("regularMarketVolume")]
+    public int? RegularMarketVolume { get; set; }
+
+    [JsonProperty("longName")]
+    public string LongName { get; set; } = string.Empty;
+
+    [JsonProperty("shortName")]
+    public string ShortName { get; set; } = string.Empty;
+
+    [JsonProperty("chartPreviousClose")]
+    public double? ChartPreviousClose { get; set; }
+
+    [JsonProperty("priceHint")]
+    public int? PriceHint { get; set; }
+
+    [JsonProperty("currentTradingPeriod")]
+    public CurrentTradingPeriod CurrentTradingPeriod { get; set; } = new();
+
+    [JsonProperty("dataGranularity")]
+    public string DataGranularity { get; set; } = string.Empty;
+
+    [JsonProperty("range")]
+    public string Range { get; set; } = string.Empty;
+
+    [JsonProperty("validRanges")]
+    public List<string> ValidRanges { get; set; } = [];
+}
+
+public class Post
+{
+    [JsonProperty("timezone")]
+    public string Timezone { get; set; } = string.Empty;
+
+    [JsonProperty("start")]
+    public int? Start { get; set; }
+
+    [JsonProperty("end")]
+    public int? End { get; set; }
+
+    [JsonProperty("gmtoffset")]
+    public int? Gmtoffset { get; set; }
+}
+
+public class Pre
+{
+    [JsonProperty("timezone")]
+    public string Timezone { get; set; } = string.Empty;
+
+    [JsonProperty("start")]
+    public int? Start { get; set; }
+
+    [JsonProperty("end")]
+    public int? End { get; set; }
+
+    [JsonProperty("gmtoffset")]
+    public int? Gmtoffset { get; set; }
+}
+
+public class Quote
+{
+    [JsonProperty("close")]
+    public List<double?> Close { get; set; } = [];
+
+    [JsonProperty("high")]
+    public List<double?> High { get; set; } = [];
+
+    [JsonProperty("low")]
+    public List<double?> Low { get; set; } = [];
+
+    [JsonProperty("volume")]
+    public List<int?> Volume { get; set; } = [];
+
+    [JsonProperty("open")]
+    public List<double?> Open { get; set; } = [];
+}
+
+public class Regular
+{
+    [JsonProperty("timezone")]
+    public string Timezone { get; set; } = string.Empty;
+
+    [JsonProperty("start")]
+    public int? Start { get; set; }
+
+    [JsonProperty("end")]
+    public int? End { get; set; }
+
+    [JsonProperty("gmtoffset")]
+    public int? Gmtoffset { get; set; }
+}
+
+public class Result
+{
+    [JsonProperty("meta")]
+    public Meta Meta { get; set; } = new();
+
+    [JsonProperty("timestamp")]
+    public List<int?> Timestamp { get; set; } = [];
+
+    [JsonProperty("events")]
+    public Events Events { get; set; } = new();
+
+    [JsonProperty("indicators")]
+    public Indicators Indicators { get; set; } = new();
+}
+
+public class DividendRoot
+{
+    [JsonProperty("chart")]
+    public Chart Chart { get; set; } = new();
+}
+
+public partial class DividendItem
+{
+    public long Name {get; set;}
+    public Dividends DividendDataObject { get; set; } = new();
+}
