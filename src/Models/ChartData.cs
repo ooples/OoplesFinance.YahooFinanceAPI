@@ -24,7 +24,7 @@ public class CurrentTradingPeriod
 public class Indicators
 {
     [JsonProperty("quote")]
-    public List<ChartQuote> Quote { get; set; } = [];
+    public List<HistoricalDataQuote> Quote { get; set; } = [];
 }
 
 public class Meta
@@ -105,7 +105,7 @@ public class TradingPeriod
     public int? Gmtoffset { get; set; }
 }
 
-public class ChartQuote
+public class Quote
 {
     [JsonProperty("open")]
     public List<double?> Open { get; set; } = [];

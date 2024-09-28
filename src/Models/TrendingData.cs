@@ -9,7 +9,7 @@ internal class TrendingFinance
     public object Error { get; set; } = new();
 }
 
-internal class Quote
+internal class TrendingQuote
 {
     [JsonProperty("symbol")]
     public string Symbol { get; set; } = string.Empty;
@@ -21,7 +21,7 @@ internal class TrendingResult
     public int? Count { get; set; }
 
     [JsonProperty("quotes")]
-    public List<Quote> Quotes { get; set; } = [];
+    public List<TrendingQuote> Quotes { get; set; } = [];
 
     [JsonProperty("jobTimestamp")]
     public long? JobTimestamp { get; set; }

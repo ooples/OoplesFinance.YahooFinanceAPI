@@ -19,10 +19,10 @@ public class YahooClient
     /// <param name="dataFrequency"></param>
     /// <param name="startDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<HistoricalData>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
+    public async Task<HistoricalDataQuote> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
     {
-        return new HistoricalHelper().ParseYahooCsvData<HistoricalData>(
-            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, null, true));
+        return new HistoricalHelper().ParseYahooJsonData<HistoricalDataQuote>(
+            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, null, true)).First();
     }
 
     /// <summary>
@@ -33,11 +33,11 @@ public class YahooClient
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<HistoricalData>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<HistoricalDataQuote> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate)
     {
-        return new HistoricalHelper().ParseYahooCsvData<HistoricalData>(
-            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, true));
+        return new HistoricalHelper().ParseYahooJsonData<HistoricalDataQuote>(
+            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, true)).First();
     }
 
     /// <summary>
@@ -49,11 +49,11 @@ public class YahooClient
     /// <param name="endDate"></param>
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<HistoricalData>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<HistoricalDataQuote> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
-        return new HistoricalHelper().ParseYahooCsvData<HistoricalData>(
-            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, includeAdjustedClose));
+        return new HistoricalHelper().ParseYahooJsonData<HistoricalDataQuote>(
+            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, includeAdjustedClose)).First();
     }
 
     /// <summary>

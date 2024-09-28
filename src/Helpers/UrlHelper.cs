@@ -14,7 +14,7 @@ internal static class UrlHelper
     /// <param name="includeAdjClose"></param>
     /// <returns></returns>
     internal static string BuildYahooCsvUrl(string symbol, DataType dataType, DataFrequency dataFrequency, DateTime startDate, DateTime? endDate, bool includeAdjClose) => 
-        string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v7/finance/download/{symbol}?period1={startDate.ToUnixTimestamp()}" +
+        string.Format(CultureInfo.InvariantCulture, $"https://query2.finance.yahoo.com/v8/finance/download/{symbol}?period1={startDate.ToUnixTimestamp()}" +
             $"&period2={(endDate ?? DateTime.Now).ToUnixTimestamp()}&interval={GetFrequencyString(dataFrequency)}&events={GetEventsString(dataType)}" +
             $"&includeAdjustedClose={includeAdjClose}");
 
