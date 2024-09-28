@@ -21,13 +21,13 @@ public class History
 public class UpgradeDowngradeHistoryQuoteSummary
 {
     [JsonProperty("result")] 
-    public List<Result> Results { get; set; } = [];
+    public List<UpgradeDowngradeHistoryResult> Results { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
 }
 
-public class Result
+public class UpgradeDowngradeHistoryResult
 {
     [JsonProperty("upgradeDowngradeHistory")] 
     public UpgradeDowngradeHistory UpgradeDowngradeHistory { get; set; } = new();

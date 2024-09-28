@@ -1,19 +1,30 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
 [Serializable]
-public class HistoricalData
+
+public class HistoricalDataRoot
 {
-    public DateTime Date { get; set; }
+    [JsonProperty("chart")]
+    public Chart? Chart { get; set; }
+}
 
-    public double Open { get; set; }
+public class Chart
+{
+    [JsonProperty("result")]
+    public List<Result> Result { get; set; } = [];
 
-    public double High { get; set; }
+    [JsonProperty("error")]
+    public object Error { get; set; } = new();
+}
 
-    public double Low { get; set; }
+public class Result
+{
+    [JsonProperty("meta")]
+    public Meta Meta { get; set; } = new();
 
-    public double Close { get; set; }
+    [JsonProperty("timestamp")]
+    public List<int?> Timestamp { get; set; } = [];
 
-    public double AdjClose { get; set; }
-
-    public double Volume { get; set; }
+    [JsonProperty("indicators")]
+    public Indicators Indicators { get; set; } = new();
 }

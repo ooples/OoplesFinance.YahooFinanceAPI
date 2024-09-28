@@ -3,8 +3,8 @@ using OoplesFinance.YahooFinanceAPI.Enums;
 
 try
 {
-    var startDate = DateTime.Now.AddYears(-1);
-    var symbol = "AAPL";
+    var startDate = DateTime.Now.AddYears(-10);
+    var symbol = "GOOG";
     var fundSymbol = "VSMPX";
     var symbols = new string[] { symbol, "MSFT", "NFLX", "TSLA", "YHOO", "SPY", "A", "AA", "GOOG", "F", "UBER", "LYFT" };
 
