@@ -9,9 +9,9 @@ internal class DividendHelper : YahooJsonBase
 
         if (dividendData != null && dividendData.Chart?.Result != null)
         {
-            var quotes = dividendData.Chart.Result.Cast<T>();
+            var results = dividendData.Chart.Result.Cast<T>();
 
-            return quotes;
+            return results;
         }
 
         return [];

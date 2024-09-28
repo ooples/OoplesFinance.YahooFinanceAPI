@@ -3,14 +3,12 @@ using OoplesFinance.YahooFinanceAPI.Enums;
 
 try
 {
-    var startDate = DateTime.Now.AddYears(-1);
-    var symbol = "AAPL";
+    var startDate = DateTime.Now.AddYears(-10);
+    var symbol = "GOOG";
     var fundSymbol = "VSMPX";
     var symbols = new string[] { symbol, "MSFT", "NFLX", "TSLA", "YHOO", "SPY", "A", "AA", "GOOG", "F", "UBER", "LYFT" };
 
     var yahooClient = new YahooClient();
-    var dividendList = await yahooClient.GetDividendDataAsync(symbol, DataFrequency.Weekly, startDate);
-    Console.WriteLine();
     //var historicalDataList = await yahooClient.GetHistoricalDataAsync(symbol, DataFrequency.Daily, startDate);
     //var capitalGainList = await yahooClient.GetCapitalGainDataAsync(symbol, DataFrequency.Monthly, startDate);
     //var dividendList = await yahooClient.GetDividendDataAsync(symbol, DataFrequency.Weekly, startDate);

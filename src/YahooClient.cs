@@ -19,10 +19,10 @@ public class YahooClient
     /// <param name="dataFrequency"></param>
     /// <param name="startDate"></param>
     /// <returns></returns>
-    public async Task<Quote> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
+    public async Task<IEnumerable<Result>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
     {
-        return new HistoricalHelper().ParseYahooJsonData<Quote>(
-            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, null, true)).First();
+        return new HistoricalHelper().ParseYahooJsonData<Result>(
+            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, null, true));
     }
 
     /// <summary>
@@ -33,11 +33,11 @@ public class YahooClient
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
     /// <returns></returns>
-    public async Task<Quote> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<Result>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate)
     {
-        return new HistoricalHelper().ParseYahooJsonData<Quote>(
-            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, true)).First();
+        return new HistoricalHelper().ParseYahooJsonData<Result>(
+            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, true));
     }
 
     /// <summary>
@@ -49,11 +49,11 @@ public class YahooClient
     /// <param name="endDate"></param>
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
-    public async Task<Quote> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<Result>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
-        return new HistoricalHelper().ParseYahooJsonData<Quote>(
-            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, includeAdjustedClose)).First();
+        return new HistoricalHelper().ParseYahooJsonData<Result>(
+            await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, includeAdjustedClose));
     }
 
     /// <summary>
@@ -63,9 +63,9 @@ public class YahooClient
     /// <param name="dataFrequency"></param>
     /// <param name="startDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Result>> GetDividendDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
+    public async Task<IEnumerable<DividendResult>> GetDividendDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
     {
-        return new DividendHelper().ParseYahooJsonData<Result>(
+        return new DividendHelper().ParseYahooJsonData<DividendResult>(
             await DownloadRawCsvDataAsync(symbol, DataType.Dividends, dataFrequency, startDate, null, true));
     }
 
@@ -77,10 +77,10 @@ public class YahooClient
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Result>> GetDividendDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<DividendResult>> GetDividendDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate)
     {
-        return new DividendHelper().ParseYahooJsonData<Result>(
+        return new DividendHelper().ParseYahooJsonData<DividendResult>(
             await DownloadRawCsvDataAsync(symbol, DataType.Dividends, dataFrequency, startDate, endDate, true));
     }
 
@@ -93,10 +93,10 @@ public class YahooClient
     /// <param name="endDate"></param>
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Result>> GetDividendDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<DividendResult>> GetDividendDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
-        return new DividendHelper().ParseYahooJsonData<Result>(
+        return new DividendHelper().ParseYahooJsonData<DividendResult>(
             await DownloadRawCsvDataAsync(symbol, DataType.Dividends, dataFrequency, startDate, endDate, includeAdjustedClose));
     }
 
@@ -107,9 +107,9 @@ public class YahooClient
     /// <param name="dataFrequency"></param>
     /// <param name="startDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<StockSplitData>> GetStockSplitDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
+    public async Task<IEnumerable<StockSplitResult>> GetStockSplitDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
     {
-        return new StockSplitHelper().ParseYahooJsonData<StockSplitData>(
+        return new StockSplitHelper().ParseYahooJsonData<StockSplitResult>(
             await DownloadRawCsvDataAsync(symbol, DataType.StockSplits, dataFrequency, startDate, null, true));
     }
 
@@ -121,10 +121,10 @@ public class YahooClient
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<StockSplitData>> GetStockSplitDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<StockSplitResult>> GetStockSplitDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate)
     {
-        return new StockSplitHelper().ParseYahooJsonData<StockSplitData>(
+        return new StockSplitHelper().ParseYahooJsonData<StockSplitResult>(
             await DownloadRawCsvDataAsync(symbol, DataType.StockSplits, dataFrequency, startDate, endDate, true));
     }
 
@@ -137,10 +137,10 @@ public class YahooClient
     /// <param name="endDate"></param>
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<StockSplitData>> GetStockSplitDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<StockSplitResult>> GetStockSplitDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
-        return new StockSplitHelper().ParseYahooJsonData<StockSplitData>(
+        return new StockSplitHelper().ParseYahooJsonData<StockSplitResult>(
             await DownloadRawCsvDataAsync(symbol, DataType.StockSplits, dataFrequency, startDate, endDate, includeAdjustedClose));
     }
 
@@ -151,9 +151,9 @@ public class YahooClient
     /// <param name="dataFrequency"></param>
     /// <param name="startDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<CapitalGainData>> GetCapitalGainDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
+    public async Task<IEnumerable<Result>> GetCapitalGainDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
     {
-        return new CapitalGainHelper().ParseYahooJsonData<CapitalGainData>(
+        return new CapitalGainHelper().ParseYahooJsonData<Result>(
             await DownloadRawCsvDataAsync(symbol, DataType.CapitalGains, dataFrequency, startDate, null, true));
     }
 
@@ -165,10 +165,10 @@ public class YahooClient
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<CapitalGainData>> GetCapitalGainDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<Result>> GetCapitalGainDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate)
     {
-        return new CapitalGainHelper().ParseYahooJsonData<CapitalGainData>(
+        return new CapitalGainHelper().ParseYahooJsonData<Result>(
             await DownloadRawCsvDataAsync(symbol, DataType.CapitalGains, dataFrequency, startDate, endDate, true));
     }
 
@@ -181,10 +181,10 @@ public class YahooClient
     /// <param name="endDate"></param>
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<CapitalGainData>> GetCapitalGainDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<Result>> GetCapitalGainDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
-        return new CapitalGainHelper().ParseYahooJsonData<CapitalGainData>(
+        return new CapitalGainHelper().ParseYahooJsonData<Result>(
             await DownloadRawCsvDataAsync(symbol, DataType.CapitalGains, dataFrequency, startDate, endDate, includeAdjustedClose));
     }
 

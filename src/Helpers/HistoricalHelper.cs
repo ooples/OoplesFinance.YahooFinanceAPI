@@ -15,9 +15,9 @@ internal class HistoricalHelper : YahooJsonBase
 
         if (historicalData != null && historicalData.Chart?.Result != null)
         {
-            var quotes = historicalData.Chart.Result.SelectMany(x => x.Indicators.Quote).Cast<T>();
+            var result = historicalData.Chart.Result.Cast<T>();
 
-            return quotes;
+            return result;
         }
 
         return [];

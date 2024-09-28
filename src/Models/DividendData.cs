@@ -1,17 +1,16 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
 [Serializable]
-
 public class AdjClose
 {
     [JsonProperty("adjclose")]
     public List<double?> Adjclose { get; set; } = [];
 }
 
-public class Chart
+public class DividendChart
 {
     [JsonProperty("result")]
-    public List<Result> Result { get; set; } = [];
+    public List<DividendResult> Result { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -38,7 +37,7 @@ public class Dividends
     public int? Date { get; set; }
 }
 
-public class Events
+public class DividendEvents
 {
     [JsonProperty("dividends")]
     public Dictionary<long, Dividends> DividendData { get; set; } = new();
@@ -194,7 +193,7 @@ public class Regular
     public int? Gmtoffset { get; set; }
 }
 
-public class Result
+public class DividendResult
 {
     [JsonProperty("meta")]
     public Meta Meta { get; set; } = new();
@@ -203,7 +202,7 @@ public class Result
     public List<int?> Timestamp { get; set; } = [];
 
     [JsonProperty("events")]
-    public Events Events { get; set; } = new();
+    public DividendEvents Events { get; set; } = new();
 
     [JsonProperty("indicators")]
     public Indicators Indicators { get; set; } = new();
@@ -212,7 +211,7 @@ public class Result
 public class DividendRoot
 {
     [JsonProperty("chart")]
-    public Chart Chart { get; set; } = new();
+    public DividendChart Chart { get; set; } = new();
 }
 
 public partial class DividendItem
