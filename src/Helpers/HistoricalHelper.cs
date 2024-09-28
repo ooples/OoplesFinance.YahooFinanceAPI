@@ -13,6 +13,6 @@ internal class HistoricalHelper : YahooJsonBase
     {
         var historicalData = JsonConvert.DeserializeObject<HistoricalDataRoot>(jsonData);
 
-        return historicalData != null ? (IEnumerable<T>)historicalData.Chart.Result.Select(x => x.Indicators.Quote) : [];
+        return historicalData != null ? (IEnumerable<T>)(historicalData?.Chart?.Result.Select(x => x.Indicators.Quote) ?? []) : [];
     }
 }
