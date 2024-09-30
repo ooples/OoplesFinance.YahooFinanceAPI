@@ -172,7 +172,7 @@ public class Quote
     public List<double?> Low { get; set; } = [];
 
     [JsonProperty("volume")]
-    public List<int?> Volume { get; set; } = [];
+    public List<long?> Volume { get; set; } = [];
 
     [JsonProperty("open")]
     public List<double?> Open { get; set; } = [];
