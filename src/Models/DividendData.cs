@@ -103,7 +103,7 @@ public class Meta
     public double? RegularMarketDayLow { get; set; }
 
     [JsonProperty("regularMarketVolume")]
-    public int? RegularMarketVolume { get; set; }
+    public long? RegularMarketVolume { get; set; }
 
     [JsonProperty("longName")]
     public string LongName { get; set; } = string.Empty;

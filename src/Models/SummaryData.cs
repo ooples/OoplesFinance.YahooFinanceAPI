@@ -24,7 +24,7 @@ public class AskSize
 public class AverageDailyVolume10Day
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
@@ -36,7 +36,7 @@ public class AverageDailyVolume10Day
 public class AverageVolume
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
@@ -48,7 +48,7 @@ public class AverageVolume
 public class AverageVolume10days
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
@@ -296,7 +296,7 @@ public class RegularMarketPreviousClose
 public class RegularMarketVolume
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
@@ -525,7 +525,7 @@ public class TwoHundredDayAverage
 public class Volume
 {
     [JsonProperty("raw")]
-    public int? Raw { get; set; }
+    public long? Raw { get; set; }
 
     [JsonProperty("fmt")]
     public string Fmt { get; set; } = string.Empty;
