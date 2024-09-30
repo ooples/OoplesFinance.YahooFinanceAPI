@@ -11,6 +11,7 @@ internal class ChartHelper : YahooJsonBase
     internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
         var root = JsonConvert.DeserializeObject<ChartRoot>(jsonData)?.Chart.Result.FirstOrDefault();
+
         var result = new ChartInfo
         {
             DateList = new List<DateTime>(root != null ? root.Timestamp.Select(x => x.FromUnixTimeStamp()) : []),
