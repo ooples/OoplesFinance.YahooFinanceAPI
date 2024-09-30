@@ -23,8 +23,25 @@ public class Result
     public Meta Meta { get; set; } = new();
 
     [JsonProperty("timestamp")]
-    public List<int?> Timestamp { get; set; } = [];
+    public List<long?> Timestamp { get; set; } = [];
 
     [JsonProperty("indicators")]
     public Indicators Indicators { get; set; } = new();
+}
+
+public class HistoricalChartInfo
+{
+    public DateTime Date { get; set; }
+
+    public double Open { get; set; }
+
+    public double High { get; set; }
+
+    public double Low { get; set; }
+
+    public double Close { get; set; }
+
+    public double AdjustedClose { get; set; }
+
+    public long Volume { get; set; }
 }

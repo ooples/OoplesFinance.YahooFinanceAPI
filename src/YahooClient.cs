@@ -19,9 +19,9 @@ public class YahooClient
     /// <param name="dataFrequency"></param>
     /// <param name="startDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Result>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
+    public async Task<IEnumerable<HistoricalChartInfo>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency, DateTime startDate)
     {
-        return new HistoricalHelper().ParseYahooJsonData<Result>(
+        return new HistoricalHelper().ParseYahooJsonData<HistoricalChartInfo>(
             await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, null, true));
     }
 
@@ -33,10 +33,10 @@ public class YahooClient
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Result>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<HistoricalChartInfo>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate)
     {
-        return new HistoricalHelper().ParseYahooJsonData<Result>(
+        return new HistoricalHelper().ParseYahooJsonData<HistoricalChartInfo>(
             await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, true));
     }
 
@@ -49,10 +49,10 @@ public class YahooClient
     /// <param name="endDate"></param>
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
-    public async Task<IEnumerable<Result>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
+    public async Task<IEnumerable<HistoricalChartInfo>> GetHistoricalDataAsync(string symbol, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
-        return new HistoricalHelper().ParseYahooJsonData<Result>(
+        return new HistoricalHelper().ParseYahooJsonData<HistoricalChartInfo>(
             await DownloadRawCsvDataAsync(symbol, DataType.HistoricalPrices, dataFrequency, startDate, endDate, includeAdjustedClose));
     }
 
