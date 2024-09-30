@@ -54,5 +54,5 @@ public class ChartInfo
 
     public List<double> CloseList { get; set; } = [];
 
-    public List<double> VolumeList { get; set; } = [];
+    public List<long> VolumeList { get; set; } = [];
 }
