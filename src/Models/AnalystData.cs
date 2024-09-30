@@ -25,7 +25,7 @@ public record AnalystFinance(
 
 public record AnalystRecord(
     [property: JsonProperty("marketCap", NullValueHandling = NullValueHandling.Ignore)] double? MarketCap,
-    [property: JsonProperty("dayVolume", NullValueHandling = NullValueHandling.Ignore)] int? DayVolume,
+    [property: JsonProperty("dayVolume", NullValueHandling = NullValueHandling.Ignore)] long? DayVolume,
     [property: JsonProperty("price", NullValueHandling = NullValueHandling.Ignore)] double? Price,
     [property: JsonProperty("pricePercentChange", NullValueHandling = NullValueHandling.Ignore)] double? PricePercentChange,
     [property: JsonProperty("intradayPriceChange", NullValueHandling = NullValueHandling.Ignore)] double? IntradayPriceChange,

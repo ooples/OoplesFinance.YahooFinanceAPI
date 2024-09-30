@@ -30,7 +30,7 @@ public record InstitutionRecord(
     [property: JsonProperty("pricePercentChange", NullValueHandling = NullValueHandling.Ignore)] double? PricePercentChange,
     [property: JsonProperty("intradayPriceChange", NullValueHandling = NullValueHandling.Ignore)] double? IntradayPriceChange,
     [property: JsonProperty("marketCap", NullValueHandling = NullValueHandling.Ignore)] double? MarketCap,
-    [property: JsonProperty("dayVolume", NullValueHandling = NullValueHandling.Ignore)] int? DayVolume,
+    [property: JsonProperty("dayVolume", NullValueHandling = NullValueHandling.Ignore)] long? DayVolume,
     [property: JsonProperty("industry", NullValueHandling = NullValueHandling.Ignore)] string Industry,
     [property: JsonProperty("numOfInstitutionalHolders", NullValueHandling = NullValueHandling.Ignore)] int? NumOfInstitutionalHolders,
     [property: JsonProperty("numOfInstitutionalHoldersPercent", NullValueHandling = NullValueHandling.Ignore)] double? NumOfInstitutionalHoldersPercent,

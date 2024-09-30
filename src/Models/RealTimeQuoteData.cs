@@ -197,7 +197,7 @@ public class RealTimeQuoteResult
     public double? RegularMarketDayLow { get; set; }
 
     [JsonProperty("regularMarketVolume")]
-    public int? RegularMarketVolume { get; set; }
+    public long? RegularMarketVolume { get; set; }
 
     [JsonProperty("regularMarketPreviousClose")]
     public double? RegularMarketPreviousClose { get; set; }
@@ -224,10 +224,10 @@ public class RealTimeQuoteResult
     public double? RegularMarketOpen { get; set; }
 
     [JsonProperty("averageDailyVolume3Month")]
-    public int? AverageDailyVolume3Month { get; set; }
+    public long? AverageDailyVolume3Month { get; set; }
 
     [JsonProperty("averageDailyVolume10Day")]
-    public int? AverageDailyVolume10Day { get; set; }
+    public long? AverageDailyVolume10Day { get; set; }
 
     [JsonProperty("fiftyTwoWeekLowChange")]
     public double? FiftyTwoWeekLowChange { get; set; }
