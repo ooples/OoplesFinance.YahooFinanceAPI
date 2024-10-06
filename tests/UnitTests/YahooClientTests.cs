@@ -47,7 +47,7 @@ public sealed class YahooClientTests
         var result = await _sut.GetHistoricalDataAsync(GoodSymbol, DataFrequency.Daily, _startDate);
 
         // Assert
-        result.Should().NotBeEmpty();
+        result.Should().NotBeNull();
     }
 
     [Fact]

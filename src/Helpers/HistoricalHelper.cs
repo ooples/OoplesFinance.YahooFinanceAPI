@@ -1,47 +1,39 @@
-﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
+﻿
+namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
-internal class HistoricalHelper : YahooCsvBase
+internal class HistoricalHelper : YahooJsonBase
 {
     /// <summary>
-    /// Parses the raw csv data for the Historical Data
+    /// Parses the raw json data for the Financial Data
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="csvData"></param>
-    /// <returns>Returns a IEnumerable<HistoricalData> using the given csvData</returns>
-    internal override IEnumerable<T> ParseYahooCsvData<T>(IEnumerable<string[]> csvData)
+    /// <param name="jsonData"></param>
+    /// <returns></returns>
+    internal override IEnumerable<T> ParseYahooJsonData<T>(string jsonData)
     {
-        var parsedDataList = csvData.Select(csvRow =>
+        var root = (JsonConvert.DeserializeObject<HistoricalDataRoot>(jsonData)?.Chart?.Result.FirstOrDefault()) ?? 
+                throw new InvalidOperationException("No data available from Yahoo Finance");
+        var historicalChartInfoList = new List<HistoricalChartInfo>();
+
+        for (int i = 0; i < root.Timestamp.Count; i++)
         {
-            // Perform a try parse for all columns per row
-            var dateSuccess = DateTime.TryParse(csvRow[0], CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate);
-            var openSuccess = double.TryParse(csvRow[1], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number,
-                CultureInfo.InvariantCulture, out var parsedOpen);
-            var highSuccess = double.TryParse(csvRow[2], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number,
-                CultureInfo.InvariantCulture, out var parsedHigh);
-            var lowSuccess = double.TryParse(csvRow[3], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number,
-                CultureInfo.InvariantCulture, out var parsedLow);
-            var closeSuccess = double.TryParse(csvRow[4], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number,
-                CultureInfo.InvariantCulture, out var parsedClose);
-            var adjCloseSuccess = double.TryParse(csvRow[5], NumberStyles.AllowDecimalPoint | NumberStyles.Float | NumberStyles.Number,
-                CultureInfo.InvariantCulture, out var parsedAdjClose);
-            var volumeSuccess = double.TryParse(csvRow[6], NumberStyles.Integer | NumberStyles.Number,
-                CultureInfo.InvariantCulture, out var parsedVolume);
-
-            // Add either the parsed value or the default if there was a parsing error
-            HistoricalData historicalData = new()
+            historicalChartInfoList.Add(new HistoricalChartInfo
             {
-                Date = dateSuccess ? parsedDate : default,
-                Open = openSuccess ? parsedOpen : default,
-                High = highSuccess ? parsedHigh : default,
-                Low = lowSuccess ? parsedLow : default,
-                Close = closeSuccess ? parsedClose : default,
-                AdjClose = adjCloseSuccess ? parsedAdjClose : default,
-                Volume = volumeSuccess ? parsedVolume : default
-            };
+                Date = root.Timestamp[i].GetValueOrDefault().FromUnixTimeStamp(),
+                Open = Math.Round(root.Indicators?.Quote.FirstOrDefault()?.Open[i] ?? 0, 4),
+                High = Math.Round(root.Indicators?.Quote.FirstOrDefault()?.High[i] ?? 0, 4),
+                Low = Math.Round(root.Indicators?.Quote.FirstOrDefault()?.Low[i] ?? 0, 4),
+                Close = Math.Round(root.Indicators?.Quote.FirstOrDefault()?.Close[i] ?? 0, 4),
+                AdjustedClose = Math.Round(root.Indicators?.Adjclose.FirstOrDefault()?.Adjclose[i] ?? 0, 4),
+                Volume = root.Indicators?.Quote.FirstOrDefault()?.Volume[i] ?? 0
+            });
+        }
 
-            return historicalData;
-        });
+        if (historicalChartInfoList.Count == 0)
+        {
+            throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");
+        }
 
-        return (IEnumerable<T>)parsedDataList;
+        return historicalChartInfoList.Cast<T>();
     }
 }

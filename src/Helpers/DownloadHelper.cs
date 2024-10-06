@@ -13,7 +13,7 @@ internal static class DownloadHelper
     /// <param name="includeAdjustedClose"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    internal static async Task<IEnumerable<string[]>> DownloadRawCsvDataAsync(string symbol, DataType dataType, DataFrequency dataFrequency,
+    internal static async Task<string> DownloadRawCsvDataAsync(string symbol, DataType dataType, DataFrequency dataFrequency,
         DateTime startDate, DateTime? endDate, bool includeAdjustedClose)
     {
         if (string.IsNullOrWhiteSpace(symbol))
@@ -22,15 +22,8 @@ internal static class DownloadHelper
         }
         else
         {
-            var rawData = await DownloadRawDataAsync(BuildYahooCsvUrl(symbol, dataType, dataFrequency, startDate, endDate, includeAdjustedClose));
-
-            if (!string.IsNullOrWhiteSpace(rawData))
-            {
-                return GetBaseCsvData(rawData);
-            }
+            return await DownloadRawDataAsync(BuildYahooCsvUrl(symbol, dataType, dataFrequency, startDate, endDate, includeAdjustedClose));
         }
-
-        return [];
     }
 
     /// <summary>
@@ -106,7 +99,7 @@ internal static class DownloadHelper
                         "Requested Information Not Available On Yahoo Finance"),
                     HttpStatusCode.Unauthorized => new InvalidOperationException("Yahoo Finance Authentication Error"),
                     HttpStatusCode.Forbidden => new InvalidOperationException("Yahoo Finance Authentication Error"),
-                    _ => new InvalidOperationException("Unspecified Error Occurred")
+                    _ => new InvalidOperationException("Yahoo Finance Server Error")
                 };
             }
         }

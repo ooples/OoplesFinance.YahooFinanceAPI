@@ -1,9 +1,8 @@
 ﻿namespace OoplesFinance.YahooFinanceAPI.Models;
 
 [Serializable]
-public class CapitalGainData
+public class CapitalGainDataRoot
 {
-    public DateTime Date { get; set; }
-
-    public double CapitalGain { get; set; }
+    [JsonProperty("chart")]
+    public Chart? Chart { get; set; }
 }
