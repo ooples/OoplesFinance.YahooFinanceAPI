@@ -17,7 +17,7 @@ internal class ChartHelper : YahooJsonBase
             CloseList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Close.Select(y => y.GetValueOrDefault())) : []),
             OpenList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Open.Select(y => y.GetValueOrDefault())) : []),
             HighList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.High.Select(y => y.GetValueOrDefault())) : []),
-            VolumeList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Volume.Select(y => y.GetValueOrDefault())) : []),
+            VolumeList = new List<long>(root != null ? root.Indicators.Quote.SelectMany(x => x.Volume.Select(y => y.GetValueOrDefault())) : []),
             LowList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Low.Select(y => y.GetValueOrDefault())) : [])
         };
 

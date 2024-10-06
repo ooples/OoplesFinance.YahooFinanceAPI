@@ -569,9 +569,9 @@ public class YahooClient
     /// </summary>
     /// <param name="symbol"></param>
     /// <returns></returns>
-    public async Task<RealTimeQuoteResult?> GetRealTimeQuotesAsync(string symbol)
+    public async Task<RealTimeQuoteResult> GetRealTimeQuotesAsync(string symbol)
     {
-        return new RealTimeQuoteHelper().ParseYahooJsonData<RealTimeQuoteResult>(await DownloadRealTimeQuoteDataAsync(symbol, Country, Language)).FirstOrDefault();
+        return new RealTimeQuoteHelper().ParseYahooJsonData<RealTimeQuoteResult>(await DownloadRealTimeQuoteDataAsync(symbol, Country, Language)).FirstOrDefault() ?? new();
     }
 
     /// <summary>

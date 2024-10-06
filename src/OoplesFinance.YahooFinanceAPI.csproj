@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net7.0;net6.0;net48</TargetFrameworks>
@@ -8,7 +8,7 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
 	<Title>Ooples Finance Yahoo Finance API</Title>
-	<Version>1.6.2</Version>
+	<Version>1.6.3</Version>
 	<Authors>ooples</Authors>
 	<Company>Ooples Finance</Company>
 	<Copyright>Ooples Finance LLC 2022-2023</Copyright>
@@ -126,6 +126,14 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Images\**" />
     <Compile Remove="src\**" />
@@ -139,7 +147,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="6.0.1">
+    <PackageReference Include="coverlet.msbuild" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

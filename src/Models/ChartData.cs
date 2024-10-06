@@ -114,7 +114,7 @@ public class ChartQuote
     public List<double?> Low { get; set; } = [];
 
     [JsonProperty("volume")]
-    public List<double?> Volume { get; set; } = [];
+    public List<long?> Volume { get; set; } = [];
 
     [JsonProperty("close")]
     public List<double?> Close { get; set; } = [];
@@ -153,5 +153,5 @@ public class ChartInfo
 
     public List<double> CloseList { get; set; } = [];
 
-    public List<double> VolumeList { get; set; } = [];
+    public List<long> VolumeList { get; set; } = [];
 }
