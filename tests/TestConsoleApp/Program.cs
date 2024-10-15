@@ -91,7 +91,7 @@ try
     //var topUpsideBreakoutStocksList = await yahooClient.GetTopUpsideBreakoutStocksAsync(10);
 
     var r = await yahooClient.GetRealTimeQuotesAsync("TSLA");
-    Console.WriteLine($"{r.Symbol} {r.RegularMarketPrice} {r.Bid} {r.BidSize} {r.Ask} {r.AskSize}");
+    Console.WriteLine($"{r?.Symbol} {r?.RegularMarketPrice} {r?.Bid} {r?.BidSize} {r?.Ask} {r?.AskSize}");
 
     Console.WriteLine();
 }
