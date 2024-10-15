@@ -8,7 +8,7 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
 	<Title>Ooples Finance Yahoo Finance API</Title>
-	<Version>1.6.9</Version>
+	<Version>1.6.10</Version>
 	<Authors>ooples</Authors>
 	<Company>Ooples Finance</Company>
 	<Copyright>Ooples Finance LLC 2022-2023</Copyright>
@@ -151,7 +151,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>

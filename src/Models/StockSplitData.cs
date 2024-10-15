@@ -26,7 +26,7 @@ public class StockSplitResult
 public class StockSplitChart
 {
     [JsonProperty("result")]
-    public List<StockSplitResult> Result { get; set; } = new();
+    public List<StockSplitResult> Result { get; set; } = [];
 
     [JsonProperty("error")]
     public object Error { get; set; } = new();
@@ -35,7 +35,7 @@ public class StockSplitChart
 public class StockSplitEvents
 {
     [JsonProperty("splits")]
-    public Dictionary<long, Splits> SplitData { get; set; } = new();
+    public Dictionary<long, Splits> SplitData { get; set; } = [];
 }
 
 public partial class SplitItem

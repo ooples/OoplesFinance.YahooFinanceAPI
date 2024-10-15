@@ -40,7 +40,7 @@ public class Dividends
 public class DividendEvents
 {
     [JsonProperty("dividends")]
-    public Dictionary<long, Dividends> DividendData { get; set; } = new();
+    public Dictionary<long, Dividends> DividendData { get; set; } = [];
 }
 
 public class Indicators
