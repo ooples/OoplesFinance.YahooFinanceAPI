@@ -15,11 +15,11 @@ internal class ChartHelper : YahooJsonBase
         var result = new ChartInfo
         {
             DateList = new List<DateTime>(root != null ? root.Timestamp.Select(x => x.FromUnixTimeStamp()) : []),
-            CloseList = new List<double>(root != null ? root.Indicators?.Quote.SelectMany(x => x.Close.Select(y => y.GetValueOrDefault())) ?? [] : []),
-            OpenList = new List<double>(root != null ? root.Indicators?.Quote.SelectMany(x => x.Open.Select(y => y.GetValueOrDefault())) ?? [] : []),
-            HighList = new List<double>(root != null ? root.Indicators?.Quote.SelectMany(x => x.High.Select(y => y.GetValueOrDefault())) ?? [] : []),
-            VolumeList = new List<long>(root != null ? root.Indicators?.Quote.SelectMany(x => x.Volume.Select(y => y.GetValueOrDefault())) ?? [] : []),
-            LowList = new List<double>(root != null ? root.Indicators?.Quote.SelectMany(x => x.Low.Select(y => y.GetValueOrDefault())) ?? [] : [])
+            CloseList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Close.Select(y => y.GetValueOrDefault())) : []),
+            OpenList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Open.Select(y => y.GetValueOrDefault())) : []),
+            HighList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.High.Select(y => y.GetValueOrDefault())) : []),
+            VolumeList = new List<long>(root != null ? root.Indicators.Quote.SelectMany(x => x.Volume.Select(y => y.GetValueOrDefault())) : []),
+            LowList = new List<double>(root != null ? root.Indicators.Quote.SelectMany(x => x.Low.Select(y => y.GetValueOrDefault())) : [])
         };
 
         if (result.DateList.Count == 0 || result.CloseList.Count == 0 || result.OpenList.Count == 0 || result.HighList.Count == 0 || 

@@ -24,6 +24,24 @@ public class TradingPeriod
     public int? Gmtoffset { get; set; }
 }
 
+public class ChartQuote
+{
+    [JsonProperty("open")]
+    public List<double?> Open { get; set; } = [];
+
+    [JsonProperty("low")]
+    public List<double?> Low { get; set; } = [];
+
+    [JsonProperty("volume")]
+    public List<long?> Volume { get; set; } = [];
+
+    [JsonProperty("close")]
+    public List<double?> Close { get; set; } = [];
+
+    [JsonProperty("high")]
+    public List<double?> High { get; set; } = [];
+}
+
 public class ChartResult
 {
     [JsonProperty("meta")]
