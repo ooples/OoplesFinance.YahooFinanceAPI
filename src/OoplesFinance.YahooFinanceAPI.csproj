@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net48</TargetFrameworks>
+    <TargetFrameworks>net6.0;net48</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<LangVersion>latest</LangVersion>
@@ -27,7 +27,6 @@
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<SignAssembly>False</SignAssembly>
 	<DelaySign>True</DelaySign>
-	<TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
