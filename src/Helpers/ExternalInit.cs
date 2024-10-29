@@ -1,3 +1,3 @@
-﻿namespace System.Runtime.CompilerServices;
+﻿namespace OoplesFinance.YahooFinanceAPI.Helpers;
 
 internal static class IsExternalInit { }
