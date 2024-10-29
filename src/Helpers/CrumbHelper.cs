@@ -1,4 +1,6 @@
 ﻿// CrumbHelper.cs
+//  Andrew Baylis
+//  Created: 29/10/2024
 
 #region using
 
@@ -23,7 +25,7 @@ internal sealed class CrumbHelper
 
     private CrumbHelper()
     {
-        handler = GetClientHandler(); 
+        handler = GetClientHandler();
         Crumb = string.Empty;
     }
 
@@ -72,7 +74,7 @@ internal sealed class CrumbHelper
     private static HttpClientHandler GetClientHandler()
     {
         return YahooClient.IsThrottled
-            ? new DownloadThrottleQueueHandler(40, TimeSpan.FromMinutes(1)) //40 calls in a minute
+            ? new DownloadThrottleQueueHandler(40, TimeSpan.FromMinutes(1),4) //40 calls in a minute, no more than 4 simultaneously
             : new HttpClientHandler();
     }
 
@@ -122,66 +124,43 @@ internal class DownloadThrottleQueueHandler : HttpClientHandler
 {
     #region Fields
 
-    private readonly ThrottleService _throttle;
+    private readonly TimeSpan _maxPeriod;
+    private readonly SemaphoreSlim _throttleLoad, _throttleRate;
 
     #endregion
 
-    public DownloadThrottleQueueHandler(int maxActions, TimeSpan maxPeriod)
+    public DownloadThrottleQueueHandler(int maxPerPeriod, TimeSpan maxPeriod, int maxParallel = -1)
     {
-        _throttle = new ThrottleService(maxActions, maxPeriod);
+        if (maxParallel < 0 || maxParallel > maxPerPeriod)
+        {
+            maxParallel = maxPerPeriod;
+        }
+
+        _throttleLoad = new SemaphoreSlim(maxParallel, maxParallel);
+        _throttleRate = new SemaphoreSlim(maxPerPeriod, maxPerPeriod);
+        _maxPeriod = maxPeriod;
     }
 
     #region Override Methods
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        return await _throttle.QueueAsync(async () => await base.SendAsync(request, cancellationToken), cancellationToken);
-    }
-
-    #endregion
-
-    #region Nested type: ThrottleService
-
-    private class ThrottleService
-    {
-        #region Fields
-
-        private readonly TimeSpan _maxPeriod;
-        private readonly SemaphoreSlim _throttleActions, _throttlePeriods;
-
-        #endregion
-
-        public ThrottleService(int maxActions, TimeSpan maxPeriod)
+        await _throttleLoad.WaitAsync(cancellationToken); // Allow bursts up to maxParallel requests at once
+        cancellationToken.ThrowIfCancellationRequested();
+        try
         {
-            _throttleActions = new SemaphoreSlim(maxActions, maxActions);
-            _throttlePeriods = new SemaphoreSlim(maxActions, maxActions);
-            _maxPeriod = maxPeriod;
+            await _throttleRate.WaitAsync(cancellationToken);
+
+            // Release after period [Note: Intentionally not awaited]
+            // - Do not allow more than maxPerPeriod requests per period
+            _ = Task.Delay(_maxPeriod).ContinueWith(tt => { _throttleRate.Release(1); }, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            return await base.SendAsync(request, cancellationToken);
         }
-
-        #region Public Methods
-
-        public async Task<T> QueueAsync<T>(Func<Task<T>> action, CancellationToken cancel)
+        finally
         {
-            await _throttleActions.WaitAsync(cancel);
-
-            try
-            {
-                await _throttlePeriods.WaitAsync(cancel);
-
-                // Release after period [Note: Intentionally not awaited]
-                // - Allow bursts up to maxActions requests at once
-                // - Do not allow more than maxActions requests per period
-                _ = Task.Delay(_maxPeriod).ContinueWith(tt => { _throttlePeriods.Release(1); }, cancel);
-
-                return await action();
-            }
-            finally
-            {
-                _throttleActions.Release();
-            }
+            _throttleLoad.Release();
         }
-
-        #endregion
     }
 
     #endregion
