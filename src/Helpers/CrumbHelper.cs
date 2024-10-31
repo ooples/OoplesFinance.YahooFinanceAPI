@@ -35,7 +35,7 @@ namespace OoplesFinance.YahooFinanceAPI.Helpers
                 if (loginResponse.Headers.TryGetValues(name: "Set-Cookie", out IEnumerable<string>? setCookie))
                 {
                     cookies = new List<string>(setCookie.Where(c => c.ToLower().IndexOf("domain=.yahoo.com") > 0));                   
-                    var crumbResponse = await client.GetAsync("https://query1.finance.yahoo.com/v1/test/getcrumb");
+                    var crumbResponse = await GetHttpClient().GetAsync("https://query1.finance.yahoo.com/v1/test/getcrumb");
 
                     if (crumbResponse.IsSuccessStatusCode)
                     {
