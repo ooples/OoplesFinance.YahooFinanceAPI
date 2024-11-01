@@ -5,5 +5,6 @@ public enum DataType
     HistoricalPrices,
     Dividends,
     StockSplits,
-    CapitalGains
+    CapitalGains,
+    All
 }

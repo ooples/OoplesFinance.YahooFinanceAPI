@@ -284,10 +284,11 @@ internal static class UrlHelper
         dataType switch
         {
             DataType.HistoricalPrices => "history",
-            DataType.Dividends        => "div",
-            DataType.StockSplits      => "split",
-            DataType.CapitalGains     => "capitalGain",
-            _                         => throw new ArgumentException("Invalid Enumerator Value", nameof(dataType))
+            DataType.Dividends => "div",
+            DataType.StockSplits => "split",
+            DataType.CapitalGains => "capitalGain",
+            DataType.All => "history,div,split",
+            _ => throw new ArgumentException("Invalid Enumerator Value", nameof(dataType))
         };
 
     private static string GetScreenerString(ScreenerType screenerType) =>
