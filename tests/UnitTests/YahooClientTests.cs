@@ -2451,7 +2451,7 @@ public sealed class YahooClientTests
         // Act
         Helpers.CrumbHelper.handler = mockHandler.Object;
         using var client = Helpers.CrumbHelper.GetHttpClient();
-        var ex = await Record.ExceptionAsync(Helpers.CrumbHelper.GetInstance);
+        var ex = await Record.ExceptionAsync(()=>Helpers.CrumbHelper.GetInstance(true));
 
         // Assert
         ex.Should().NotBeNull();

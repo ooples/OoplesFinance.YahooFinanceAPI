@@ -61,9 +61,9 @@ internal sealed class CrumbHelper
         return client;
     }
 
-    public static async Task<CrumbHelper> GetInstance()
+    public static async Task<CrumbHelper> GetInstance(bool setCrumb = true)
     {
-        if (string.IsNullOrEmpty(Instance.Crumb))
+        if (string.IsNullOrEmpty(Instance.Crumb) && setCrumb)
         {
             await Instance.SetCrumbAsync();
         }
