@@ -63,9 +63,14 @@ namespace OoplesFinance.YahooFinanceAPI.Helpers
             return client;
         }
 
-        public static async Task<CrumbHelper> GetInstance()
+        /// <summary>
+        /// Gets CrumbHelper instance, and gets crumb if not already set
+        /// </summary>
+        /// <param name="setCrumb">Set to false for not setting the crumb.</param>
+        /// <returns></returns>
+        public static async Task<CrumbHelper> GetInstance(bool setCrumb = true)
         {
-            if (string.IsNullOrEmpty(Instance.Crumb))
+            if (string.IsNullOrEmpty(Instance.Crumb) && setCrumb)
             {
                 await Instance.SetCrumbAsync();
             }
