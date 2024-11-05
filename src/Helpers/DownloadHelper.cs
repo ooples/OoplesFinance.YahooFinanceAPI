@@ -90,7 +90,7 @@ internal static class DownloadHelper
             }
             else
             {
-                (await CrumbHelper.GetInstance()).Destroy();
+                (await CrumbHelper.GetInstance(false)).Destroy();
 
                 throw response.StatusCode switch
                 {
@@ -99,7 +99,7 @@ internal static class DownloadHelper
                         "Requested Information Not Available On Yahoo Finance"),
                     HttpStatusCode.Unauthorized => new InvalidOperationException("Yahoo Finance Authentication Error"),
                     HttpStatusCode.Forbidden => new InvalidOperationException("Yahoo Finance Authentication Error"),
-                    _ => new InvalidOperationException("Yahoo Finance Server Error")
+                    _ => new InvalidOperationException("Yahoo Finance Server Error " + response.StatusCode),
                 };
             }
         }
